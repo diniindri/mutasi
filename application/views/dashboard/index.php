@@ -4,7 +4,37 @@
     </div>
     <div class="row">
         <div class="col">
-            <?= $profil['nama']; ?>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nomor</th>
+                            <th>Uraian</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php $no = 1;
+                        foreach ($sk as $r) : ?>
+
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $r['nomor']; ?></td>
+                                <td><?= $r['uraian']; ?></td>
+                                <td><?= $r['tanggal']; ?></td>
+                                <td>
+                                    <a href="" class="btn btn-sm btn-outline-success">Detail</a>
+                                </td>
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </main>
