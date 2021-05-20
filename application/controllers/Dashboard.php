@@ -12,10 +12,17 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $data['profil'] = [
-            'nip' => $this->session->userdata('nip'),
-            'nama' => $this->session->userdata('nama'),
-            'level' => $this->session->userdata('level')
+        $data['sk'] = [
+            [
+                'nomor' => 'KEP-09/KN/2021',
+                'uraian' => 'Mutasi Pelaksana Golongan II',
+                'tanggal' => '02 April 2021'
+            ],
+            [
+                'nomor' => 'KEP-10/KN/2021',
+                'uraian' => 'Mutasi Pelaksana Golongan III',
+                'tanggal' => '03 April 2021'
+            ]
         ];
 
         $this->load->view('template/header');
