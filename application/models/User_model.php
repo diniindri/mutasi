@@ -15,7 +15,7 @@ class User_model extends CI_Model
                     'level' => $user['is_active']
                 ];
                 $this->session->set_userdata($data);
-                redirect('beranda');
+                redirect('dashboard');
             } else {
                 $this->session->set_flashdata('pesan', 'Password Anda salah!');
                 redirect('sign-in');

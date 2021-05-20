@@ -12,7 +12,7 @@ class Sign_in extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('nip')) {
-            redirect('beranda');
+            redirect('dashboard');
         }
 
         $rules = [
@@ -36,7 +36,7 @@ class Sign_in extends CI_Controller
         $validation = $this->form_validation->set_rules($rules);
         if ($validation->run()) {
             $this->user->signInUser($post);
-            redirect('beranda');
+            redirect('dashboard');
         }
         $this->load->view('sign_in');
     }
