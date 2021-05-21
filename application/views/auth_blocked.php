@@ -36,7 +36,7 @@
             <div class="col-md-6 p-lg-5 mx-auto my-5">
                 <h1 class="display-4 font-weight-normal">Oops!, halaman tidak ditemukan.</h1>
                 <p class="lead font-weight-light">Sepertinya Anda tersesat, tenang saja itu merupakan hal biasa. Silahkan tekan tombol dibawah ini untuk kembali ke jalan yang benar.</p>
-                <a class="btn btn-outline-secondary mb-3" href="<?= base_url('beranda'); ?>" class="text-muted">Kembali ke halaman depan.</a>
+                <a class="btn btn-outline-secondary mb-3" href="<?= base_url('dashboard'); ?>" class="text-muted">Kembali ke halaman depan.</a>
             </div>
         </div>
     </main>

@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col">
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
+                <table class="table table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr class="align-middle">
                             <th>#</th>
                             <th>Nomor</th>
                             <th>Uraian</th>
@@ -21,12 +21,14 @@
                         foreach ($sk as $r) : ?>
 
                             <tr>
-                                <td><?= $no++; ?></td>
+                                <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $r['nomor']; ?></td>
                                 <td><?= $r['uraian']; ?></td>
                                 <td><?= $r['tanggal']; ?></td>
-                                <td>
-                                    <a href="" class="btn btn-sm btn-outline-success">Detail</a>
+                                <td class="pb-0 pr-0">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a href="" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                    </div>
                                 </td>
                             </tr>
 
