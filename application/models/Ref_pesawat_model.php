@@ -41,4 +41,10 @@ class Ref_pesawat_model extends CI_Model
         $this->db->delete('ref_pesawat', ['id' => $id]);
         return $this->db->affected_rows();
     }
+
+    public function getAllPesawat()
+    {
+        $this->db->order_by('kota_asal', 'ASC');
+        return $this->db->get('ref_pesawat')->result_array();
+    }
 }
