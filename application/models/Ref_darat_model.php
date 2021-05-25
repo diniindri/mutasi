@@ -2,43 +2,49 @@
 
 class Ref_darat_model extends CI_Model
 {
-    public function getPesawat($limit = 0, $offset = 0)
+    public function getDarat($limit = 0, $offset = 0)
     {
         $this->db->limit($limit, $offset);
-        return $this->db->get('ref_pesawat')->result_array();
+        return $this->db->get('ref_darat')->result_array();
     }
 
-    public function getDetailPesawat($id = null)
+    public function getDetailDarat($id = null)
     {
-        return $this->db->get_where('ref_pesawat', ['id' => $id])->row_array();
+        return $this->db->get_where('ref_darat', ['id' => $id])->row_array();
     }
 
-    public function findPesawat($asal = null, $tujuan = null, $limit = 0, $offset = 0)
+    public function findDarat($asal = null, $tujuan = null, $limit = 0, $offset = 0)
     {
         $this->db->limit($limit, $offset);
-        return $this->db->get_where('ref_pesawat', ['kota_asal' => $asal, 'kota_tujuan' => $tujuan])->result_array();
+        return $this->db->get_where('ref_darat', ['kota_asal' => $asal, 'kota_tujuan' => $tujuan])->result_array();
     }
 
-    public function countPesawat()
+    public function countDarat()
     {
-        return $this->db->get('ref_pesawat')->num_rows();
+        return $this->db->get('ref_darat')->num_rows();
     }
 
-    public function createPesawat($data = null)
+    public function createDarat($data = null)
     {
-        $this->db->insert('ref_pesawat', $data);
+        $this->db->insert('ref_darat', $data);
         return $this->db->affected_rows();
     }
 
-    public function updatePesawat($data = null, $id = null)
+    public function updateDarat($data = null, $id = null)
     {
-        $this->db->update('ref_pesawat', $data, ['id' => $id]);
+        $this->db->update('ref_darat', $data, ['id' => $id]);
         return $this->db->affected_rows();
     }
 
-    public function deletePesawat($id = null)
+    public function deleteDarat($id = null)
     {
-        $this->db->delete('ref_pesawat', ['id' => $id]);
+        $this->db->delete('ref_darat', ['id' => $id]);
         return $this->db->affected_rows();
+    }
+
+    public function getAllDarat()
+    {
+        $this->db->order_by('kota_asal', 'ASC');
+        return $this->db->get('ref_darat')->result_array();
     }
 }
