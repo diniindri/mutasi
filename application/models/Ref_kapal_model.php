@@ -41,4 +41,10 @@ class Ref_kapal_model extends CI_Model
         $this->db->delete('ref_kapal', ['id' => $id]);
         return $this->db->affected_rows();
     }
+
+    public function getAllKapal()
+    {
+        $this->db->order_by('kota_asal', 'ASC');
+        return $this->db->get('ref_kapal')->result_array();
+    }
 }
