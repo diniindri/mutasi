@@ -2,77 +2,84 @@
 
 use Spipu\Html2Pdf\Html2Pdf;
 
-class Jenis extends CI_Controller
+class Provinsi extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         is_logged_in();
-        // meload file ref_jenis_model.php
-        $this->load->model('Ref_jenis_model', 'jenis');
+        // meload file ref_provinsi_model.php
+        $this->load->model('Ref_provinsi_model', 'provinsi');
     }
 
     public function index()
     {
-        // menangkap data pencarian nama jenis
-        $nama = $this->input->post('nama');
+        // menangkap data pencarian tujuan provinsi
+        $tujuan = $this->input->post('tujuan');
 
         // settingan halaman
-        $config['base_url'] = base_url('jenis/index');
-        $config['total_rows'] = $this->jenis->countJenis();
+        $config['base_url'] = base_url('provinsi/index');
+        $config['total_rows'] = $this->provinsi->countProvinsi();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
         $data['page'] = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-        $data['nama'] = $nama;
+        $data['tujuan'] = $tujuan;
         $limit = $config["per_page"];
         $offset = $data['page'];
 
-        // pilih tampilan data, semua atau berdasarkan pencarian nama jenis
-        if ($nama) {
+        // pilih tampilan data, semua atau berdasarkan pencarian tujuan provinsi
+        if ($tujuan) {
             $data['page'] = 0;
             $offset = 0;
-            $data['jenis'] = $this->jenis->findJenis($nama, $limit, $offset);
+            $data['provinsi'] = $this->provinsi->findProvinsi($tujuan, $limit, $offset);
         } else {
-            $data['jenis'] = $this->jenis->getJenis($limit, $offset);
+            $data['provinsi'] = $this->provinsi->getProvinsi($limit, $offset);
         }
 
-        // meload view pada jenis/index.php
+        // meload view pada provinsi/index.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('jenis/index', $data);
+        $this->load->view('provinsi/index', $data);
         $this->load->view('template/footer');
     }
 
     // validasi inputan pada form
     private $rules = [
         [
-            'field' => 'nama',
-            'label' => 'Nama',
+            'field' => 'tujuan',
+            'label' => 'Kota Tujuan',
+            'rules' => 'required|trim'
+        ],
+        [
+            'field' => 'provinsi',
+            'label' => 'Provinsi',
             'rules' => 'required|trim'
         ]
     ];
 
     public function create()
     {
+
         $validation = $this->form_validation->set_rules($this->rules);
 
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('nama', true))
+                'tujuan' => htmlspecialchars($this->input->post('tujuan', true)),
+                'provinsi' => htmlspecialchars($this->input->post('provinsi', true))
             ];
             // simpan data ke database melalui model
-            $this->jenis->createJenis($data);
+            $this->provinsi->createProvinsi($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('jenis');
+            redirect('provinsi');
         }
 
-        // meload view pada jenis/create.php
+        // meload view pada provinsi/create.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('jenis/create');
+        $this->load->view('provinsi/create');
         $this->load->view('template/footer');
     }
 
@@ -81,26 +88,27 @@ class Jenis extends CI_Controller
         // cek apakah ada id apa tidak
         if (!isset($id)) show_404();
 
-        // load data jenis yang akan diubah
-        $data['jenis'] = $this->jenis->getDetailJenis($id);
+        // load data provinsi yang akan diubah
+        $data['provinsi'] = $this->provinsi->getDetailProvinsi($id);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('nama', true))
+                'tujuan' => htmlspecialchars($this->input->post('tujuan', true)),
+                'provinsi' => htmlspecialchars($this->input->post('provinsi', true))
             ];
             // update data di database melalui model
-            $this->jenis->updateJenis($data, $id);
+            $this->provinsi->updateProvinsi($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('jenis');
+            redirect('provinsi');
         }
 
-        // meload view pada jenis/update.php
+        // meload view pada provinsi/update.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('jenis/update', $data);
+        $this->load->view('provinsi/update', $data);
         $this->load->view('template/footer');
     }
 
@@ -110,9 +118,9 @@ class Jenis extends CI_Controller
         if (!isset($id)) show_404();
 
         // hapus data di database melalui model
-        if ($this->jenis->deleteJenis($id)) {
+        if ($this->provinsi->deleteProvinsi($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('jenis');
+        redirect('provinsi');
     }
 }

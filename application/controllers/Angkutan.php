@@ -2,14 +2,14 @@
 
 use Spipu\Html2Pdf\Html2Pdf;
 
-class Jenis extends CI_Controller
+class Angkutan extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         is_logged_in();
-        // meload file ref_jenis_model.php
-        $this->load->model('Ref_jenis_model', 'jenis');
+        // meload file ref_angkutan_model.php
+        $this->load->model('Ref_angkutan_model', 'angkutan');
     }
 
     public function index()
@@ -18,8 +18,8 @@ class Jenis extends CI_Controller
         $nama = $this->input->post('nama');
 
         // settingan halaman
-        $config['base_url'] = base_url('jenis/index');
-        $config['total_rows'] = $this->jenis->countJenis();
+        $config['base_url'] = base_url('angkutan/index');
+        $config['total_rows'] = $this->angkutan->countAngkutan();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
@@ -29,19 +29,19 @@ class Jenis extends CI_Controller
         $limit = $config["per_page"];
         $offset = $data['page'];
 
-        // pilih tampilan data, semua atau berdasarkan pencarian nama jenis
+        // pilih tampilan data, semua atau berdasarkan pencarian nama angkutan
         if ($nama) {
             $data['page'] = 0;
             $offset = 0;
-            $data['jenis'] = $this->jenis->findJenis($nama, $limit, $offset);
+            $data['angkutan'] = $this->angkutan->findAngkutan($nama, $limit, $offset);
         } else {
-            $data['jenis'] = $this->jenis->getJenis($limit, $offset);
+            $data['angkutan'] = $this->angkutan->getAngkutan($limit, $offset);
         }
 
-        // meload view pada jenis/index.php
+        // meload view pada angkutan/index.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('jenis/index', $data);
+        $this->load->view('angkutan/index', $data);
         $this->load->view('template/footer');
     }
 
@@ -50,6 +50,16 @@ class Jenis extends CI_Controller
         [
             'field' => 'nama',
             'label' => 'Nama',
+            'rules' => 'required|trim'
+        ],
+        [
+            'field' => 'icon',
+            'label' => 'Icon',
+            'rules' => 'required|trim'
+        ],
+        [
+            'field' => 'jenis_id',
+            'label' => 'Jenis',
             'rules' => 'required|trim'
         ]
     ];
@@ -61,18 +71,20 @@ class Jenis extends CI_Controller
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('nama', true))
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'icon' => htmlspecialchars($this->input->post('icon', true)),
+                'jenis_id' => htmlspecialchars($this->input->post('jenis_id', true))
             ];
             // simpan data ke database melalui model
-            $this->jenis->createJenis($data);
+            $this->angkutan->createAngkutan($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('jenis');
+            redirect('angkutan');
         }
 
-        // meload view pada jenis/create.php
+        // meload view pada angkutan/create.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('jenis/create');
+        $this->load->view('angkutan/create');
         $this->load->view('template/footer');
     }
 
@@ -82,25 +94,27 @@ class Jenis extends CI_Controller
         if (!isset($id)) show_404();
 
         // load data jenis yang akan diubah
-        $data['jenis'] = $this->jenis->getDetailJenis($id);
+        $data['angkutan'] = $this->angkutan->getDetailAngkutan($id);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('nama', true))
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'icon' => htmlspecialchars($this->input->post('icon', true)),
+                'jenis_id' => htmlspecialchars($this->input->post('jenis_id', true))
             ];
             // update data di database melalui model
-            $this->jenis->updateJenis($data, $id);
+            $this->angkutan->updateAngkutan($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('jenis');
+            redirect('angkutan');
         }
 
-        // meload view pada jenis/update.php
+        // meload view pada angkutan/update.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('jenis/update', $data);
+        $this->load->view('angkutan/update', $data);
         $this->load->view('template/footer');
     }
 
@@ -110,9 +124,9 @@ class Jenis extends CI_Controller
         if (!isset($id)) show_404();
 
         // hapus data di database melalui model
-        if ($this->jenis->deleteJenis($id)) {
+        if ($this->angkutan->deleteAngkutan($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('jenis');
+        redirect('angkutan');
     }
 }
