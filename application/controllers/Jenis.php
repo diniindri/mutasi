@@ -2,66 +2,55 @@
 
 use Spipu\Html2Pdf\Html2Pdf;
 
-class Kapal extends CI_Controller
+class Jenis extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         is_logged_in();
-        // meload file ref_kapal_model.php
-        $this->load->model('Ref_kapal_model', 'kapal');
+        // meload file ref_jenis_model.php
+        $this->load->model('Ref_jenis_model', 'jenis');
     }
 
     public function index()
     {
-        // menangkap data pencarian asal dan tujuan kapal
-        $asal = $this->input->post('asal');
-        $tujuan = $this->input->post('tujuan');
+        // menangkap data pencarian nama jenis
+        $nama = $this->input->post('nama');
 
         // settingan halaman
-        $config['base_url'] = base_url('kapal/index');
-        $config['total_rows'] = $this->kapal->countKapal();
+        $config['base_url'] = base_url('jenis/index');
+        $config['total_rows'] = $this->jenis->countJenis();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
         $data['page'] = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-        $data['asal'] = $asal;
+        $data['nama'] = $nama;
         $limit = $config["per_page"];
         $offset = $data['page'];
 
-        // pilih tampilan data, semua atau berdasarkan pencarian asal dan tujuan kapal
-        if ($asal) {
+        // pilih tampilan data, semua atau berdasarkan pencarian nama jenis
+        if ($nama) {
             $data['page'] = 0;
             $offset = 0;
-            $data['kapal'] = $this->kapal->findKapal($asal, $tujuan, $limit, $offset);
+            $data['jenis'] = $this->jenis->findJenis($nama, $limit, $offset);
         } else {
-            $data['kapal'] = $this->kapal->getKapal($limit, $offset);
+            $data['jenis'] = $this->jenis->getJenis($limit, $offset);
         }
 
-        // meload view pada kapal/index.php
+        // meload view pada jenis/index.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('kapal/index', $data);
+        $this->load->view('jenis/index', $data);
         $this->load->view('template/footer');
     }
 
     // validasi inputan pada form
     private $rules = [
         [
-            'field' => 'kota_asal',
-            'label' => 'Kota Asal',
+            'field' => 'nama',
+            'label' => 'Nama',
             'rules' => 'required|trim'
-        ],
-        [
-            'field' => 'kota_tujuan',
-            'label' => 'Kota Tujuan',
-            'rules' => 'required|trim'
-        ],
-        [
-            'field' => 'jumlah',
-            'label' => 'Nominal',
-            'rules' => 'required|trim|numeric'
         ]
     ];
 
@@ -72,20 +61,18 @@ class Kapal extends CI_Controller
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'kota_asal' => htmlspecialchars($this->input->post('kota_asal', true)),
-                'kota_tujuan' => htmlspecialchars($this->input->post('kota_tujuan', true)),
-                'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
             ];
             // simpan data ke database melalui model
-            $this->kapal->createKapal($data);
+            $this->jenis->createJenis($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('kapal');
+            redirect('jenis');
         }
 
-        // meload view pada kapal/create.php
+        // meload view pada jenis/create.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('kapal/create');
+        $this->load->view('jenis/create');
         $this->load->view('template/footer');
     }
 
@@ -94,28 +81,26 @@ class Kapal extends CI_Controller
         // cek apakah ada id apa tidak
         if (!isset($id)) show_404();
 
-        // load data kapal yang akan diubah
-        $data['kapal'] = $this->kapal->getDetailKapal($id);
+        // load data jenis yang akan diubah
+        $data['jenis'] = $this->jenis->getDetailJenis($id);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'kota_asal' => htmlspecialchars($this->input->post('kota_asal', true)),
-                'kota_tujuan' => htmlspecialchars($this->input->post('kota_tujuan', true)),
-                'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
+                'nama' => htmlspecialchars($this->input->post('nama', true))
             ];
             // update data di database melalui model
-            $this->kapal->updateKapal($data, $id);
+            $this->jenis->updateJenis($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('kapal');
+            redirect('jenis');
         }
 
-        // meload view pada kapal/update.php
+        // meload view pada jenis/update.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('kapal/update', $data);
+        $this->load->view('jenis/update', $data);
         $this->load->view('template/footer');
     }
 
@@ -125,9 +110,9 @@ class Kapal extends CI_Controller
         if (!isset($id)) show_404();
 
         // hapus data di database melalui model
-        if ($this->kapal->deleteKapal($id)) {
+        if ($this->jenis->deleteJenis($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('kapal');
+        redirect('jenis');
     }
 }

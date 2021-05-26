@@ -29,6 +29,7 @@
             ['menu' => 'Kapal', 'level' => 3, 'url' => 'kapal'],
             ['menu' => 'Rute', 'level' => 3, 'url' => 'rute'],
             ['menu' => 'Kubik', 'level' => 3, 'url' => 'kubik'],
+            ['menu' => 'Jenis', 'level' => 3, 'url' => 'jenis'],
         ];
         foreach ($levels as $r) :
             $level = $r['level'];
