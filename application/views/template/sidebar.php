@@ -5,8 +5,7 @@
         if ($kewenangan === '1') {
             $levels = [
                 ['id' => 1, 'level' => 'halaman Utama'],
-                ['id' => 2, 'level' => 'Rincian'],
-                ['id' => 3, 'level' => 'Referensi']
+                ['id' => 2, 'level' => 'Rincian']
             ];
         } else {
             $levels = [
