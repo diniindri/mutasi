@@ -13,10 +13,10 @@ class Ref_packing_model extends CI_Model
         return $this->db->get_where('ref_packing', ['id' => $id])->row_array();
     }
 
-    public function findPacking($asal = null, $tujuan = null, $limit = 0, $offset = 0)
+    public function findPacking($tujuan = null, $limit = 0, $offset = 0)
     {
         $this->db->limit($limit, $offset);
-        return $this->db->get_where('ref_packing', ['kota_asal' => $asal, 'kota_tujuan' => $tujuan])->result_array();
+        return $this->db->get_where('ref_packing', ['kota_tujuan' => $tujuan])->result_array();
     }
 
     public function countPacking()

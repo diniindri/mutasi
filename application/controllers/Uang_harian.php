@@ -100,7 +100,7 @@ class Uang_harian extends CI_Controller
         if (!isset($id)) show_404();
 
         // load data kubik yang akan diubah
-        $data['uang_harian'] = $this->uang_harian->getUangHarian($id);
+        $data['uang_harian'] = $this->uang_harian->getDetailUangHarian($id);
 
         $validation = $this->form_validation->set_rules($this->rules);
 

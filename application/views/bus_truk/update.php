@@ -29,18 +29,18 @@
                     </div>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="">status:</label>
-                    <input type="text" name="sts" class="form-control <?= form_error('sts') ? 'is-invalid' : ''; ?>" value="<?= $darat['sts']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('sts'); ?>
-                    </div>
+                    <label for="">Status:</label>
+                    <select class="form-select form-select-sm mb-3" name="sts">
+                        <option value="1" <?= $darat['sts'] == 1 ? 'selected' : ''; ?>>Luar Jawa</option>
+                        <option value="2" <?= $darat['sts'] == 2 ? 'selected' : ''; ?>>Jawa</option>
+                    </select>
                 </div>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col">
                 <div class="form-group">
-                    <a href="<?= base_url('darat'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                    <a href="<?= base_url('bus_truk'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
                     <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
                 </div>
             </div>

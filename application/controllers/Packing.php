@@ -1,26 +1,25 @@
 <?php
 
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Spipu\Html2Pdf\Html2Pdf;
 
-class Provinsi extends CI_Controller
+class Packing extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         is_logged_in();
-        // meload file ref_provinsi_model.php
-        $this->load->model('Ref_provinsi_model', 'provinsi');
+        // meload file ref_kapal_model.php
+        $this->load->model('Ref_packing_model', 'packing');
     }
 
     public function index()
     {
-        // menangkap data pencarian tujuan provinsi
+        // menangkap data pencarian Jenis Packing
         $tujuan = $this->input->post('tujuan');
 
         // settingan halaman
-        $config['base_url'] = base_url('provinsi/index');
-        $config['total_rows'] = $this->provinsi->countProvinsi();
+        $config['base_url'] = base_url('packing/index');
+        $config['total_rows'] = $this->packing->countPacking();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
@@ -30,57 +29,62 @@ class Provinsi extends CI_Controller
         $limit = $config["per_page"];
         $offset = $data['page'];
 
-        // pilih tampilan data, semua atau berdasarkan pencarian tujuan provinsi
+        // pilih tampilan data, semua atau berdasarkan pencarian jenis packing
         if ($tujuan) {
             $data['page'] = 0;
             $offset = 0;
-            $data['provinsi'] = $this->provinsi->findProvinsi($tujuan, $limit, $offset);
+            $data['packing'] = $this->packing->findPacking($tujuan, $limit, $offset);
         } else {
-            $data['provinsi'] = $this->provinsi->getProvinsi($limit, $offset);
+            $data['packing'] = $this->packing->getPacking($limit, $offset);
         }
 
-        // meload view pada provinsi/index.php
+        // meload view pada packing/index.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('provinsi/index', $data);
+        $this->load->view('packing/index', $data);
         $this->load->view('template/footer');
     }
 
     // validasi inputan pada form
     private $rules = [
         [
-            'field' => 'tujuan',
+            'field' => 'kota_asal',
+            'label' => 'Kota Asal',
+            'rules' => 'required|trim'
+        ],
+        [
+            'field' => 'kota_tujuan',
             'label' => 'Kota Tujuan',
             'rules' => 'required|trim'
         ],
         [
-            'field' => 'provinsi',
-            'label' => 'Provinsi',
-            'rules' => 'required|trim'
+            'field' => 'jumlah',
+            'label' => 'Nominal',
+            'rules' => 'required|trim|numeric'
         ]
     ];
 
     public function create()
     {
-
         $validation = $this->form_validation->set_rules($this->rules);
 
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'tujuan' => htmlspecialchars($this->input->post('tujuan', true)),
-                'provinsi' => htmlspecialchars($this->input->post('provinsi', true))
+                'kota_asal' => htmlspecialchars($this->input->post('kota_asal', true)),
+                'kota_tujuan' => htmlspecialchars($this->input->post('kota_tujuan', true)),
+                'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
             ];
             // simpan data ke database melalui model
-            $this->provinsi->createProvinsi($data);
+            $this->packing->createPacking($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('provinsi');
+            redirect('packing');
         }
 
-        // meload view pada provinsi/create.php
+        // meload view pada packing/create.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('provinsi/create');
+        $this->load->view('packing/create');
         $this->load->view('template/footer');
     }
 
@@ -89,27 +93,28 @@ class Provinsi extends CI_Controller
         // cek apakah ada id apa tidak
         if (!isset($id)) show_404();
 
-        // load data provinsi yang akan diubah
-        $data['provinsi'] = $this->provinsi->getDetailProvinsi($id);
+        // load data packing yang akan diubah
+        $data['packing'] = $this->packing->getDetailPacking($id);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
         // jika validasi sukses
         if ($validation->run()) {
             $data = [
-                'tujuan' => htmlspecialchars($this->input->post('tujuan', true)),
-                'provinsi' => htmlspecialchars($this->input->post('provinsi', true))
+                'kota_asal' => htmlspecialchars($this->input->post('kota_asal', true)),
+                'kota_tujuan' => htmlspecialchars($this->input->post('kota_tujuan', true)),
+                'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
             ];
             // update data di database melalui model
-            $this->provinsi->updateProvinsi($data, $id);
+            $this->packing->updatePacking($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('provinsi');
+            redirect('packing');
         }
 
-        // meload view pada provinsi/update.php
+        // meload view pada packing/update.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('provinsi/update', $data);
+        $this->load->view('packing/update', $data);
         $this->load->view('template/footer');
     }
 
@@ -119,9 +124,9 @@ class Provinsi extends CI_Controller
         if (!isset($id)) show_404();
 
         // hapus data di database melalui model
-        if ($this->provinsi->deleteProvinsi($id)) {
+        if ($this->packing->deletePacking($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('provinsi');
+        redirect('packing');
     }
 }

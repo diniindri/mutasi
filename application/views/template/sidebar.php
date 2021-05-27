@@ -24,16 +24,8 @@
             ['menu' => 'Pesan', 'level' => 2, 'url' => 'pesan'],
             ['menu' => 'Rincian Biaya', 'level' => 2, 'url' => 'rincian-biaya'],
             ['menu' => 'Pembayaran', 'level' => 2, 'url' => 'pembayaran'],
-            ['menu' => 'Pesawat', 'level' => 3, 'url' => 'pesawat'],
-            ['menu' => 'Bus & Truk', 'level' => 3, 'url' => 'bus-truk'],
-            ['menu' => 'Kapal', 'level' => 3, 'url' => 'kapal'],
-            ['menu' => 'Rute', 'level' => 3, 'url' => 'rute'],
-            ['menu' => 'Kubik', 'level' => 3, 'url' => 'kubik'],
-            ['menu' => 'Jenis', 'level' => 3, 'url' => 'jenis'],
-            ['menu' => 'Angkutan', 'level' => 3, 'url' => 'angkutan'],
-            ['menu' => 'Uang Harian', 'level' => 3, 'url' => 'uang-harian'],
-            ['menu' => 'Provinsi', 'level' => 3, 'url' => 'provinsi'],
-            ['menu' => 'Packing', 'level' => 3, 'url' => 'packing'],
+            ['menu' => 'Referensi', 'level' => 2, 'url' => 'Referensi'],
+
         ];
         foreach ($levels as $r) :
             $level = $r['level'];
