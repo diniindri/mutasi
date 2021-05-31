@@ -9,6 +9,7 @@ class Pegawai extends CI_Controller
         // meload file ref_sub_rute_model.php
         $this->load->model('Data_pegawai_model', 'pegawai');
         $this->load->model('Ref_kubik_model', 'kubik');
+        $this->load->model('Ref_rute_model', 'rute');
     }
 
     public function index($sk_id = null)
@@ -295,5 +296,65 @@ class Pegawai extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('pegawai/kubik', $data);
         $this->load->view('template/footer');
+    }
+
+    public function cari_rute($id = null, $sk_id = null)
+    {
+        // cek apakah ada id apa tidak
+        if (!isset($id)) show_404();
+        if (!isset($sk_id)) show_404();
+
+        // load data sk id ke view
+        $data['pegawai_id'] = $id;
+        $data['sk_id'] = $sk_id;
+
+        // menangkap data pencarian asal dan tujuan rute
+        $asal = $this->input->post('asal');
+        $tujuan = $this->input->post('tujuan');
+
+        // settingan halaman
+        $config['base_url'] = base_url('pegawai/cari-rute/' . $id . '/' . $sk_id . '');
+        $config['total_rows'] = $this->rute->countRute();
+        $config['per_page'] = 10;
+        $config["num_links"] = 3;
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
+        $data['asal'] = $asal;
+        $limit = $config["per_page"];
+        $offset = $data['page'];
+
+        // pilih tampilan data, semua atau berdasarkan pencarian asal dan tujuan rute
+        if ($asal) {
+            $data['page'] = 0;
+            $offset = 0;
+            $data['rute'] = $this->rute->findRute($asal, $tujuan, $limit, $offset);
+        } else {
+            $data['rute'] = $this->rute->getRute($limit, $offset);
+        }
+
+        // meload view pada rute/index.php
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('pegawai/cari_rute', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function pilih_rute($ref_rute_id = null, $pegawai_id = null, $sk_id = null)
+    {
+        // cek apakah ada id apa tidak
+        if (!isset($ref_rute_id)) show_404();
+        if (!isset($pegawai_id)) show_404();
+        if (!isset($sk_id)) show_404();
+
+        $data = [
+            'ref_rute_id' => $ref_rute_id
+        ];
+
+        // ubah data melalui model
+        if ($this->pegawai->updatePegawai($data, $pegawai_id)) {
+            $this->session->set_flashdata('pesan', 'Data rute berhasil diubah.');
+        }
+        redirect('pegawai/index/' . $sk_id . '');
     }
 }

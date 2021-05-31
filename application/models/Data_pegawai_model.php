@@ -17,9 +17,12 @@ class Data_pegawai_model extends CI_Model
 
     public function getPegawai($sk_id = null, $limit = 0, $offset = 0)
     {
-        $this->db->where('sk_id', $sk_id);
+        $this->db->select('data_pegawai.*, ref_rute.asal, ref_rute.tujuan');
+        $this->db->from('data_pegawai');
+        $this->db->join('ref_rute', 'ref_rute.id = data_pegawai.ref_rute_id', 'left');
+        $this->db->where('data_pegawai.sk_id', $sk_id);
         $this->db->limit($limit, $offset);
-        return $this->db->get('data_pegawai')->result_array();
+        return $this->db->get()->result_array();
     }
 
     public function getDetailPegawai($id = null)
@@ -29,9 +32,13 @@ class Data_pegawai_model extends CI_Model
 
     public function findPegawai($sk_id = null, $nmpeg = null, $limit = 0, $offset = 0)
     {
-        $this->db->like('nmpeg', $nmpeg);
+        $this->db->select('data_pegawai.*, ref_rute.asal, ref_rute.tujuan');
+        $this->db->from('data_pegawai');
+        $this->db->join('ref_rute', 'ref_rute.id = data_pegawai.ref_rute_id', 'left');
+        $this->db->like('data_pegawai.nmpeg', $nmpeg);
+        $this->db->where('data_pegawai.sk_id', $sk_id);
         $this->db->limit($limit, $offset);
-        return $this->db->get_where('data_pegawai', ['sk_id' => $sk_id])->result_array();
+        return $this->db->get()->result_array();
     }
 
     public function countPegawai()
