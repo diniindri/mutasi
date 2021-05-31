@@ -53,13 +53,8 @@ class Kubik extends CI_Controller
             'rules' => 'required|trim'
         ],
         [
-            'field' => 'sts',
-            'label' => 'status',
-            'rules' => 'required|trim|numeric'
-        ],
-        [
-            'field' => 'jml',
-            'label' => 'Jumlah Anggota',
+            'field' => 'kdkawin',
+            'label' => 'kdkawin',
             'rules' => 'required|trim|numeric'
         ],
         [
@@ -77,8 +72,7 @@ class Kubik extends CI_Controller
         if ($validation->run()) {
             $data = [
                 'gol' => htmlspecialchars($this->input->post('gol', true)),
-                'sts' => htmlspecialchars($this->input->post('sts', true)),
-                'jml' => htmlspecialchars($this->input->post('jml', true)),
+                'kdkawin' => htmlspecialchars($this->input->post('kdkawin', true)),
                 'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
             ];
             // simpan data ke database melalui model
@@ -108,8 +102,7 @@ class Kubik extends CI_Controller
         if ($validation->run()) {
             $data = [
                 'gol' => htmlspecialchars($this->input->post('gol', true)),
-                'sts' => htmlspecialchars($this->input->post('sts', true)),
-                'jml' => htmlspecialchars($this->input->post('jml', true)),
+                'kdkawin' => htmlspecialchars($this->input->post('kdkawin', true)),
                 'jumlah' => htmlspecialchars($this->input->post('jumlah', true))
             ];
             // update data di database melalui model

@@ -15,17 +15,10 @@
                     </div>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="">Status:</label>
-                    <input type="text" name="sts" class="form-control <?= form_error('sts') ? 'is-invalid' : ''; ?>" value="<?= $kubik['sts']; ?>">
+                    <label for="">Kdkawin:</label>
+                    <input type="text" name="kdkawin" class="form-control <?= form_error('kdkawin') ? 'is-invalid' : ''; ?>" value="<?= $kubik['kdkawin']; ?>">
                     <div class="invalid-feedback">
-                        <?= form_error('sts'); ?>
-                    </div>
-                </div>
-                <div class="form-group mb-2">
-                    <label for="">Jumlah Anggota:</label>
-                    <input type="text" name="jml" class="form-control <?= form_error('jml') ? 'is-invalid' : ''; ?>" value="<?= $kubik['jml']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('jml'); ?>
+                        <?= form_error('kdkawin'); ?>
                     </div>
                 </div>
                 <div class="form-group mb-2">
