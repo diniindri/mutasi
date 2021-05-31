@@ -47,4 +47,9 @@ class Ref_kubik_model extends CI_Model
         $this->db->order_by('gol', 'ASC');
         return $this->db->get('ref_kubik')->result_array();
     }
+
+    public function findJumlahKubik($gol = null, $kdkawin = null)
+    {
+        return $this->db->get_where('ref_kubik', ['gol' => $gol, 'kdkawin' => $kdkawin])->row_array();
+    }
 }

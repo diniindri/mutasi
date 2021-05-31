@@ -52,9 +52,9 @@ class Subrute extends CI_Controller
         if (!isset($rute_id)) show_404();
 
         // tampilkan jenis rute dan jenis angkutan
-        $ref['jenis_rute'] = $this->jenis_rute->getJenis();
-        $ref['jenis_angkutan'] = $this->jenis_angkutan->getAngkutan();
-        $ref['rute_id'] = $rute_id;
+        $data['jenis_rute'] = $this->jenis_rute->getAllJenis();
+        $data['jenis_angkutan'] = $this->jenis_angkutan->getAllAngkutan();
+        $data['rute_id'] = $rute_id;
 
         $validation = $this->form_validation->set_rules($this->rules);
 
@@ -74,7 +74,7 @@ class Subrute extends CI_Controller
         // meload view pada rute/create.php
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
-        $this->load->view('subrute/create', $ref);
+        $this->load->view('subrute/create', $data);
         $this->load->view('template/footer');
     }
 
@@ -140,20 +140,5 @@ class Subrute extends CI_Controller
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
         redirect('subrute/index/' . $rute_id . '');
-    }
-
-    public function subrute($rute_id = null)
-    {
-        // cek apakah ada id apa tidak
-        if (!isset($rute_id)) show_404();
-
-        // load data sub rute
-        $data['subrute'] = $this->subrute->getSubRute($rute_id);
-
-        // meload view pada subrute/index.php
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar');
-        $this->load->view('subrute/index', $data);
-        $this->load->view('template/footer');
     }
 }
