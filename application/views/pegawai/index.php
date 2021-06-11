@@ -61,7 +61,7 @@
                                         <a href="<?= base_url('pegawai/delete/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
                                         <a href="<?= base_url('pegawai/ubah-kubik/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Kubik</a>
                                         <a href="<?= base_url('pegawai/cari-rute/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rute</a>
-                                        <a href="<?= base_url('pegawai/keluarga/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Keluarga</a>
+                                        <a href="<?= base_url('keluarga/index/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Keluarga</a>
                                     </div>
                                 </td>
                             </tr>

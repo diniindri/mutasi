@@ -1,6 +1,6 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Tarik Data Pegawai Dari Gaji</h1>
+        <h1 class="h2">Keluarga</h1>
     </div>
     <div class="row">
         <div class="col">
@@ -14,11 +14,12 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('keluarga/create/') . $pegawai_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Tambah Data</a>
         </div>
         <div class="col-lg-5">
             <form action="" method="post" autocomplete="off">
                 <div class="input-group">
-                    <input type="text" name="nmpeg" class="form-control" placeholder="nama pegawai">
+                    <input type="text" name="nama" class="form-control" placeholder="nama keluarga">
                     <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
                 </div>
             </form>
@@ -31,31 +32,28 @@
                     <thead class="text-center">
                         <tr class="align-middle">
                             <th>No</th>
-                            <th>NIP</th>
                             <th>Nama</th>
-                            <th>Kdgapok</th>
-                            <th>Kdkawin</th>
-                            <th>Rekening</th>
-                            <th>Nama Bank</th>
-                            <th>Nama Rekening</th>
+                            <th>Status Keluarga</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Status Tunjangan</th>
+                            <th>Status Usia</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = $page + 1;
-                        foreach ($pegawai as $r) : ?>
+                        foreach ($keluarga as $r) : ?>
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
-                                <td><?= $r['nip']; ?></td>
-                                <td><?= $r['nmpeg']; ?></td>
-                                <td><?= $r['kdgapok']; ?></td>
-                                <td><?= $r['kdkawin']; ?></td>
-                                <td><?= $r['rekening']; ?></td>
-                                <td><?= $r['nm_bank']; ?></td>
-                                <td><?= $r['nmrek']; ?></td>
+                                <td><?= $r['nama']; ?></td>
+                                <td><?= $r['kdkeluarga']; ?></td>
+                                <td><?= $r['tgllhr']; ?></td>
+                                <td><?= $r['kddapat']; ?></td>
+                                <td><?= $r['sts']; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('pegawai/pilih-pegawai-gaji/') . $r['nip'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" target="_blank">Pilih</a>
+                                        <a href="<?= base_url('keluarga/update/') . $r['id'] . '/' . $pegawai_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
+                                        <a href="<?= base_url('keluarga/delete/') . $r['id'] . '/' . $pegawai_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
                                     </div>
                                 </td>
                             </tr>
@@ -67,7 +65,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <?= $nmpeg == null ? $pagination : ''; ?>
+            <?= $nama == null ? $pagination : ''; ?>
         </div>
     </div>
 

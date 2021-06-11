@@ -3,39 +3,137 @@
         <h1 class="h2">Referensi</h1>
     </div>
     <div class="row">
-        <div class="col-lg-3">
-            <a href="<?= base_url('pesawat/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Pesawat</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('bus_truk/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Bus & Truk</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('kapal/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Kapal</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('rute/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Rute</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3">
-            <a href="<?= base_url('kubik/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Kubik</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('jenis/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Jenis</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('uang_harian/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Uang Harian</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('provinsi/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Provinsi</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3">
-            <a href="<?= base_url('angkutan/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Angkutan</a>
-        </div>
-        <div class="col-lg-3">
-            <a href="<?= base_url('packing/index'); ?>" class="btn btn-outline-secondary mt-1 mb-1"> Packing</a>
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr class="align-middle">
+                            <th>No</th>
+                            <th>Jenis</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Pesawat</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('pesawat/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Bus & Truk</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('bus_truk/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Kapal</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('kapal/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Rute</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('rute/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Kubik</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('kubik/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>jenis</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('jenis/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Uang Harian</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('uang_harian/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Provinsi</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('provinsi/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Angkutan</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('angkutan/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Packing</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('packing/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>tarif Darat</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('tarif_darat/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Dokumen</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('dokumen/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Pejabat</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('pejabat/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </main>
