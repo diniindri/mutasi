@@ -1,6 +1,6 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Pegawai</h1>
+        <h1 class="h2">Tarik Data Pegawai Dari Gaji</h1>
     </div>
     <div class="row">
         <div class="col">
@@ -14,8 +14,6 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
-            <a href="<?= base_url('pegawai/create/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Tambah Data</a>
-            <a href="<?= base_url('pegawai/tarik-pegawai-gaji/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data Gaji</a>
         </div>
         <div class="col-lg-5">
             <form action="" method="post" autocomplete="off">
@@ -37,9 +35,9 @@
                             <th>Nama</th>
                             <th>Kdgapok</th>
                             <th>Kdkawin</th>
-                            <th>Kubik</th>
                             <th>Rekening</th>
-                            <th>Rute</th>
+                            <th>Nama Bank</th>
+                            <th>Nama Rekening</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -52,16 +50,12 @@
                                 <td><?= $r['nmpeg']; ?></td>
                                 <td><?= $r['kdgapok']; ?></td>
                                 <td><?= $r['kdkawin']; ?></td>
-                                <td><?= $r['kubik']; ?></td>
                                 <td><?= $r['rekening']; ?></td>
-                                <td><?= $r['asal']; ?> - <?= $r['tujuan']; ?></td>
+                                <td><?= $r['nm_bank']; ?></td>
+                                <td><?= $r['nmrek']; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('pegawai/update/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
-                                        <a href="<?= base_url('pegawai/delete/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
-                                        <a href="<?= base_url('pegawai/ubah-kubik/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Kubik</a>
-                                        <a href="<?= base_url('pegawai/cari-rute/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rute</a>
-                                        <a href="<?= base_url('keluarga/index/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Keluarga</a>
+                                        <a href="<?= base_url('pegawai/pilih-pegawai-gaji/') . $r['nip'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" target="_blank">Pilih</a>
                                     </div>
                                 </td>
                             </tr>
