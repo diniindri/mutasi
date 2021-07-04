@@ -3,7 +3,7 @@
         <h1 class="h2">Referensi</h1>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-lg-6">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="text-center">
@@ -61,7 +61,7 @@
                         </tr>
                         <tr>
                             <td>6</td>
-                            <td>jenis</td>
+                            <td>Jenis Rute</td>
                             <td class="pb-0 pr-0">
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a href="<?= base_url('jenis/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
@@ -106,7 +106,7 @@
                         </tr>
                         <tr>
                             <td>11</td>
-                            <td>tarif Darat</td>
+                            <td>Tarif Darat</td>
                             <td class="pb-0 pr-0">
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a href="<?= base_url('tarif_darat/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
