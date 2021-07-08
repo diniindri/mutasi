@@ -9,6 +9,7 @@ class Keluarga extends CI_Controller
         // meload file Data_keluarga_model.php
         $this->load->model('Data_keluarga_model', 'keluarga');
         $this->load->model('Data_pegawai_model', 'pegawai');
+        $this->load->model('Ref_status_keluarga_model', 'status_keluarga');
     }
 
     public function index($pegawai_id = null)
@@ -88,6 +89,7 @@ class Keluarga extends CI_Controller
 
         // tampilkan id rute
         $data['pegawai_id'] = $pegawai_id;
+        $data['status_keluarga'] = $this->status_keluarga->getStatusKeluarga(null, 0);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
@@ -124,6 +126,7 @@ class Keluarga extends CI_Controller
         $data['pegawai_id'] = $pegawai_id;
         // load data keluarga ke view berdasarkan id keluarga
         $data['keluarga'] = $this->keluarga->getDetailKeluarga($id);
+        $data['status_keluarga'] = $this->status_keluarga->getStatusKeluarga(null, 0);
 
         $validation = $this->form_validation->set_rules($this->rules);
 

@@ -16,31 +16,32 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Status Keluarga:</label>
-                    <input type="text" name="kdkeluarga" class="form-control <?= form_error('kdkeluarga') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('kdkeluarga'); ?>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" name="kdkeluarga">
+                        <?php foreach ($status_keluarga as $r) : ?>
+                            <option value="<?= $r['id']; ?>"><?= $r['nama']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Tanggal Lahir:</label>
-                    <input type="text" name="tgllhr" class="form-control <?= form_error('tgllhr') ? 'is-invalid' : ''; ?>">
+                    <input type="text" name="tgllhr" class="form-control <?= form_error('tgllhr') ? 'is-invalid' : ''; ?>" placeholder="yyyy-mm-dd">
                     <div class="invalid-feedback">
                         <?= form_error('tgllhr'); ?>
                     </div>
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Status Tunjangan:</label>
-                    <input type="text" name="kddapat" class="form-control <?= form_error('kddapat') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('kddapat'); ?>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" name="kddapat">
+                        <option value="1">Dapat</option>
+                        <option value="2">Tidak</option>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Status Usia:</label>
-                    <input type="text" name="sts" class="form-control <?= form_error('sts') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('sts'); ?>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" name="sts">
+                        <option value="0">Dewasa</option>
+                        <option value="1">Infant</option>
+                    </select>
                 </div>
             </div>
         </div>

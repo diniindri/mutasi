@@ -47,10 +47,10 @@
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $r['nama']; ?></td>
-                                <td><?= $r['kdkeluarga']; ?></td>
-                                <td><?= $r['tgllhr']; ?></td>
-                                <td><?= $r['kddapat']; ?></td>
-                                <td><?= $r['sts']; ?></td>
+                                <td><?= $r['status_keluarga']; ?></td>
+                                <td><?= date('d-m-Y', strtotime($r['tgllhr'])); ?></td>
+                                <td><?= $r['kddapat'] == 1 ? 'Dapat' : 'Tidak'; ?></td>
+                                <td><?= $r['sts'] == 0 ? 'Dewasa' : 'Infant'; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('keluarga/update/') . $r['id'] . '/' . $pegawai_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>

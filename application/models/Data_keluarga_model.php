@@ -17,8 +17,13 @@ class Data_keluarga_model extends CI_Model
 
     public function getKeluarga($pegawai_id = null, $limit = 0, $offset = 0)
     {
+        $this->db->select('a.*,b.nama AS status_keluarga');
+        $this->db->from('data_keluarga a');
+        $this->db->join('ref_status_keluarga b', 'a.kdkeluarga=b.id', 'left');
+        $this->db->where('pegawai_id', $pegawai_id);
         $this->db->limit($limit, $offset);
-        return $this->db->get_where('data_keluarga', ['pegawai_id' => $pegawai_id])->result_array();
+        $this->db->order_by('a.tgllhr', 'asc');
+        return $this->db->get()->result_array();
     }
 
     public function getDetailKeluarga($id = null)
