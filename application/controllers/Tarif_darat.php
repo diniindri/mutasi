@@ -1,7 +1,5 @@
 <?php
 
-use Spipu\Html2Pdf\Html2Pdf;
-
 class Tarif_darat extends CI_Controller
 {
     public function __construct()
@@ -14,29 +12,7 @@ class Tarif_darat extends CI_Controller
 
     public function index()
     {
-        // menangkap data pencarian jenis tarif
-        $orang = $this->input->post('orang');
-
-        // settingan halaman
-        $config['base_url'] = base_url('tarif_darat/index');
-        $config['total_rows'] = $this->tarif_darat->countTarifDarat();
-        $config['per_page'] = 10;
-        $config["num_links"] = 3;
-        $this->pagination->initialize($config);
-        $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-        $data['orang'] = $orang;
-        $limit = $config["per_page"];
-        $offset = $data['page'];
-
-        // pilih tampilan data, semua atau berdasarkan pencarian jenis tarif
-        if ($orang) {
-            $data['page'] = 0;
-            $offset = 0;
-            $data['tarif_darat'] = $this->tarif_darat->findTarifDarat($orang, $limit, $offset);
-        } else {
-            $data['tarif_darat'] = $this->tarif_darat->getTarifDarat($limit, $offset);
-        }
+        $data['tarif_darat'] = $this->tarif_darat->getTarifDarat(null, 0);
 
         // meload view pada tarif_darat/index.php
         $this->load->view('template/header');

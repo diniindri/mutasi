@@ -54,7 +54,7 @@
                                 <td><?= $r['kdkawin']; ?></td>
                                 <td><?= $r['kubik']; ?></td>
                                 <td><?= $r['rekening']; ?></td>
-                                <td><?= $r['asal']; ?> - <?= $r['tujuan']; ?></td>
+                                <td><?= $r['asal']; ?>-<?= $r['tujuan']; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('pegawai/update/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>

@@ -14,29 +14,7 @@ class Packing extends CI_Controller
 
     public function index()
     {
-        // menangkap data pencarian Jenis Packing
-        $tujuan = $this->input->post('tujuan');
-
-        // settingan halaman
-        $config['base_url'] = base_url('packing/index');
-        $config['total_rows'] = $this->packing->countPacking();
-        $config['per_page'] = 10;
-        $config["num_links"] = 3;
-        $this->pagination->initialize($config);
-        $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
-        $data['tujuan'] = $tujuan;
-        $limit = $config["per_page"];
-        $offset = $data['page'];
-
-        // pilih tampilan data, semua atau berdasarkan pencarian jenis packing
-        if ($tujuan) {
-            $data['page'] = 0;
-            $offset = 0;
-            $data['packing'] = $this->packing->findPacking($tujuan, $limit, $offset);
-        } else {
-            $data['packing'] = $this->packing->getPacking($limit, $offset);
-        }
+        $data['packing'] = $this->packing->getPacking(null, 0);
 
         // meload view pada packing/index.php
         $this->load->view('template/header');
@@ -49,17 +27,17 @@ class Packing extends CI_Controller
     private $rules = [
         [
             'field' => 'kota_asal',
-            'label' => 'Kota Asal',
+            'label' => 'Uraian',
             'rules' => 'required|trim'
         ],
         [
             'field' => 'kota_tujuan',
-            'label' => 'Kota Tujuan',
+            'label' => 'Jenis',
             'rules' => 'required|trim'
         ],
         [
             'field' => 'jumlah',
-            'label' => 'Nominal',
+            'label' => 'Jumlah',
             'rules' => 'required|trim|numeric'
         ]
     ];

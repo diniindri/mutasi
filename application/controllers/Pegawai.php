@@ -222,39 +222,25 @@ class Pegawai extends CI_Controller
         if (!isset($nip)) show_404();
         if (!isset($sk_id)) show_404();
 
-        // mengirim data id sk ke view
-        $data['sk_id'] = $sk_id;
-
         //load data berdasarkan nip dari data pegawai gaji
-        $limit = 1;
-        $offset = 0;
-        $data['pegawai'] = $this->pegawai->findPegawaiGaji($nip, $limit, $offset)['0'];
+        $pegawai = $this->pegawai->findPegawaiGaji($nip, null, 0);
 
-        $validation = $this->form_validation->set_rules($this->rules);
-
-        // jika validasi sukses
-        if ($validation->run()) {
+        foreach ($pegawai as $r) {
             $data = [
                 'sk_id' => $sk_id,
-                'nip' => htmlspecialchars($this->input->post('nip', true)),
-                'nmpeg' => htmlspecialchars($this->input->post('nmpeg', true)),
-                'kdgapok' => htmlspecialchars($this->input->post('kdgapok', true)),
-                'kdkawin' => htmlspecialchars($this->input->post('kdkawin', true)),
-                'rekening' => htmlspecialchars($this->input->post('rekening', true)),
-                'nm_bank' => htmlspecialchars($this->input->post('nm_bank', true)),
-                'nmrek' => htmlspecialchars($this->input->post('nmrek', true))
+                'nip' => $r['nip'],
+                'nmpeg' => $r['nmpeg'],
+                'kdgapok' => $r['kdgapok'],
+                'kdkawin' => $r['kdkawin'],
+                'rekening' => $r['rekening'],
+                'nm_bank' => $r['nm_bank'],
+                'nmrek' => $r['nmrek']
             ];
             // simpan data di database melalui model
             $this->pegawai->createPegawai($data);
-            $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('pegawai/index/' . $sk_id . '');
         }
-
-        // meload view pada rute/update.php
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar');
-        $this->load->view('pegawai/update', $data);
-        $this->load->view('template/footer');
+        $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
+        redirect('pegawai/index/' . $sk_id . '');
     }
 
     public function ubah_kubik($id = null, $sk_id = null)

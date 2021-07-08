@@ -35,6 +35,11 @@ class Ref_sub_rute_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function getRefRute($rute_id = null)
+    {
+        return $this->db->get_where('ref_sub_rute', ['rute_id' => $rute_id])->result_array();
+    }
+
     public function getRefSubRute($angkutan_id = null, $ref_id = null)
     {
         if ($angkutan_id == 1) {

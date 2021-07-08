@@ -1,7 +1,20 @@
 <?php
 
+use GuzzleHttp\Client;
+
 class Data_keluarga_model extends CI_Model
 {
+    private $_client;
+
+    public function __construct()
+    {
+        $this->_client = new Client([
+            'base_uri' => base_uri(),
+            'verify' => false,
+            'auth' => auth()
+        ]);
+    }
+
     public function getKeluarga($pegawai_id = null, $limit = 0, $offset = 0)
     {
         $this->db->limit($limit, $offset);
@@ -47,5 +60,20 @@ class Data_keluarga_model extends CI_Model
     {
         $this->db->order_by('pegawai_id', 'DESC');
         return $this->db->get('data_keluarga')->result_array();
+    }
+
+    // data keluarga gaji
+    public function findKeluargaGaji($keyword = null, $limit = 0, $offset = 0)
+    {
+        $response = $this->_client->request('GET', 'data-keluarga', [
+            'query' => [
+                'keyword' => $keyword,
+                'limit' => $limit,
+                'offset' => $offset,
+                'X-API-KEY' => apiKey()
+            ]
+        ]);
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 }

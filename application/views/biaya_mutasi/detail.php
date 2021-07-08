@@ -33,6 +33,8 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
+                            <th>Rute</th>
+                            <th>Nominal</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -43,9 +45,13 @@
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $r['nip']; ?></td>
                                 <td><?= $r['nmpeg']; ?></td>
+                                <td><?= $r['asal']; ?>-<?= $r['tujuan']; ?></td>
+                                <td class="text-right"><?= number_format($r['nominal'], 0, ',', '.'); ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('pegawai/hitung/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hitung</a>
+                                        <a href="<?= base_url('biaya-mutasi/hitung/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hitung</a>
+                                        <a href="<?= base_url('biaya-mutasi/hapus/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hapus</a>
+                                        <a href="<?= base_url('biaya-mutasi/rincian/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rincian</a>
                                     </div>
                                 </td>
                             </tr>

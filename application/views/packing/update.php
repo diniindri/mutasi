@@ -8,21 +8,21 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="form-group mb-2">
-                    <label for="">Jenis:</label>
+                    <label for="">Uraian :</label>
                     <input type="text" name="kota_asal" class="form-control <?= form_error('kota_asal') ? 'is-invalid' : ''; ?>" value="<?= $packing['kota_asal']; ?>">
                     <div class="invalid-feedback">
                         <?= form_error('kota_asal'); ?>
                     </div>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="">Jalur:</label>
+                    <label for="">Jenis :</label>
                     <input type="text" name="kota_tujuan" class="form-control <?= form_error('kota_tujuan') ? 'is-invalid' : ''; ?>" value="<?= $packing['kota_tujuan']; ?>">
                     <div class="invalid-feedback">
                         <?= form_error('kota_tujuan'); ?>
                     </div>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="">Tarif:</label>
+                    <label for="">Jumlah :</label>
                     <input type="text" name="jumlah" class="form-control <?= form_error('jumlah') ? 'is-invalid' : ''; ?>" value="<?= $packing['jumlah']; ?>">
                     <div class="invalid-feedback">
                         <?= form_error('jumlah'); ?>

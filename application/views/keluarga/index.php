@@ -15,6 +15,7 @@
     <div class="row mb-3">
         <div class="col-lg-7">
             <a href="<?= base_url('keluarga/create/') . $pegawai_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Tambah Data</a>
+            <a href="<?= base_url('keluarga/tarik-keluarga-gaji/') . $nip . '/' . $pegawai_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2" onclick="return confirm('Apakah Anda yakin akan melakukan tarik data keluarga?');"> Tarik Data Keluarga</a>
         </div>
         <div class="col-lg-5">
             <form action="" method="post" autocomplete="off">
