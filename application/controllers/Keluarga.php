@@ -8,6 +8,8 @@ class Keluarga extends CI_Controller
         is_logged_in();
         // meload file Data_keluarga_model.php
         $this->load->model('Data_keluarga_model', 'keluarga');
+        $this->load->model('Data_pegawai_model', 'pegawai');
+        $this->load->model('Ref_status_keluarga_model', 'status_keluarga');
     }
 
     public function index($pegawai_id = null)
@@ -15,8 +17,10 @@ class Keluarga extends CI_Controller
         // cek apakah ada id apa tidak
         if (!isset($pegawai_id)) show_404();
 
-        // mengirim data id sk ke view
+        // mengirim pegawai_id ke view
         $data['pegawai_id'] = $pegawai_id;
+        // mencari nip ybs dan mengirim ke view
+        $data['nip'] = $this->pegawai->getDetailPegawai($pegawai_id)['nip'];
 
         // menangkap data pencarian nama keluarga
         $nama = $this->input->post('nama');
@@ -85,6 +89,7 @@ class Keluarga extends CI_Controller
 
         // tampilkan id rute
         $data['pegawai_id'] = $pegawai_id;
+        $data['status_keluarga'] = $this->status_keluarga->getStatusKeluarga(null, 0);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
@@ -121,6 +126,7 @@ class Keluarga extends CI_Controller
         $data['pegawai_id'] = $pegawai_id;
         // load data keluarga ke view berdasarkan id keluarga
         $data['keluarga'] = $this->keluarga->getDetailKeluarga($id);
+        $data['status_keluarga'] = $this->status_keluarga->getStatusKeluarga(null, 0);
 
         $validation = $this->form_validation->set_rules($this->rules);
 
@@ -157,6 +163,30 @@ class Keluarga extends CI_Controller
         if ($this->keluarga->deleteKeluarga($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
+        redirect('keluarga/index/' . $pegawai_id . '');
+    }
+
+    public function tarik_keluarga_gaji($nip = null, $pegawai_id = null)
+    {
+        // cek apakah ada id apa tidak
+        if (!isset($nip)) show_404();
+        if (!isset($pegawai_id)) show_404();
+
+        // cari data keluarga berdasarkan nip
+        $keluarga = $this->keluarga->findKeluargaGaji($nip, null, 0);
+        foreach ($keluarga as $r) {
+            $data = [
+                'pegawai_id' => $pegawai_id,
+                'nama' => $r['nama'],
+                'kdkeluarga' => $r['kdkeluarga'],
+                'tgllhr' => $r['tgllhr'],
+                'kddapat' => $r['kddapat'],
+                'sts' => 0
+            ];
+            // simpan data ke database melalui model
+            $this->keluarga->createKeluarga($data);
+        }
+        $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
         redirect('keluarga/index/' . $pegawai_id . '');
     }
 }

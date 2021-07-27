@@ -16,31 +16,32 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Status Keluarga:</label>
-                    <input type="text" name="kdkeluarga" class="form-control <?= form_error('kdkeluarga') ? 'is-invalid' : ''; ?>" value="<?= $keluarga['kdkeluarga']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('kdkeluarga'); ?>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" name="kdkeluarga">
+                        <?php foreach ($status_keluarga as $r) : ?>
+                            <option value="<?= $r['id']; ?>" <?= $r['id'] == $keluarga['kdkeluarga'] ? 'selected' : ''; ?>><?= $r['nama']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Tanggal Lahir:</label>
-                    <input type="text" name="tgllhr" class="form-control <?= form_error('tgllhr') ? 'is-invalid' : ''; ?>" value="<?= $keluarga['tgllhr']; ?>">
+                    <input type="text" name="tgllhr" class="form-control <?= form_error('tgllhr') ? 'is-invalid' : ''; ?>" value="<?= $keluarga['tgllhr']; ?>" placeholder="yyyy-mm-dd">
                     <div class="invalid-feedback">
                         <?= form_error('tgllhr'); ?>
                     </div>
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Status Tunjangan:</label>
-                    <input type="text" name="kddapat" class="form-control <?= form_error('kddapat') ? 'is-invalid' : ''; ?>" value="<?= $keluarga['kddapat']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('kddapat'); ?>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" name="kddapat">
+                        <option value="1" <?= '1' == $keluarga['kddapat'] ? 'selected' : ''; ?>>Dapat</option>
+                        <option value="2" <?= '2' == $keluarga['kddapat'] ? 'selected' : ''; ?>>Tidak</option>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Status Usia:</label>
-                    <input type="text" name="sts" class="form-control <?= form_error('sts') ? 'is-invalid' : ''; ?>" value="<?= $keluarga['sts']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('sts'); ?>
-                    </div>
+                    <select class="form-select form-select-sm mb-3" name="sts">
+                        <option value="0" <?= '0' == $keluarga['sts'] ? 'selected' : ''; ?>>Dewasa</option>
+                        <option value="1" <?= '1' == $keluarga['sts'] ? 'selected' : ''; ?>>Infant</option>
+                    </select>
                 </div>
             </div>
         </div>

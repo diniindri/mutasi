@@ -18,12 +18,8 @@
             ['menu' => 'Timeline', 'level' => 1, 'url' => 'timeline'],
             ['menu' => 'SK Mutasi', 'level' => 2, 'url' => 'sk-mutasi'],
             ['menu' => 'Biaya Mutasi', 'level' => 2, 'url' => 'biaya-mutasi'],
-            ['menu' => 'Payroll', 'level' => 2, 'url' => 'payroll'],
             ['menu' => 'Monitoring Dokumen', 'level' => 2, 'url' => 'monitoring-dokumen'],
-            ['menu' => 'Pesan', 'level' => 2, 'url' => 'pesan'],
-            ['menu' => 'Rincian Biaya', 'level' => 2, 'url' => 'rincian-biaya'],
-            ['menu' => 'Pembayaran', 'level' => 2, 'url' => 'pembayaran'],
-            ['menu' => 'Referensi', 'level' => 2, 'url' => 'Referensi'],
+            ['menu' => 'Referensi', 'level' => 2, 'url' => 'referensi'],
 
         ];
         foreach ($levels as $r) :

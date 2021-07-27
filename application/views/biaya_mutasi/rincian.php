@@ -1,6 +1,6 @@
 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Packing</h1>
+        <h1 class="h2">Rincian</h1>
     </div>
     <div class="row">
         <div class="col">
@@ -14,6 +14,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('biaya-mutasi/detail/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Kembali ke halaman sebelumnya</a>
         </div>
         <div class="col-lg-5">
         </div>
@@ -25,27 +26,43 @@
                     <thead class="text-center">
                         <tr class="align-middle">
                             <th>No</th>
-                            <th>Uraian</th>
                             <th>Jenis</th>
+                            <th>Angkutan</th>
+                            <th>Satuan</th>
+                            <th>Jarak</th>
+                            <th>Tarif</th>
                             <th>Jumlah</th>
+                            <th>Uraian</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1;
-                        foreach ($packing as $r) : ?>
+                        $total = 0;
+                        foreach ($biaya as $r) : ?>
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
-                                <td><?= $r['kota_asal']; ?></td>
-                                <td><?= $r['kota_tujuan']; ?></td>
+                                <td><?= $r['nama_jenis']; ?></td>
+                                <td><?= $r['nama_angkutan']; ?></td>
+                                <td class="text-right"><?= number_format($r['satuan'], 2, ',', '.'); ?></td>
+                                <td class="text-right"><?= number_format($r['jarak'], 0, ',', '.'); ?></td>
+                                <td class="text-right"><?= number_format($r['tarif'], 0, ',', '.'); ?></td>
                                 <td class="text-right"><?= number_format($r['jumlah'], 0, ',', '.'); ?></td>
+                                <td><?= $r['uraian']; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('packing/update/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
+                                        <a href="<?= base_url('biaya-mutasi/cetak/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Cetak</a>
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php
+                            $total += $r['jumlah'];
+                        endforeach; ?>
+                        <tr>
+                            <td colspan="6" class="text-center">Jumlah Total</td>
+                            <td class="text-right"><?= number_format($total, 0, ',', '.'); ?></td>
+                            <td colspan="2"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
