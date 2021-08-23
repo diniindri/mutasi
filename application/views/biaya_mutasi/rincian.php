@@ -33,7 +33,6 @@
                             <th>Tarif</th>
                             <th>Jumlah</th>
                             <th>Uraian</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,11 +48,6 @@
                                 <td class="text-right"><?= number_format($r['tarif'], 0, ',', '.'); ?></td>
                                 <td class="text-right"><?= number_format($r['jumlah'], 0, ',', '.'); ?></td>
                                 <td><?= $r['uraian']; ?></td>
-                                <td class="pb-0 pr-0">
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('biaya-mutasi/cetak/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Cetak</a>
-                                    </div>
-                                </td>
                             </tr>
                         <?php
                             $total += $r['jumlah'];

@@ -19,6 +19,7 @@
             ['menu' => 'SK Mutasi', 'level' => 2, 'url' => 'sk-mutasi'],
             ['menu' => 'Biaya Mutasi', 'level' => 2, 'url' => 'biaya-mutasi'],
             ['menu' => 'Monitoring Dokumen', 'level' => 2, 'url' => 'monitoring-dokumen'],
+            ['menu' => 'Payroll', 'level' => 2, 'url' => 'payroll'],
             ['menu' => 'Referensi', 'level' => 2, 'url' => 'referensi'],
 
         ];

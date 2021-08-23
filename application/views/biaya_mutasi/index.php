@@ -40,6 +40,7 @@
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('biaya-mutasi/detail/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                        <a href="<?= base_url('biaya-mutasi/dnp/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">DNP</a>
                                     </div>
                                 </td>
                             </tr>
