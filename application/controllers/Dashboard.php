@@ -30,4 +30,12 @@ class Dashboard extends CI_Controller
         $this->load->view('dashboard/index', $data);
         $this->load->view('template/footer');
     }
+
+    public function detail($sk_id = null)
+    {
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('dashboard/detail');
+        $this->load->view('template/footer');
+    }
 }
