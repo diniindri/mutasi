@@ -131,6 +131,15 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Proses</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('proses/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
