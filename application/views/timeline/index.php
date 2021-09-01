@@ -2,14 +2,17 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Timeline</h1>
     </div>
-    <div class="row mb-3">
-        <div class="col">
-            <a href="" class="btn btn-sm btn-outline-secondary mt-1 mb-1">KEP-9/KN/UP.11/2021</a>
-            <a href="" class="btn btn-sm btn-outline-secondary mt-1 mb-1">KEP-56/KN/UP.11/2020</a>
-        </div>
-    </div>
     <div class="row">
-        <div class="col">
+        <div class="col-lg-3">
+            <div class="list-group">
+                <a href="#" class="btn btn-sm btn-outline-secondary mb-2 text-left p-2 active" aria-current="true">
+                    KEP-9/KN/UP.11/2021
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-secondary mb-2 text-left p-2">KEP-56/KN/UP.11/2020</a>
+                <a href="#" class="btn btn-sm btn-outline-secondary mb-2 text-left p-2">KEP-14/KN/UP.11/2019</a>
+            </div>
+        </div>
+        <div class="col-lg-9">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="text-center">
