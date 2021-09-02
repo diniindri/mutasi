@@ -8,22 +8,26 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('View_pegawai_sk_model', 'view_pegawai_sk');
+        $this->load->model('Data_biaya_model', 'biaya');
     }
 
-    public function index()
+    public function index($pegawai_id = null)
     {
-        $data['sk'] = [
-            [
-                'nomor' => 'KEP-09/KN/2021',
-                'uraian' => 'Mutasi Pelaksana Golongan II',
-                'tanggal' => '02 April 2021'
-            ],
-            [
-                'nomor' => 'KEP-10/KN/2021',
-                'uraian' => 'Mutasi Pelaksana Golongan III',
-                'tanggal' => '03 April 2021'
-            ]
-        ];
+        $nip = $this->session->userdata('nip');
+        $data['sk'] = $this->view_pegawai_sk->getPegawaiSk($nip);
+        if (!isset($pegawai_id)) {
+            $data['detail_sk'] = [
+                'tanggal' => '',
+                'uraian' => '',
+                'asal' => '',
+                'tujuan' => ''
+            ];
+            $data['biaya'] = [];
+        } else {
+            $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
+            $data['biaya'] = $this->biaya->getRincianBiaya($pegawai_id);
+        }
 
         $this->load->view('template/header');
         $this->load->view('template/sidebar');
