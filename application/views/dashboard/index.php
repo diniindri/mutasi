@@ -4,8 +4,9 @@
     </div>
     <div class="row mb-3">
         <div class="col">
-            <a href="" class="btn btn-sm btn-outline-secondary mt-1 mb-1">KEP-9/KN/UP.11/2021</a>
-            <a href="" class="btn btn-sm btn-outline-secondary mt-1 mb-1">KEP-56/KN/UP.11/2020</a>
+            <?php foreach ($sk as $r) : ?>
+                <a href="<?= base_url('dashboard/index/') . $r['pegawai_id']; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"><?= $r['nomor']; ?></a>
+            <?php endforeach; ?>
         </div>
     </div>
     <div class="row mb-3">
@@ -24,15 +25,15 @@
                             <tbody>
                                 <tr>
                                     <td>Tanggal SK</td>
-                                    <td>02 Januari 2021</td>
+                                    <td><?= $detail_sk['tanggal'] == '' ? '' : date('d-m-Y', $detail_sk['tanggal']); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Uraian SK</td>
-                                    <td>Pembayaran Biaya Mutasi Gol II dan Gol III sesuai SK Kep-09/KN.1/2021</td>
+                                    <td><?= $detail_sk['uraian']; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Rute Mutasi</td>
-                                    <td>Jakarta - Bogor</td>
+                                    <td><?= $detail_sk['asal']; ?> - <?= $detail_sk['tujuan']; ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -56,44 +57,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $total = 0;
+                                $jns = '';
+                                foreach ($biaya as $r) :
+                                ?>
+                                    <tr>
+                                        <th scope="row"><?= $r['nama_jenis'] == $jns ? '' : $r['nama_jenis']; ?></th>
+                                        <td><?= $r['uraian']; ?></td>
+                                        <td class="text-right"><?= number_format($r['jumlah'], 0, ',', '.'); ?></td>
+                                    </tr>
+                                <?php
+                                    $total += $r['jumlah'];
+                                    $jns = $r['nama_jenis'];
+                                endforeach; ?>
                                 <tr>
-                                    <th scope="row">Rute Orang</th>
-                                    <td>Manado-Denpasar</td>
-                                    <td class="text-right">2.000.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Denpasar-Singaraja</td>
-                                    <td class="text-right">1.000.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Rute Barang</th>
-                                    <td>Packing-Darat</td>
-                                    <td class="text-right">2.500.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Manado-Bitung</td>
-                                    <td class="text-right">1.000.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Packing-Laut</td>
-                                    <td class="text-right">1.000.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Bitung-Denpasar</td>
-                                    <td class="text-right">1.000.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Denpasar-Singaraja</td>
-                                    <td class="text-right">1.000.000</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" colspan="2">Total</th>
-                                    <td class="text-right">10.000.000</td>
+                                    <th scope="row">Total</th>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"><?= number_format($total, 0, ',', '.'); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -117,10 +98,10 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>KP4</td>
+                                    <td>KP4 <small>(download via alika.kemenkeu.go.id)</small></td>
                                     <td class="pb-0 pr-0">
                                         <div class="btn-group btn-group-sm" role="group">
-                                            <a href="alika.kemenkeu.go.id" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Download</a>
+                                            <a href="https://alika.kemenkeu.go.id/" target="_blank" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Download</a>
                                         </div>
                                     </td>
                                 </tr>

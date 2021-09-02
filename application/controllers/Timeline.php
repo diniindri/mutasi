@@ -8,15 +8,19 @@ class Timeline extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('View_pegawai_sk_model', 'view_pegawai_sk');
+        $this->load->model('Data_timeline_model', 'timeline');
     }
 
-    public function index()
+    public function index($pegawai_id = null)
     {
-        $data['profil'] = [
-            'nip' => $this->session->userdata('nip'),
-            'nama' => $this->session->userdata('nama'),
-            'level' => $this->session->userdata('level')
-        ];
+        $nip = $this->session->userdata('nip');
+        $data['sk'] = $this->view_pegawai_sk->getPegawaiSk($nip);
+        if (!isset($pegawai_id)) {
+            $data['timeline'] = [];
+        } else {
+            $data['timeline'] = $this->timeline->getTimeline($pegawai_id);
+        }
 
         $this->load->view('template/header');
         $this->load->view('template/sidebar');

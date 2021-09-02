@@ -6,7 +6,7 @@
     <form action="" method="post" autocomplete="off">
 
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-6">
                 <div class="form-group mb-2">
                     <label for="">Nama:</label>
                     <input type="text" name="nama" class="form-control <?= form_error('nama') ? 'is-invalid' : ''; ?>" value="<?= $proses['nama']; ?>">
