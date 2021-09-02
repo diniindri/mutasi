@@ -101,8 +101,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="card mb-2">
+        <div class="col-lg-3">
+            <div class="card">
                 <h6 class="card-header">Download Dokumen</h6>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -147,6 +147,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3">
             <div class="card">
                 <h6 class="card-header">Upload Dokumen</h6>
                 <div class="card-body">
@@ -156,7 +158,6 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Uraian</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -164,11 +165,6 @@
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>KP4</td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-danger pt-0 pb-0">Belum Upload</a>
-                                        </div>
-                                    </td>
                                     <td class="pb-0 pr-0">
                                         <div class="btn-group btn-group-sm" role="group">
                                             <a href="alika.kemenkeu.go.id" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
@@ -180,11 +176,6 @@
                                     <td>SPD</td>
                                     <td class="pb-0 pr-0">
                                         <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-success pt-0 pb-0">Sudah Upload</a>
-                                        </div>
-                                    </td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
                                             <a href="" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
                                         </div>
                                     </td>
@@ -192,11 +183,6 @@
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>Rincian Biaya</td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-danger pt-0 pb-0">Belum Upload</a>
-                                        </div>
-                                    </td>
                                     <td class="pb-0 pr-0">
                                         <div class="btn-group btn-group-sm" role="group">
                                             <a href="" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
