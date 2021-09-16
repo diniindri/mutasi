@@ -11,6 +11,7 @@ class Monitoring_dokumen extends CI_Controller
         // meload file Data_sk_model.php
         $this->load->model('Data_sk_model', 'sk');
         $this->load->model('Data_upload_model', 'upload');
+        $this->load->model('Data_pegawai_model', 'pegawai');
     }
 
     public function index()
@@ -54,28 +55,28 @@ class Monitoring_dokumen extends CI_Controller
         // mengirim data id sk ke view
         $data['sk_id'] = $sk_id;
 
-        // menangkap data pencarian uraian
-        $nip = $this->input->post('nip');
+        // menangkap data pencarian nmpeg
+        $nmpeg = $this->input->post('nmpeg');
 
         // settingan halaman
         $config['base_url'] = base_url('monitoring-dokumen/detail/' . $sk_id . '');
-        $config['total_rows'] = $this->upload->countUpload();
+        $config['total_rows'] = $this->pegawai->countPegawai();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
         $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
-        $data['nip'] = $nip;
+        $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];
 
         // pilih tampilan data, semua atau berdasarkan pencarian nmpeg 
-        if ($nip) {
+        if ($nmpeg) {
             $data['page'] = 0;
             $offset = 0;
-            $data['upload'] = $this->upload->findUpload($sk_id, $nip, $limit, $offset);
+            $data['pegawai'] = $this->pegawai->findPegawai($sk_id, $nmpeg, $limit, $offset);
         } else {
-            $data['upload'] = $this->upload->getUpload($sk_id, $limit, $offset);
+            $data['pegawai'] = $this->pegawai->getPegawai($sk_id, $limit, $offset);
         }
 
         // meload view pada pegawai/index.php

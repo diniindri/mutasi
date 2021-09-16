@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="list-group">
                         <?php foreach ($sk as $r) : ?>
-                            <a href="<?= base_url('timeline/index/') . $r['pegawai_id']; ?>" class="btn btn-sm btn-outline-secondary mb-2 text-left p-2"><?= $r['nomor']; ?></a>
+                            <a href="<?= base_url('timeline/index/') . $r['pegawai_id']; ?>" class="btn btn-sm btn-outline-secondary mb-1 text-left p-1 <?= $pegawai_id == $r['pegawai_id'] ? 'active' : ''; ?>"><?= $r['nomor']; ?></a>
                         <?php endforeach; ?>
                     </div>
                 </div>
