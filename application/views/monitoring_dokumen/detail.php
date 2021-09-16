@@ -18,7 +18,7 @@
         <div class="col-lg-5">
             <form action="" method="post" autocomplete="off">
                 <div class="input-group">
-                    <input type="text" name="nip" class="form-control" placeholder="NIP Pegawai">
+                    <input type="text" name="nip" class="form-control" placeholder="Nama">
                     <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
                 </div>
             </form>
@@ -33,23 +33,27 @@
                             <th>No</th>
                             <th>NIP</th>
                             <th>Nama</th>
+                            <th>Rute</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = $page + 1;
-                        foreach ($upload as $r) : ?>
+                        foreach ($pegawai as $r) :
+                            //tampilkan dokumen yg sudah diupload
+                            $this->load->model('data_upload_model', 'upload');
+                            $dataUpload = $this->upload->getPegawaiUpload($r['id']);
+                        ?>
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $r['nip']; ?></td>
-                                <td><?= $r['file']; ?></td>
+                                <td><?= $r['nmpeg']; ?></td>
+                                <td><?= $r['asal']; ?>-<?= $r['tujuan']; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('monitoring-dokumen/kp4/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">KP4</a>
-                                        <a href="<?= base_url('monitoring-dokumen/kuitansi/') . $r['id']  . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Kuitansi</a>
-                                        <a href="<?= base_url('monitoring/spdawal/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">SPD Awal</a>
-                                        <a href="<?= base_url('monitoring/spdakhir/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">SPD Akhir</a>
-                                        <a href="<?= base_url('monitoring/ktp_art/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">KTP ART</a>
+                                        <?php foreach ($dataUpload as $r) : ?>
+                                            <a href="<?= base_url('assets/files/') . $r['file']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" download="download"><?= $r['jenis']; ?></a>
+                                        <?php endforeach; ?>
                                     </div>
                                 </td>
                             </tr>
@@ -61,7 +65,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <?= $nip == null ? $pagination : ''; ?>
+            <?= $nmpeg == null ? $pagination : ''; ?>
         </div>
     </div>
 

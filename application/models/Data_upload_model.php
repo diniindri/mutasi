@@ -50,4 +50,14 @@ class Data_upload_model extends CI_Model
         $this->db->order_by('nip', 'DESC');
         return $this->db->get('data_upload')->result_array();
     }
+
+    public function getDashboardUpload($pegawai_id = null, $kode = null)
+    {
+        return $this->db->get_where('data_upload', ['pegawai_id' => $pegawai_id, 'kode' => $kode])->row_array();
+    }
+
+    public function getPegawaiUpload($pegawai_id = null)
+    {
+        return $this->db->query("SELECT a.pegawai_id,a.file,a.kode,b.jenis FROM data_upload a LEFT JOIN ref_dokumen b ON a.kode=b.kode WHERE a.pegawai_id='$pegawai_id'")->result_array();
+    }
 }

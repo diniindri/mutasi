@@ -44,7 +44,6 @@ class Ref_dokumen_model extends CI_Model
 
     public function getAllDokumen()
     {
-        $this->db->order_by('kode', 'ASC');
         return $this->db->get('ref_dokumen')->result_array();
     }
 }
