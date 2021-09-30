@@ -47,4 +47,9 @@ class Ref_pejabat_model extends CI_Model
         $this->db->order_by('nama', 'ASC');
         return $this->db->get('ref_pejabat')->result_array();
     }
+
+    public function getKodePejabat($kode = null)
+    {
+        return $this->db->get_where('ref_pejabat', ['kode' => $kode])->row_array();
+    }
 }

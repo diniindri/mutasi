@@ -10,15 +10,23 @@ class Dashboard extends CI_Controller
         is_logged_in();
         $this->load->model('View_pegawai_sk_model', 'view_pegawai_sk');
         $this->load->model('Data_biaya_model', 'biaya');
+        $this->load->model('Data_pegawai_model', 'pegawai');
+        $this->load->model('Data_keluarga_model', 'keluarga');
         $this->load->model('Data_upload_model', 'data_upload');
         $this->load->model('Ref_dokumen_model', 'dokumen');
+        $this->load->model('Ref_pejabat_model', 'pejabat');
+        $this->load->model('Ref_laporan_model', 'laporan');
     }
 
     public function index($pegawai_id = null)
     {
         $nip = $this->session->userdata('nip');
         $data['sk'] = $this->view_pegawai_sk->getPegawaiSk($nip);
-        if (!isset($pegawai_id)) {
+
+        if (!isset($pegawai_id) && $data['sk']) $pegawai_id = $data['sk'][0]['pegawai_id'];
+
+        $nip_sk = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id)['nip'];
+        if (!isset($pegawai_id) || $nip <> $nip_sk) {
             $data['pegawai_id'] = null;
             $data['detail_sk'] = [
                 'tanggal' => '',
@@ -36,8 +44,8 @@ class Dashboard extends CI_Controller
             $data['upload'] = $this->dokumen->getAllDokumen();
             $data['download'] = [
                 ['nama' => 'KP4 <small>(download via alika.kemenkeu.go.id)</small>', 'url' => 'https://alika.kemenkeu.go.id'],
-                ['nama' => 'Rincian Biaya', 'url' => ''],
-                ['nama' => 'SPD', 'url' => '']
+                ['nama' => 'Rincian Biaya', 'url' => 'dashboard/download-biaya/' . $pegawai_id . ''],
+                ['nama' => 'SPD', 'url' => 'dashboard/download-spd/' . $pegawai_id . '']
             ];
         }
 
@@ -89,5 +97,46 @@ class Dashboard extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('dashboard/upload', $data);
         $this->load->view('template/footer');
+    }
+
+    public function download_spd($pegawai_id = null)
+    {
+        $nip = $this->session->userdata('nip');
+
+        $data['ppk'] = $this->pejabat->getKodePejabat(1);
+        $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
+        $data['keluarga'] = $this->keluarga->getKeluarga($pegawai_id);
+        $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
+        $data['laporan'] = $this->laporan->getDetailLaporan(1);
+        ob_start();
+        $this->load->view('dashboard/spd', $data);
+        $html = ob_get_clean();
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'en', false, 'UTF-8', array(20, 10, 20, 10));
+        $html2pdf->addFont('Arial');
+        $html2pdf->pdf->SetTitle('SPD');
+        $html2pdf->writeHTML($html);
+        $html2pdf->output('spd-' . $nip . '.pdf', 'D');
+    }
+
+    public function download_biaya($pegawai_id = null)
+    {
+        $nip = $this->session->userdata('nip');
+
+        $data['ppk'] = $this->pejabat->getKodePejabat(1);
+        $data['bendahara'] = $this->pejabat->getKodePejabat(2);
+        // $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
+        // $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
+        // $data['laporan'] = $this->laporan->getDetailLaporan(1);
+        ob_start();
+        $this->load->view('dashboard/biaya', $data);
+        $html = ob_get_clean();
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'en', false, 'UTF-8', array(20, 10, 20, 10));
+        $html2pdf->addFont('Arial');
+        $html2pdf->pdf->SetTitle('Biaya');
+        $html2pdf->writeHTML($html);
+        // $html2pdf->output('biaya-' . $nip . '.pdf', 'D');
+        $html2pdf->output('biaya-' . $nip . '.pdf');
     }
 }

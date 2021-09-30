@@ -25,7 +25,7 @@
                             <tbody>
                                 <tr>
                                     <td>Tanggal SK</td>
-                                    <td><?= $detail_sk['tanggal'] == '' ? '' : date('d-m-Y', $detail_sk['tanggal']); ?></td>
+                                    <td><?= $detail_sk['tanggal'] == '' ? '' : tanggal($detail_sk['tanggal']); ?></td>
                                 </tr>
                                 <tr>
                                     <td>Uraian SK</td>

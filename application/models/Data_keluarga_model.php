@@ -15,7 +15,7 @@ class Data_keluarga_model extends CI_Model
         ]);
     }
 
-    public function getKeluarga($pegawai_id = null, $limit = 0, $offset = 0)
+    public function getKeluarga($pegawai_id = null, $limit = null, $offset = 0)
     {
         $this->db->select('a.*,b.nama AS status_keluarga');
         $this->db->from('data_keluarga a');
