@@ -239,6 +239,7 @@ class Pegawai extends CI_Controller
             // simpan data di database melalui model
             $this->pegawai->createPegawai($data);
         }
+        // update timeline
         $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
         redirect('pegawai/index/' . $sk_id . '');
     }
