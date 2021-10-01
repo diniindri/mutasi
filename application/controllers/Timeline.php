@@ -16,6 +16,9 @@ class Timeline extends CI_Controller
     {
         $nip = $this->session->userdata('nip');
         $data['sk'] = $this->view_pegawai_sk->getPegawaiSk($nip);
+
+        if (!isset($pegawai_id) && $data['sk']) $pegawai_id = $data['sk'][0]['pegawai_id'];
+
         if (!isset($pegawai_id)) {
             $data['pegawai_id'] = null;
             $data['timeline'] = [];

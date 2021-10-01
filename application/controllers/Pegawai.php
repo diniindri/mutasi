@@ -25,7 +25,7 @@ class Pegawai extends CI_Controller
 
         // settingan halaman
         $config['base_url'] = base_url('pegawai/index/' . $sk_id . '');
-        $config['total_rows'] = $this->pegawai->countPegawai();
+        $config['total_rows'] = $this->pegawai->countPegawaiMutasi($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
@@ -188,7 +188,7 @@ class Pegawai extends CI_Controller
         $nmpeg = $this->input->post('nmpeg');
 
         // settingan halaman
-        $config['base_url'] = base_url('pegawai/tarik_pegawai_gaji/' . $sk_id . '');
+        $config['base_url'] = base_url('pegawai/tarik-pegawai-gaji/' . $sk_id . '');
         $config['total_rows'] = $this->pegawai->countPegawaiGaji();
         $config['per_page'] = 10;
         $config["num_links"] = 3;

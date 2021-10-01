@@ -2,7 +2,7 @@
 
 class Data_sk_model extends CI_Model
 {
-    public function getSk($limit = 0, $offset = 0)
+    public function getSk($limit = null, $offset = 0)
     {
         $this->db->order_by('tanggal', 'DESC');
         $this->db->limit($limit, $offset);
@@ -14,7 +14,7 @@ class Data_sk_model extends CI_Model
         return $this->db->get_where('data_sk', ['id' => $id])->row_array();
     }
 
-    public function findSk($uraian = null, $limit = 0, $offset = 0)
+    public function findSk($uraian = null, $limit = null, $offset = 0)
     {
         $this->db->like('uraian', $uraian);
         $this->db->limit($limit, $offset);

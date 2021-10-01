@@ -41,6 +41,8 @@
                     </thead>
                     <tbody>
                         <?php $no = $page + 1;
+                        $jml = 0;
+                        $nmnl = 0;
                         foreach ($payroll as $r) : ?>
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
@@ -49,16 +51,30 @@
                                 <td class="text-right"><?= number_format($r['jumlah'], 0, ',', '.'); ?></td>
                                 <td class="text-right"><?= number_format($r['nominal'], 0, ',', '.'); ?></td>
                                 <td class="pb-0">
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('payroll/update/') . $r['sk_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
-                                        <a href="<?= base_url('payroll/delete/') . $r['sk_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
-                                        <a href="<?= base_url('payroll/pegawai/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Pegawai</a>
-                                        <a href="<?= base_url('payroll/dnp/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">DNP</a>
-                                        <a href="<?= base_url('payroll/status/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Status</a>
-                                    </div>
+                                    <?php if ($r['status'] == 0) : ?>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a href="<?= base_url('payroll/update/') . $r['sk_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
+                                            <a href="<?= base_url('payroll/delete/') . $r['sk_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
+                                            <a href="<?= base_url('payroll/pegawai/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Pegawai</a>
+                                            <a href="<?= base_url('payroll/proses-payroll/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan memproses payroll ini?');">Proses Payroll</a>
+                                        </div>
+                                    <?php else : ?>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a href="<?= base_url('payroll/pegawai-payroll/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Pegawai</a>
+                                            <a href="<?= base_url('payroll/batal-payroll/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan membatalkan payroll ini?');">Batal Payroll</a>
+                                        </div>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php $jml += $r['jumlah'];
+                            $nmnl += $r['nominal'];
+                        endforeach; ?>
+                        <tr>
+                            <td colspan="3" class="text-center">Total</td>
+                            <td class="text-right"><?= number_format($jml, 0, ',', '.'); ?></td>
+                            <td class="text-right"><?= number_format($nmnl, 0, ',', '.'); ?></td>
+                            <td></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -21,20 +21,6 @@
                         <?= form_error('tanggal'); ?>
                     </div>
                 </div>
-                <div class="form-group mb-2">
-                    <label for="">Jumlah:</label>
-                    <input type="text" name="jumlah" class="form-control <?= form_error('jumlah') ? 'is-invalid' : ''; ?>" value="<?= $payroll['jumlah']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('jumlah'); ?>
-                    </div>
-                </div>
-                <div class="form-group mb-2">
-                    <label for="">Nominal:</label>
-                    <input type="text" name="nominal" class="form-control <?= form_error('nominal') ? 'is-invalid' : ''; ?>" value="<?= $payroll['nominal']; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('nominal'); ?>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="row mt-3">

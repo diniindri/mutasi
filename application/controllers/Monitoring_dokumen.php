@@ -60,7 +60,7 @@ class Monitoring_dokumen extends CI_Controller
 
         // settingan halaman
         $config['base_url'] = base_url('monitoring-dokumen/detail/' . $sk_id . '');
-        $config['total_rows'] = $this->pegawai->countPegawai();
+        $config['total_rows'] = $this->pegawai->countPegawaiMutasi($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);

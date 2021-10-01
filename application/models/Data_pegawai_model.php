@@ -30,7 +30,7 @@ class Data_pegawai_model extends CI_Model
         return $this->db->get_where('data_pegawai', ['id' => $id])->row_array();
     }
 
-    public function findPegawai($sk_id = null, $nmpeg = null, $limit = 0, $offset = 0)
+    public function findPegawai($sk_id = null, $nmpeg = null, $limit = null, $offset = 0)
     {
         $this->db->select('data_pegawai.*, ref_rute.asal, ref_rute.tujuan');
         $this->db->from('data_pegawai');
@@ -44,6 +44,37 @@ class Data_pegawai_model extends CI_Model
     public function countPegawai()
     {
         return $this->db->get('data_pegawai')->num_rows();
+    }
+
+    public function countPegawaiMutasi($sk_id = null)
+    {
+        return $this->db->get_where('data_pegawai', ['sk_id' => $sk_id])->num_rows();
+    }
+
+    public function countPegawaiPayroll($sk_id = null)
+    {
+        return $this->db->get_where('data_pegawai', ['sk_id' => $sk_id, 'status' => 0])->num_rows();
+    }
+
+    public function findPegawaiPayroll($sk_id = null, $nmpeg = null, $limit = null, $offset = 0)
+    {
+        $this->db->select('data_pegawai.*, ref_rute.asal, ref_rute.tujuan');
+        $this->db->from('data_pegawai');
+        $this->db->join('ref_rute', 'ref_rute.id = data_pegawai.ref_rute_id', 'left');
+        $this->db->like('data_pegawai.nmpeg', $nmpeg);
+        $this->db->where(['data_pegawai.sk_id' => $sk_id, 'data_pegawai.status' => 0]);
+        $this->db->limit($limit, $offset);
+        return $this->db->get()->result_array();
+    }
+
+    public function getPegawaiPayroll($sk_id = null, $limit = 0, $offset = 0)
+    {
+        $this->db->select('data_pegawai.*, ref_rute.asal, ref_rute.tujuan');
+        $this->db->from('data_pegawai');
+        $this->db->join('ref_rute', 'ref_rute.id = data_pegawai.ref_rute_id', 'left');
+        $this->db->where(['data_pegawai.sk_id' => $sk_id, 'data_pegawai.status' => 0]);
+        $this->db->limit($limit, $offset);
+        return $this->db->get()->result_array();
     }
 
     public function createPegawai($data = null)
