@@ -63,4 +63,9 @@ class Data_biaya_model extends CI_Model
     {
         return $this->db->query("SELECT a.id, b.nama AS nama_jenis, c.nama AS nama_angkutan, a.satuan, a.jarak, a.tarif, a.jumlah, a.uraian FROM data_biaya a LEFT JOIN ref_jenis b ON a.jenis_id=b.id LEFT JOIN ref_angkutan c ON a.angkutan_id=c.id WHERE a.pegawai_id='$pegawai_id'")->result_array();
     }
+
+    public function getRincianBiayaPerJenis($pegawai_id = null, $jenis_id = null)
+    {
+        return $this->db->query("SELECT a.id, b.nama AS nama_jenis, c.nama AS nama_angkutan, a.satuan, a.jarak, a.tarif, a.jumlah, a.uraian FROM data_biaya a LEFT JOIN ref_jenis b ON a.jenis_id=b.id LEFT JOIN ref_angkutan c ON a.angkutan_id=c.id WHERE a.pegawai_id='$pegawai_id' AND a.jenis_id='$jenis_id'")->result_array();
+    }
 }
