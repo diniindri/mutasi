@@ -37,7 +37,7 @@
                                         <td><?= $no++; ?></td>
                                         <td><?= $r['nama']; ?></td>
                                         <td><?= $r['keterangan']; ?></td>
-                                        <td><?= date('d-m-Y', $r['tanggal']); ?></td>
+                                        <td><?= tanggal($r['tanggal']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

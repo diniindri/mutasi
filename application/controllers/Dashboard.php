@@ -44,8 +44,8 @@ class Dashboard extends CI_Controller
             $data['upload'] = $this->dokumen->getAllDokumen();
             $data['download'] = [
                 ['nama' => 'KP4 <small>(download via alika.kemenkeu.go.id)</small>', 'url' => 'https://alika.kemenkeu.go.id'],
-                ['nama' => 'Rincian Biaya', 'url' => 'dashboard/download-biaya/' . $pegawai_id . ''],
-                ['nama' => 'SPD', 'url' => 'dashboard/download-spd/' . $pegawai_id . '']
+                ['nama' => 'Rincian Biaya', 'url' => '' . base_url() . 'dashboard/download-biaya/' . $pegawai_id . ''],
+                ['nama' => 'SPD', 'url' => '' . base_url() . 'dashboard/download-spd/' . $pegawai_id . '']
             ];
         }
 
@@ -125,9 +125,12 @@ class Dashboard extends CI_Controller
 
         $data['ppk'] = $this->pejabat->getKodePejabat(1);
         $data['bendahara'] = $this->pejabat->getKodePejabat(2);
-        // $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
+        $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
         // $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
-        // $data['laporan'] = $this->laporan->getDetailLaporan(1);
+        $data['laporan'] = $this->laporan->getDetailLaporan(1);
+        $data['biaya_orang'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 1);
+        $data['biaya_barang'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 2);
+        $data['biaya_lumpsum'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 3);
         ob_start();
         $this->load->view('dashboard/biaya', $data);
         $html = ob_get_clean();
@@ -136,7 +139,6 @@ class Dashboard extends CI_Controller
         $html2pdf->addFont('Arial');
         $html2pdf->pdf->SetTitle('Biaya');
         $html2pdf->writeHTML($html);
-        // $html2pdf->output('biaya-' . $nip . '.pdf', 'D');
-        $html2pdf->output('biaya-' . $nip . '.pdf');
+        $html2pdf->output('biaya-' . $nip . '.pdf', 'D');
     }
 }
