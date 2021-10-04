@@ -10,6 +10,8 @@ class Pegawai extends CI_Controller
         $this->load->model('Data_pegawai_model', 'pegawai');
         $this->load->model('Ref_kubik_model', 'kubik');
         $this->load->model('Ref_rute_model', 'rute');
+        $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('View_pegawai_sk_model', 'pegawai_sk');
     }
 
     public function index($sk_id = null)
@@ -148,7 +150,8 @@ class Pegawai extends CI_Controller
                 'kdkawin' => htmlspecialchars($this->input->post('kdkawin', true)),
                 'rekening' => htmlspecialchars($this->input->post('rekening', true)),
                 'nm_bank' => htmlspecialchars($this->input->post('nm_bank', true)),
-                'nmrek' => htmlspecialchars($this->input->post('nmrek', true))
+                'nmrek' => htmlspecialchars($this->input->post('nmrek', true)),
+                'infant' => htmlspecialchars($this->input->post('infant', true))
             ];
             // update data di database melalui model
             $this->pegawai->updatePegawai($data, $id);
@@ -340,6 +343,21 @@ class Pegawai extends CI_Controller
 
         // ubah data melalui model
         if ($this->pegawai->updatePegawai($data, $pegawai_id)) {
+            // rekam data_timeline
+            // cek apakah sudah ada data apa belum
+            $proses_id = '1';
+            $data_timeline = [
+                'pegawai_id' => $pegawai_id,
+                'proses_id' => $proses_id,
+                'keterangan' => 'Nomor ' . $this->pegawai_sk->getDetailPegawaiSk($pegawai_id)['nomor'] . ', tentang ' . $this->pegawai_sk->getDetailPegawaiSk($pegawai_id)['uraian'],
+                'tanggal' => $this->pegawai_sk->getDetailPegawaiSk($pegawai_id)['tanggal']
+            ];
+            if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+                $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+            } else {
+                $this->timeline->createTimeline($data_timeline);
+            }
+            // selesai
             $this->session->set_flashdata('pesan', 'Data rute berhasil diubah.');
         }
         redirect('pegawai/index/' . $sk_id . '');

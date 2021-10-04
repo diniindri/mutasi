@@ -33,14 +33,25 @@ class Data_keluarga_model extends CI_Model
 
     public function findKeluarga($pegawai_id = null, $nama = null, $limit = 0, $offset = 0)
     {
-        $this->db->like('nama', $nama);
+        $this->db->select('a.*,b.nama AS status_keluarga');
+        $this->db->from('data_keluarga a');
+        $this->db->join('ref_status_keluarga b', 'a.kdkeluarga=b.id', 'left');
+        $this->db->where('a.pegawai_id', $pegawai_id);
         $this->db->limit($limit, $offset);
-        return $this->db->get_where('data_keluarga', ['pegawai_id' => $pegawai_id])->result_array();
+        $this->db->order_by('a.tgllhr', 'asc');
+        $this->db->like('a.nama', $nama);
+        $this->db->limit($limit, $offset);
+        return $this->db->get()->result_array();
     }
 
     public function countKeluarga()
     {
         return $this->db->get('data_keluarga')->num_rows();
+    }
+
+    public function countKeluargaPegawai($pegawai_id = null)
+    {
+        return $this->db->get_where('data_keluarga', ['pegawai_id' => $pegawai_id])->num_rows();
     }
 
     public function createKeluarga($data = null)

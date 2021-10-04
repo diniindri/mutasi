@@ -13,6 +13,7 @@ class Payroll extends CI_Controller
         $this->load->model('Data_payroll_model', 'payroll');
         $this->load->model('Data_sub_payroll_model', 'sub_payroll');
         $this->load->model('View_pegawai_payroll_model', 'pegawai_payroll');
+        $this->load->model('Data_timeline_model', 'timeline');
     }
 
     public function index()
@@ -60,7 +61,7 @@ class Payroll extends CI_Controller
 
         // settingan halaman
         $config['base_url'] = base_url('payroll/detail/' . $sk_id . '');
-        $config['total_rows'] = $this->payroll->countPayroll();
+        $config['total_rows'] = $this->payroll->countPayroll($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
@@ -268,6 +269,39 @@ class Payroll extends CI_Controller
             $this->payroll->updatePayroll(['jumlah' => $jumlah, 'nominal' => $nominal['nominal']], $payroll_id);
             //ubah status menjadi 1 pada data_pegawai
             $this->pegawai->updatePegawai(['status' => 1], $pegawai_id);
+
+            // urutan proses ke 8
+            // rekam data_timeline
+            // cek apakah sudah ada data apa belum
+            $proses_id = '8';
+            $data_timeline = [
+                'pegawai_id' => $pegawai_id,
+                'proses_id' => $proses_id,
+                'keterangan' => 'Kantor Pusat telah melakukan proses verifikasi dokumen Rincian Biaya dan SPD',
+                'tanggal' => time()
+            ];
+            if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+                $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+            } else {
+                $this->timeline->createTimeline($data_timeline);
+            }
+            // selesai proses ke 8
+            // urutan proses ke 9
+            // rekam data_timeline
+            // cek apakah sudah ada data apa belum
+            $proses_id = '9';
+            $data_timeline = [
+                'pegawai_id' => $pegawai_id,
+                'proses_id' => $proses_id,
+                'keterangan' => 'Kantor Pusat telah melakukan proses verifikasi rekening Pegawai dan pembuatan Data Payroll',
+                'tanggal' => time()
+            ];
+            if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+                $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+            } else {
+                $this->timeline->createTimeline($data_timeline);
+            }
+            // selesai proses ke 9
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
         }
         redirect('payroll/pegawai/' . $sk_id . '/' . $payroll_id . '');
@@ -301,6 +335,25 @@ class Payroll extends CI_Controller
 
         // ubah status menjadi 1 pada tabel data_payroll
         if ($this->payroll->updatePayroll(['status' => 1], $payroll_id)) {
+            // rekam data_timeline
+            // cek apakah sudah ada data apa belum
+            $pegawai_payroll = $this->pegawai_payroll->getPegawaiPayroll($payroll_id, null, 0);
+            foreach ($pegawai_payroll as $r) {
+                $proses_id = '10';
+                $pegawai_id = $r['pegawai_id'];
+                $data_timeline = [
+                    'pegawai_id' => $pegawai_id,
+                    'proses_id' => $proses_id,
+                    'keterangan' => 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai',
+                    'tanggal' => time()
+                ];
+                if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+                    $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+                } else {
+                    $this->timeline->createTimeline($data_timeline);
+                }
+            }
+            // selesai
             $this->session->set_flashdata('pesan', 'Data payroll berhasil diproses.');
         }
         redirect('payroll/detail/' . $sk_id . '');
@@ -355,5 +408,64 @@ class Payroll extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('payroll/pegawai_payroll', $data);
         $this->load->view('template/footer');
+    }
+
+    public function excel($sk_id = null, $payroll_id = null)
+    {
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setCellValue('A1', 'no');
+        $sheet->setCellValue('B1', 'nip');
+        $sheet->setCellValue('C1', 'nama');
+        $sheet->setCellValue('D1', 'asal');
+        $sheet->setCellValue('E1', 'tujuan');
+        $sheet->setCellValue('F1', 'nominal');
+        $sheet->setCellValue('G1', 'rekening');
+        $sheet->setCellValue('H1', 'nama_bank');
+        $sheet->setCellValue('I1', 'atas_nama');
+
+        $pegawai = $this->pegawai_payroll->getPegawaiPayroll($payroll_id, null, 0);
+
+        $no = 1;
+        $i = 2;
+        foreach ($pegawai as $r) {
+            $sheet->setCellValue('A' . $i, $no++);
+            $sheet->setCellValue('B' . $i, ' ' . $r['nip']);
+            $sheet->setCellValue('C' . $i, $r['nmpeg']);
+            $sheet->setCellValue('D' . $i, $r['asal']);
+            $sheet->setCellValue('E' . $i, $r['tujuan']);
+            $sheet->setCellValue('F' . $i, $r['nominal']);
+            $sheet->setCellValue('G' . $i, $r['rekening']);
+            $sheet->setCellValue('H' . $i, $r['nm_bank']);
+            $sheet->setCellValue('I' . $i, $r['nmrek']);
+            $i++;
+        }
+
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
+        ];
+
+        $i = $i - 1;
+        $sheet->getStyle('A1:I' . $i)->applyFromArray($styleArray);
+
+        // simpan datanya
+        $date = date('d-m-y-' . substr((string)microtime(), 1, 8));
+        $date = str_replace(".", "", $date);
+        $filename = "excel_" . $date . ".xlsx";
+        try {
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $writer->save($filename);
+            $content = file_get_contents($filename);
+        } catch (Exception $e) {
+            exit($e->getMessage());
+        }
+        header("Content-Disposition: attachment; filename=" . $filename);
+        unlink($filename);
+        exit($content);
     }
 }

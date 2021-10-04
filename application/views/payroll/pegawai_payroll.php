@@ -37,6 +37,7 @@
                             <th>Nominal</th>
                             <th>Rekening</th>
                             <th>Nama Bank</th>
+                            <th>Atas Nama</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                                 <td class="text-right"><?= number_format($r['nominal'], 0, ',', '.'); ?></td>
                                 <td><?= $r['rekening']; ?></td>
                                 <td><?= $r['nm_bank']; ?></td>
+                                <td><?= $r['nmrek']; ?></td>
                             </tr>
                         <?php $jml += $r['nominal'];
                         endforeach; ?>
