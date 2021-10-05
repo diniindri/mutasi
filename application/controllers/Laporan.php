@@ -64,6 +64,11 @@ class Laporan extends CI_Controller
             'label' => 'DIPA',
             'rules' => 'required|trim'
         ],
+        [
+            'field' => 'kota',
+            'label' => 'Kota',
+            'rules' => 'required|trim'
+        ],
     ];
 
     public function create()
@@ -76,7 +81,8 @@ class Laporan extends CI_Controller
                 'tahun_anggaran' => htmlspecialchars($this->input->post('tahun_anggaran', true)),
                 'nomor_spd' => htmlspecialchars($this->input->post('nomor_spd', true)),
                 'akun' => htmlspecialchars($this->input->post('akun', true)),
-                'dipa_kantor' => htmlspecialchars($this->input->post('dipa_kantor', true))
+                'dipa_kantor' => htmlspecialchars($this->input->post('dipa_kantor', true)),
+                'kota' => htmlspecialchars($this->input->post('kota', true))
             ];
             // simpan data ke database melalui model
             $this->laporan->createLaporan($data);
@@ -107,7 +113,8 @@ class Laporan extends CI_Controller
                 'tahun_anggaran' => htmlspecialchars($this->input->post('tahun_anggaran', true)),
                 'nomor_spd' => htmlspecialchars($this->input->post('nomor_spd', true)),
                 'akun' => htmlspecialchars($this->input->post('akun', true)),
-                'dipa_kantor' => htmlspecialchars($this->input->post('dipa_kantor', true))
+                'dipa_kantor' => htmlspecialchars($this->input->post('dipa_kantor', true)),
+                'kota' => htmlspecialchars($this->input->post('kota', true))
             ];
             // update data di database melalui model
             $this->laporan->updateLaporan($data, $id);

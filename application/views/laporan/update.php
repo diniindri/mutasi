@@ -35,6 +35,13 @@
                         <?= form_error('dipa_kantor'); ?>
                     </div>
                 </div>
+                <div class="form-group mb-2">
+                    <label for="">Kota:</label>
+                    <input type="text" name="kota" class="form-control <?= form_error('kota') ? 'is-invalid' : ''; ?>" value="<?= $laporan['kota']; ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('kota'); ?>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row mt-3">

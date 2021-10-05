@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="">Kdkawin:</label>
+                    <label for="">tingkat:</label>
                     <input type="text" name="kdkawin" class="form-control <?= form_error('kdkawin') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['kdkawin']; ?>">
                     <div class="invalid-feedback">
                         <?= form_error('kdkawin'); ?>
@@ -61,6 +61,36 @@
                     <input type="text" name="infant" class="form-control <?= form_error('infant') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['infant']; ?>">
                     <div class="invalid-feedback">
                         <?= form_error('infant'); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group mb-2">
+                    <label for="">Nomor SPD:</label>
+                    <input type="text" name="no_spd" class="form-control <?= form_error('no_spd') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['no_spd']; ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('no_spd'); ?>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="">Tanggal SPD:</label>
+                    <input type="text" name="tgl_spd" class="form-control <?= form_error('tgl_spd') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy" value="<?= date('d-m-Y', $pegawai['tgl_spd']); ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('tgl_spd'); ?>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="">Jabatan:</label>
+                    <input type="text" name="jabatan" class="form-control <?= form_error('jabatan') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['jabatan']; ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('jabatan'); ?>
+                    </div>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="">Tingkat Biaya:</label>
+                    <input type="text" name="tingkat" class="form-control <?= form_error('tingkat') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['tingkat']; ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('tingkat'); ?>
                     </div>
                 </div>
             </div>

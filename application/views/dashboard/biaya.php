@@ -198,12 +198,12 @@
         <tr>
             <td class="kosong">Lampiran SPD No</td>
             <td class="kosong"> : </td>
-            <td class="kosong"> - <?= $laporan['nomor_spd']; ?></td>
+            <td class="kosong"> <?= $pegawai['no_spd']; ?> <?= $laporan['nomor_spd']; ?></td>
         </tr>
         <tr>
             <td class="kosong">Tanggal</td>
             <td class="kosong"> : </td>
-            <td class="kosong"></td>
+            <td class="kosong"> <?= tanggal($pegawai['tgl_spd']); ?> </td>
         </tr>
     </table>
 

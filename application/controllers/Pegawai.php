@@ -151,7 +151,11 @@ class Pegawai extends CI_Controller
                 'rekening' => htmlspecialchars($this->input->post('rekening', true)),
                 'nm_bank' => htmlspecialchars($this->input->post('nm_bank', true)),
                 'nmrek' => htmlspecialchars($this->input->post('nmrek', true)),
-                'infant' => htmlspecialchars($this->input->post('infant', true))
+                'infant' => htmlspecialchars($this->input->post('infant', true)),
+                'tgl_spd' => strtotime(htmlspecialchars($this->input->post('tgl_spd', true))),
+                'no_spd' => htmlspecialchars($this->input->post('no_spd', true)),
+                'jabatan' => htmlspecialchars($this->input->post('jabatan', true)),
+                'tingkat' => htmlspecialchars($this->input->post('tingkat', true))
             ];
             // update data di database melalui model
             $this->pegawai->updatePegawai($data, $id);

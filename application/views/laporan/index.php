@@ -23,6 +23,7 @@
                             <th>No. SPD</th>
                             <th>Akun</th>
                             <th>DIPA Kantor</th>
+                            <th>Kota</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                 <td><?= $r['nomor_spd']; ?></td>
                                 <td><?= $r['akun']; ?></td>
                                 <td><?= $r['dipa_kantor']; ?></td>
+                                <td><?= $r['kota']; ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('laporan/update/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>

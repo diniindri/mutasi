@@ -65,7 +65,7 @@
             <td class="kosong" style="width:60%;">DIREKTORAT JENDERAL KEKAYAAN NEGARA</td>
             <td class="kosong" style="width:13%;">Nomor</td>
             <td class="kosong" style="width:2%;"> : </td>
-            <td class="kosong" style="width:25%;"> - <?= $laporan['nomor_spd']; ?></td>
+            <td class="kosong" style="width:25%;"> <?= $pegawai['no_spd']; ?> <?= $laporan['nomor_spd']; ?></td>
         </tr>
     </table>
 
@@ -101,13 +101,13 @@
             <td style="width:45%;">
                 <table class="kosong">
                     <tr>
-                        <td class="kosong"><?= $pegawai['kdgapok']; ?></td>
+                        <td class="kosong"><?= $pegawai['nama']; ?></td>
                     </tr>
                     <tr>
-                        <td class="kosong"> - </td>
+                        <td class="kosong"><?= $pegawai['jabatan']; ?></td>
                     </tr>
                     <tr>
-                        <td class="kosong"> - </td>
+                        <td class="kosong"><?= $pegawai['tingkat']; ?></td>
                     </tr>
                 </table>
             </td>
@@ -163,7 +163,7 @@
             <td style="width:45%;">
                 <table class="kosong">
                     <tr>
-                        <td class="kosong"> - </td>
+                        <td class="kosong"> 3 Hari </td>
                     </tr>
                     <tr>
                         <td class="kosong"> - </td>
@@ -265,12 +265,12 @@
         <tr>
             <td class="kosong" style="width:17%;">Dikeluarkan di</td>
             <td class="kosong" style="width:3%;">:</td>
-            <td class="kosong" style="width:30%;"> - </td>
+            <td class="kosong" style="width:30%;"> <?= $laporan['kota']; ?> </td>
         </tr>
         <tr>
             <td class="kosong" style="width:17%; padding-top:0;">Pada Tanggal</td>
             <td class="kosong" style="width:3%;">:</td>
-            <td class="kosong" style="width:30%;"> - </td>
+            <td class="kosong" style="width:30%;"> <?= tanggal($pegawai['tgl_spd']); ?> </td>
         </tr>
     </table>
     <table class="kosong" style="padding-top:10px; margin-left:60%;">
@@ -304,7 +304,7 @@
             <td style="width:45%;">
                 <table class="kosong">
                     <tr>
-                        <td class="kosong">Nomor : - <?= $laporan['nomor_spd']; ?></td>
+                        <td class="kosong">Nomor : <?= $pegawai['no_spd']; ?><?= $laporan['nomor_spd']; ?></td>
                     </tr>
                     <tr>
                         <td class="kosong"><?= $pegawai['nmpeg']; ?></td>

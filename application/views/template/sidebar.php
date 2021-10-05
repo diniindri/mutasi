@@ -50,6 +50,6 @@
                 <?php endforeach; ?>
             </ul>
         <?php endforeach; ?>
-        <a href="<?= base_url('sign-out'); ?>" class="btn btn-sm btn-outline-success mt-3 ml-4">Keluar Aplikasi</a>
+        <a href="<?= base_url('sign-out'); ?>" class="btn btn-sm btn-outline-primary mt-3 ml-4">Keluar Aplikasi</a>
     </div>
 </nav>

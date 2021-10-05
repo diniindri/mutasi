@@ -27,7 +27,7 @@ class Data_pegawai_model extends CI_Model
 
     public function getDetailPegawai($id = null)
     {
-        return $this->db->get_where('data_pegawai', ['id' => $id])->row_array();
+        return $this->db->query("select a.*, b.nama from data_pegawai a left join ref_pangkat b on left(a.kdgapok,2)=b.kdgapok where a.id='$id'")->row_array();
     }
 
     public function findPegawai($sk_id = null, $nmpeg = null, $limit = null, $offset = 0)

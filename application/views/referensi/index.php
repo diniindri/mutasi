@@ -86,6 +86,21 @@
                                 </div>
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="text-center">
+                        <tr class="align-middle">
+                            <th>No</th>
+                            <th>Jenis</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>9</td>
                             <td>Angkutan</td>
