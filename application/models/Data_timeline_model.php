@@ -18,9 +18,9 @@ class Data_timeline_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    public function updateTimeline($data = null, $id = null)
+    public function updateTimeline($data = null, $pegawai_id = null, $proses_id = null)
     {
-        $this->db->update('data_timeline', $data, ['id' => $id]);
+        $this->db->update('data_timeline', $data, ['pegawai_id' => $pegawai_id, 'proses_id' => $proses_id]);
         return $this->db->affected_rows();
     }
 
@@ -34,5 +34,10 @@ class Data_timeline_model extends CI_Model
     {
         $this->db->order_by('tanggal', 'DESC');
         return $this->db->get('data_timeline')->result_array();
+    }
+
+    public function cekTimeline($pegawai_id = null, $proses_id = null)
+    {
+        return $this->db->get_where('data_timeline', ['pegawai_id' => $pegawai_id, 'proses_id' => $proses_id])->num_rows();
     }
 }

@@ -18,6 +18,9 @@ class Biaya_mutasi extends CI_Controller
         $this->load->model('Ref_packing_model', 'packing');
         $this->load->model('Ref_provinsi_model', 'provinsi');
         $this->load->model('Ref_uang_harian_model', 'uang_harian');
+        $this->load->model('Ref_pejabat_model', 'pejabat');
+        $this->load->model('View_biaya_pegawai_model', 'biaya_pegawai');
+        $this->load->model('Data_timeline_model', 'timeline');
     }
 
     public function index()
@@ -105,7 +108,11 @@ class Biaya_mutasi extends CI_Controller
         $istri = intval(substr($pegawai['kdkawin'], 1, 1));
         $anak = intval(substr($pegawai['kdkawin'], 2, 2));
         $jumlah_anggota = $ybs + $istri + $anak + $pegawai['art'];
-        $jumlah_anggota_pesawat = $jumlah_anggota - 1 + ($pegawai['infant'] * 0.1);
+        if ($pegawai['infant'] == 0) {
+            $jumlah_anggota_pesawat = $jumlah_anggota;
+        } else {
+            $jumlah_anggota_pesawat = $jumlah_anggota - 1 + ($pegawai['infant'] * 0.1);
+        }
         // -- selesai hitung
         $jumlah_kubik = $pegawai['kubik'];
         // menangkap data kota tujuan untuk mencari data uang harian di tiap provinsi
@@ -251,6 +258,21 @@ class Biaya_mutasi extends CI_Controller
         // update nominal pada data pegawai
         $nominal = $this->biaya->getSumBiaya($pegawai_id)['jumlah'];
         $this->pegawai->updatePegawai(['nominal' => $nominal], $pegawai_id);
+        // rekam data_timeline
+        // cek apakah sudah ada data apa belum
+        $proses_id = '4';
+        $data_timeline = [
+            'pegawai_id' => $pegawai_id,
+            'proses_id' => $proses_id,
+            'keterangan' => 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi',
+            'tanggal' => time()
+        ];
+        if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+            $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+        } else {
+            $this->timeline->createTimeline($data_timeline);
+        }
+        // selesai
         $this->session->set_flashdata('pesan', 'Data berhasil dihitung.');
         redirect('biaya-mutasi/detail/' . $sk_id);
     }
@@ -285,5 +307,89 @@ class Biaya_mutasi extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('biaya_mutasi/rincian', $data);
         $this->load->view('template/footer');
+    }
+
+    public function dnp($sk_id = null)
+    {
+        // cek apakah ada sk id apa tidak
+        if (!isset($sk_id)) show_404();
+
+        $data['pegawai'] = $this->pegawai->getPegawai($sk_id, null, 0);
+        $data['ppk'] = $this->pejabat->getKodePejabat(1);
+        $data['bendahara'] = $this->pejabat->getKodePejabat(2);
+        $data['biaya_pegawai'] = $this->biaya_pegawai->getBiayaPegawai($sk_id);
+
+        ob_start();
+        $this->load->view('biaya_mutasi/dnp', $data);
+        $html = ob_get_clean();
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'en', false, 'UTF-8', array(20, 10, 20, 10));
+        $html2pdf->addFont('Arial');
+        $html2pdf->pdf->SetTitle('DNP');
+        $html2pdf->writeHTML($html);
+        $html2pdf->output('dnp-' . $sk_id . '.pdf', 'D');
+    }
+
+    public function excel($sk_id = null)
+    {
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setCellValue('A1', 'no');
+        $sheet->setCellValue('B1', 'nip');
+        $sheet->setCellValue('C1', 'nama');
+        $sheet->setCellValue('D1', 'gol');
+        $sheet->setCellValue('E1', 'rekening');
+        $sheet->setCellValue('F1', 'asal');
+        $sheet->setCellValue('G1', 'tujuan');
+        $sheet->setCellValue('H1', 'jml_pegawai');
+        $sheet->setCellValue('I1', 'jml_barang');
+        $sheet->setCellValue('J1', 'jml_lumpsum');
+        $sheet->setCellValue('K1', 'jml_total');
+
+        $biaya_pegawai = $this->biaya_pegawai->getBiayaPegawai($sk_id);
+
+        $no = 1;
+        $i = 2;
+        foreach ($biaya_pegawai as $r) {
+            $sheet->setCellValue('A' . $i, $no++);
+            $sheet->setCellValue('B' . $i, ' ' . $r['nip']);
+            $sheet->setCellValue('C' . $i, $r['nmpeg']);
+            $sheet->setCellValue('D' . $i, substr($r['kdgapok'], 0, 2));
+            $sheet->setCellValue('E' . $i, $r['rekening']);
+            $sheet->setCellValue('F' . $i, $r['asal']);
+            $sheet->setCellValue('G' . $i, $r['tujuan']);
+            $sheet->setCellValue('H' . $i, $r['jml_jenis1']);
+            $sheet->setCellValue('I' . $i, $r['jml_jenis2']);
+            $sheet->setCellValue('J' . $i, $r['jml_jenis3']);
+            $sheet->setCellValue('K' . $i, $r['jml_total']);
+            $i++;
+        }
+
+        $styleArray = [
+            'borders' => [
+                'allBorders' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
+        ];
+
+        $i = $i - 1;
+        $sheet->getStyle('A1:K' . $i)->applyFromArray($styleArray);
+
+        // simpan datanya
+        $date = date('d-m-y-' . substr((string)microtime(), 1, 8));
+        $date = str_replace(".", "", $date);
+        $filename = "excel_" . $date . ".xlsx";
+        try {
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $writer->save($filename);
+            $content = file_get_contents($filename);
+        } catch (Exception $e) {
+            exit($e->getMessage());
+        }
+        header("Content-Disposition: attachment; filename=" . $filename);
+        unlink($filename);
+        exit($content);
     }
 }

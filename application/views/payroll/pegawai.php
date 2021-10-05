@@ -38,6 +38,7 @@
                             <th>Nominal</th>
                             <th>Rekening</th>
                             <th>Nama Bank</th>
+                            <th>Atas Nama</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -53,6 +54,7 @@
                                 <td class="text-right"><?= number_format($r['nominal'], 0, ',', '.'); ?></td>
                                 <td><?= $r['rekening']; ?></td>
                                 <td><?= $r['nm_bank']; ?></td>
+                                <td><?= $r['nmrek']; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('payroll/hapus-pegawai/') . $sk_id . '/' . $r['payroll_id'] . '/' . $r['pegawai_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>

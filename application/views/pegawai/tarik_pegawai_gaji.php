@@ -55,7 +55,7 @@
                                 <td><?= $r['nmrek']; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('pegawai/pilih-pegawai-gaji/') . $r['nip'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" target="_blank">Pilih</a>
+                                        <a href="<?= base_url('pegawai/pilih-pegawai-gaji/') . $r['nip'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Pilih</a>
                                     </div>
                                 </td>
                             </tr>

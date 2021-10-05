@@ -56,6 +56,13 @@
                         <?= form_error('nmrek'); ?>
                     </div>
                 </div>
+                <div class="form-group mb-2">
+                    <label for="">Infant:</label>
+                    <input type="text" name="infant" class="form-control <?= form_error('infant') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['infant']; ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('infant'); ?>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row mt-3">

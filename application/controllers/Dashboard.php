@@ -8,7 +8,6 @@ class Dashboard extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        $this->load->model('View_pegawai_sk_model', 'view_pegawai_sk');
         $this->load->model('Data_biaya_model', 'biaya');
         $this->load->model('Data_pegawai_model', 'pegawai');
         $this->load->model('Data_keluarga_model', 'keluarga');
@@ -16,16 +15,18 @@ class Dashboard extends CI_Controller
         $this->load->model('Ref_dokumen_model', 'dokumen');
         $this->load->model('Ref_pejabat_model', 'pejabat');
         $this->load->model('Ref_laporan_model', 'laporan');
+        $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('View_pegawai_sk_model', 'pegawai_sk');
     }
 
     public function index($pegawai_id = null)
     {
         $nip = $this->session->userdata('nip');
-        $data['sk'] = $this->view_pegawai_sk->getPegawaiSk($nip);
+        $data['sk'] = $this->pegawai_sk->getPegawaiSk($nip);
 
         if (!isset($pegawai_id) && $data['sk']) $pegawai_id = $data['sk'][0]['pegawai_id'];
 
-        $nip_sk = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id)['nip'];
+        $nip_sk = $this->pegawai_sk->getDetailPegawaiSk($pegawai_id)['nip'];
         if (!isset($pegawai_id) || $nip <> $nip_sk) {
             $data['pegawai_id'] = null;
             $data['detail_sk'] = [
@@ -39,11 +40,11 @@ class Dashboard extends CI_Controller
             $data['download'] = [];
         } else {
             $data['pegawai_id'] = $pegawai_id;
-            $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
+            $data['detail_sk'] = $this->pegawai_sk->getDetailPegawaiSk($pegawai_id);
             $data['biaya'] = $this->biaya->getRincianBiaya($pegawai_id);
             $data['upload'] = $this->dokumen->getAllDokumen();
             $data['download'] = [
-                ['nama' => 'KP4 <small>(download via alika.kemenkeu.go.id)</small>', 'url' => 'https://alika.kemenkeu.go.id'],
+                ['nama' => 'KP4 <small>(download via alika.kemenkeu.go.id)</small>', 'url' => 'https://alika.kemenkeu.go.id/beranda'],
                 ['nama' => 'Rincian Biaya', 'url' => '' . base_url() . 'dashboard/download-biaya/' . $pegawai_id . ''],
                 ['nama' => 'SPD', 'url' => '' . base_url() . 'dashboard/download-spd/' . $pegawai_id . '']
             ];
@@ -83,6 +84,39 @@ class Dashboard extends CI_Controller
                         'date_created' => time()
                     ];
                     $this->data_upload->createUpload($data);
+                    // rekam data_timeline
+                    // cek apakah sudah ada data apa belum
+                    switch ($kode) {
+                        case '1':
+                            $proses_id = '2';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen KP4 yang sudah disahkan oleh Pejabat yang berwenang';
+                            break;
+                        case '2':
+                            $proses_id = '5';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen rincian biaya mutasi yang sudah ditandatangani';
+                            break;
+                        case '3':
+                            $proses_id = '6';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor asal';
+                            break;
+                        default:
+                            $proses_id = '7';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor tujuan';
+                            break;
+                    }
+
+                    $data_timeline = [
+                        'pegawai_id' => $pegawai_id,
+                        'proses_id' => $proses_id,
+                        'keterangan' => $keterangan,
+                        'tanggal' => time()
+                    ];
+                    if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+                        $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+                    } else {
+                        $this->timeline->createTimeline($data_timeline);
+                    }
+                    // selesai
                     redirect('dashboard/index/' . $pegawai_id . '');
                 } else {
                     echo $this->upload->display_errors();
@@ -106,7 +140,7 @@ class Dashboard extends CI_Controller
         $data['ppk'] = $this->pejabat->getKodePejabat(1);
         $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
         $data['keluarga'] = $this->keluarga->getKeluarga($pegawai_id);
-        $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
+        $data['detail_sk'] = $this->pegawai_sk->getDetailPegawaiSk($pegawai_id);
         $data['laporan'] = $this->laporan->getDetailLaporan(1);
         ob_start();
         $this->load->view('dashboard/spd', $data);
@@ -126,7 +160,6 @@ class Dashboard extends CI_Controller
         $data['ppk'] = $this->pejabat->getKodePejabat(1);
         $data['bendahara'] = $this->pejabat->getKodePejabat(2);
         $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
-        // $data['detail_sk'] = $this->view_pegawai_sk->getDetailPegawaiSk($pegawai_id);
         $data['laporan'] = $this->laporan->getDetailLaporan(1);
         $data['biaya_orang'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 1);
         $data['biaya_barang'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 2);

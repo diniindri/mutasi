@@ -10,6 +10,7 @@ class Keluarga extends CI_Controller
         $this->load->model('Data_keluarga_model', 'keluarga');
         $this->load->model('Data_pegawai_model', 'pegawai');
         $this->load->model('Ref_status_keluarga_model', 'status_keluarga');
+        $this->load->model('Data_timeline_model', 'timeline');
     }
 
     public function index($pegawai_id = null, $sk_id)
@@ -29,7 +30,7 @@ class Keluarga extends CI_Controller
 
         // settingan halaman
         $config['base_url'] = base_url('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
-        $config['total_rows'] = $this->keluarga->countKeluarga();
+        $config['total_rows'] = $this->keluarga->countKeluargaPegawai($pegawai_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
@@ -194,6 +195,21 @@ class Keluarga extends CI_Controller
             // simpan data ke database melalui model
             $this->keluarga->createKeluarga($data);
         }
+        // rekam data_timeline
+        // cek apakah sudah ada data apa belum
+        $proses_id = '3';
+        $data_timeline = [
+            'pegawai_id' => $pegawai_id,
+            'proses_id' => $proses_id,
+            'keterangan' => 'Kantor Pusat telah melakukan proses verifikasi data keluarga',
+            'tanggal' => time()
+        ];
+        if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+            $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+        } else {
+            $this->timeline->createTimeline($data_timeline);
+        }
+        // selesai
         $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
         redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
     }
