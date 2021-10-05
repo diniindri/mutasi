@@ -34,6 +34,7 @@
                             <th>NIP</th>
                             <th>Nama</th>
                             <th>Rute</th>
+                            <th>Dokumen</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -41,8 +42,7 @@
                         <?php $no = $page + 1;
                         foreach ($pegawai as $r) :
                             //tampilkan dokumen yg sudah diupload
-                            $this->load->model('data_upload_model', 'upload');
-                            $dataUpload = $this->upload->getPegawaiUpload($r['id']);
+                            $dataUpload = $this->dataupload->getPegawaiUpload($r['id']);
                         ?>
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
@@ -51,9 +51,15 @@
                                 <td><?= $r['asal']; ?>-<?= $r['tujuan']; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <?php foreach ($dataUpload as $r) : ?>
-                                            <a href="<?= base_url('assets/files/') . $r['file']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" download="download"><?= $r['jenis']; ?></a>
+                                        <?php foreach ($dataUpload as $s) : ?>
+                                            <a href="<?= base_url('assets/files/') . $s['file']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" download="download"><?= $s['jenis']; ?></a>
                                         <?php endforeach; ?>
+                                    </div>
+                                </td>
+                                <td class="pb-0">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a href="<?= base_url('monitoring-dokumen/upload/') . $sk_id . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
+                                        <a href="<?= base_url('monitoring-dokumen/hapus/') . $sk_id . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hapus</a>
                                     </div>
                                 </td>
                             </tr>

@@ -99,9 +99,13 @@ class Dashboard extends CI_Controller
                             $proses_id = '6';
                             $keterangan = 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor asal';
                             break;
-                        default:
+                        case '4':
                             $proses_id = '7';
                             $keterangan = 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor tujuan';
+                            break;
+                        default:
+                            $proses_id = '11';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen KTP ART';
                             break;
                     }
 
