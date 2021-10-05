@@ -14,6 +14,8 @@ class Payroll extends CI_Controller
         $this->load->model('Data_sub_payroll_model', 'sub_payroll');
         $this->load->model('View_pegawai_payroll_model', 'pegawai_payroll');
         $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('Ref_pejabat_model', 'pejabat');
+        $this->load->model('View_biaya_pegawai_model', 'biaya_pegawai');
     }
 
     public function index()
@@ -467,5 +469,25 @@ class Payroll extends CI_Controller
         header("Content-Disposition: attachment; filename=" . $filename);
         unlink($filename);
         exit($content);
+    }
+
+    public function dnp($sk_id = null, $payroll_id = null)
+    {
+        // cek apakah ada sk id apa tidak
+        if (!isset($sk_id)) show_404();
+
+        $data['ppk'] = $this->pejabat->getKodePejabat(1);
+        $data['bendahara'] = $this->pejabat->getKodePejabat(2);
+        $data['biaya_pegawai'] = $this->biaya_pegawai->getBiayaPegawaiPayroll($payroll_id);
+
+        ob_start();
+        $this->load->view('payroll/dnp', $data);
+        $html = ob_get_clean();
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'en', false, 'UTF-8', array(20, 10, 20, 10));
+        $html2pdf->addFont('Arial');
+        $html2pdf->pdf->SetTitle('DNP');
+        $html2pdf->writeHTML($html);
+        $html2pdf->output('dnp-payroll-' . $payroll_id . '.pdf', 'D');
     }
 }

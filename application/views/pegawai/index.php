@@ -38,8 +38,13 @@
                             <th>Kdgapok</th>
                             <th>Kdkawin</th>
                             <th>Kubik</th>
-                            <th>Rekening</th>
+                            <th>Infant</th>
+                            <th>ART</th>
                             <th>Rute</th>
+                            <th>No_SPD</th>
+                            <th>Tgl_SPD</th>
+                            <th>Jabatan</th>
+                            <th>Tk</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -53,8 +58,13 @@
                                 <td><?= $r['kdgapok']; ?></td>
                                 <td><?= $r['kdkawin']; ?></td>
                                 <td><?= $r['kubik']; ?></td>
-                                <td><?= $r['rekening']; ?></td>
+                                <td><?= $r['infant']; ?></td>
+                                <td><?= $r['art']; ?></td>
                                 <td><?= $r['asal']; ?>-<?= $r['tujuan']; ?></td>
+                                <td><?= $r['no_spd']; ?></td>
+                                <td><?= $r['tgl_spd'] == '' ? '' : date('d-m-Y', $r['tgl_spd']); ?></td>
+                                <td><?= $r['jabatan']; ?></td>
+                                <td><?= $r['tingkat']; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('pegawai/update/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>

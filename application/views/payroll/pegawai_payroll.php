@@ -14,6 +14,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('payroll/detail/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Kembali ke halaman sebelumnya</a>
         </div>
         <div class="col-lg-5">
             <form action="" method="post" autocomplete="off">

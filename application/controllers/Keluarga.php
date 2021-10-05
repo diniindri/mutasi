@@ -109,7 +109,12 @@ class Keluarga extends CI_Controller
                 'sts' => htmlspecialchars($this->input->post('sts', true)),
             ];
             // simpan data ke database melalui model
-            $this->keluarga->createKeluarga($data);
+            if ($this->keluarga->createKeluarga($data)) {
+                // update data pegawai, ubah data infant dan data art pada data keluarga
+                $infant = $this->keluarga->hitungInfant($pegawai_id);
+                $art = $this->keluarga->hitungArt($pegawai_id);
+                $this->pegawai->updatePegawai(['infant' => $infant, 'art' => $art], $pegawai_id);
+            }
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
             redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
         }
@@ -148,7 +153,12 @@ class Keluarga extends CI_Controller
                 'sts' => htmlspecialchars($this->input->post('sts', true)),
             ];
             // update data di database melalui model
-            $this->keluarga->updateKeluarga($data, $id);
+            if ($this->keluarga->updateKeluarga($data, $id)) {
+                // update data pegawai, ubah data infant dan data art pada data keluarga
+                $infant = $this->keluarga->hitungInfant($pegawai_id);
+                $art = $this->keluarga->hitungArt($pegawai_id);
+                $this->pegawai->updatePegawai(['infant' => $infant, 'art' => $art], $pegawai_id);
+            }
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
             redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
         }
@@ -169,6 +179,10 @@ class Keluarga extends CI_Controller
 
         // hapus data di database melalui model
         if ($this->keluarga->deleteKeluarga($id)) {
+            // update data pegawai, ubah data infant dan data art pada data keluarga
+            $infant = $this->keluarga->hitungInfant($pegawai_id);
+            $art = $this->keluarga->hitungArt($pegawai_id);
+            $this->pegawai->updatePegawai(['infant' => $infant, 'art' => $art], $pegawai_id);
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
         redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');

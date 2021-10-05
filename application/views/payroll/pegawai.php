@@ -14,6 +14,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('payroll/detail/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Kembali ke halaman sebelumnya</a>
             <a href="<?= base_url('payroll/tarik-pegawai-mutasi/') . $sk_id . '/' . $payroll_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data</a>
         </div>
         <div class="col-lg-5">
