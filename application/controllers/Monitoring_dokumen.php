@@ -10,8 +10,11 @@ class Monitoring_dokumen extends CI_Controller
         is_logged_in();
         // meload file Data_sk_model.php
         $this->load->model('Data_sk_model', 'sk');
-        $this->load->model('Data_upload_model', 'upload');
+        $this->load->model('Data_upload_model', 'dataupload');
         $this->load->model('Data_pegawai_model', 'pegawai');
+        $this->load->model('Ref_dokumen_model', 'dokumen');
+        $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('View_pegawai_sk_model', 'pegawai_sk');
     }
 
     public function index()
@@ -84,5 +87,115 @@ class Monitoring_dokumen extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('monitoring_dokumen/detail', $data);
         $this->load->view('template/footer');
+    }
+
+    public function upload($sk_id = null, $pegawai_id = null)
+    {
+        if (!isset($sk_id)) show_404();
+
+        $data['dokumen'] = $this->dokumen->getAllDokumen();
+        $kode = $this->input->post('kode');
+        $data['sk_id'] = $sk_id;
+        $data['pegawai_id'] = $pegawai_id;
+
+        $validation = $this->form_validation->set_rules('file', 'File', 'trim');
+        if ($validation->run() && $_FILES) {
+            //upload file pdf
+            $upload_file = $_FILES['file']['name'];
+            if ($upload_file) {
+                $config['allowed_types'] = 'pdf';
+                $config['remove_spaces'] = TRUE;
+                $config['max_size']     = '10000';
+                $config['encrypt_name']     = TRUE;
+                $config['upload_path'] = 'assets/files/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('file')) {
+                    $new_file = $this->upload->data('file_name');
+                    $this->db->set('file', $new_file);
+                    //simpan data ke tabel data_upload
+                    $data = [
+                        'pegawai_id' => $pegawai_id,
+                        'kode' => $kode,
+                        'date_created' => time()
+                    ];
+                    $this->dataupload->createUpload($data);
+                    // rekam data_timeline
+                    // cek apakah sudah ada data apa belum
+                    switch ($kode) {
+                        case '1':
+                            $proses_id = '2';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen KP4 yang sudah disahkan oleh Pejabat yang berwenang';
+                            break;
+                        case '2':
+                            $proses_id = '5';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen rincian biaya mutasi yang sudah ditandatangani';
+                            break;
+                        case '3':
+                            $proses_id = '6';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor asal';
+                            break;
+                        case '4':
+                            $proses_id = '7';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor tujuan';
+                            break;
+                        default:
+                            $proses_id = '11';
+                            $keterangan = 'Pegawai telah melakukan upload dokumen KTP ART';
+                            break;
+                    }
+
+                    $data_timeline = [
+                        'pegawai_id' => $pegawai_id,
+                        'proses_id' => $proses_id,
+                        'keterangan' => $keterangan,
+                        'tanggal' => time()
+                    ];
+                    if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+                        $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+                    } else {
+                        $this->timeline->createTimeline($data_timeline);
+                    }
+                    // selesai
+                    redirect('monitoring-dokumen/detail/' . $sk_id . '');
+                } else {
+                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Upload file gagal, mohon menggunakan format file pdf dan ukuran maksimal 10 MB!</div>');
+                    redirect('monitoring-dokumen/upload/' . $sk_id . '/' . $pegawai_id . '');
+                }
+            }
+        }
+
+        // form
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('monitoring_dokumen/upload', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function hapus($sk_id = null, $pegawai_id = null)
+    {
+        $data['dokumen'] = $this->dataupload->getPegawaiUpload($pegawai_id);
+        $data['sk_id'] = $sk_id;
+        $data['pegawai_id'] = $pegawai_id;
+
+        // form
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('monitoring_dokumen/hapus', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function delete($sk_id = null, $pegawai_id = null, $id = null, $file = null)
+    {
+        // cek apakah ada id apa tidak
+        if (!isset($id)) show_404();
+        // hapus data di database melalui model
+        if ($this->dataupload->deleteUpload($id)) {
+            unlink('assets/files/' . $file);
+            $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
+        }
+        redirect('monitoring-dokumen/hapus/' . $sk_id . '/' . $pegawai_id . '');
     }
 }

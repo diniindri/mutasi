@@ -155,35 +155,6 @@
 
                                     </tr>
                                 <?php endforeach; ?>
-
-                                <!-- <tr>
-                                    <th scope="row">2</th>
-                                    <td>Rincian Biaya</td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-success pt-0 pb-0">Sudah Upload</a>
-                                        </div>
-                                    </td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>SPD</td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-danger pt-0 pb-0">Belum Upload</a>
-                                        </div>
-                                    </td>
-                                    <td class="pb-0 pr-0">
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <a href="" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
-                                        </div>
-                                    </td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>

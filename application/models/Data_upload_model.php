@@ -58,6 +58,6 @@ class Data_upload_model extends CI_Model
 
     public function getPegawaiUpload($pegawai_id = null)
     {
-        return $this->db->query("SELECT a.pegawai_id,a.file,a.kode,b.jenis FROM data_upload a LEFT JOIN ref_dokumen b ON a.kode=b.kode WHERE a.pegawai_id='$pegawai_id'")->result_array();
+        return $this->db->query("SELECT a.id,a.pegawai_id,a.file,a.kode,a.date_created,b.jenis FROM data_upload a LEFT JOIN ref_dokumen b ON a.kode=b.kode WHERE a.pegawai_id='$pegawai_id'")->result_array();
     }
 }
