@@ -15,16 +15,17 @@ class Data_payroll_model extends CI_Model
         return $this->db->get_where('data_payroll', ['id' => $id])->row_array();
     }
 
-    public function findPayroll($uraian = null, $limit = 0, $offset = 0)
+    public function findPayroll($sk_id = null, $uraian = null, $limit = 0, $offset = 0)
     {
         $this->db->like('uraian', $uraian);
+        $this->db->where('sk_id', $sk_id);
         $this->db->limit($limit, $offset);
         return $this->db->get('data_payroll')->result_array();
     }
 
-    public function countPayroll()
+    public function countPayroll($sk_id = null)
     {
-        return $this->db->get('data_payroll')->num_rows();
+        return $this->db->get_where('data_payroll', ['sk_id' => $sk_id])->num_rows();
     }
 
     public function createPayroll($data = null)

@@ -49,7 +49,7 @@
                                 <td class="text-right"><?= number_format($r['nominal'], 0, ',', '.'); ?></td>
                                 <td class="pb-0 pr-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('payroll/pilih-pegawai-mutasi/') . $sk_id . '/' . $payroll_id . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" target="_blank">Pilih</a>
+                                        <a href="<?= base_url('payroll/pilih-pegawai-mutasi/') . $sk_id . '/' . $payroll_id . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Pilih</a>
                                     </div>
                                 </td>
                             </tr>
