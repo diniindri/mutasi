@@ -152,6 +152,7 @@ class Pegawai extends CI_Controller
                 'nm_bank' => htmlspecialchars($this->input->post('nm_bank', true)),
                 'nmrek' => htmlspecialchars($this->input->post('nmrek', true)),
                 'infant' => htmlspecialchars($this->input->post('infant', true)),
+                'art' => htmlspecialchars($this->input->post('art', true)),
                 'tgl_spd' => strtotime(htmlspecialchars($this->input->post('tgl_spd', true))),
                 'no_spd' => htmlspecialchars($this->input->post('no_spd', true)),
                 'jabatan' => htmlspecialchars($this->input->post('jabatan', true)),

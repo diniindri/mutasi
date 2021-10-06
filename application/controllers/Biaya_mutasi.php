@@ -314,7 +314,6 @@ class Biaya_mutasi extends CI_Controller
         // cek apakah ada sk id apa tidak
         if (!isset($sk_id)) show_404();
 
-        $data['pegawai'] = $this->pegawai->getPegawai($sk_id, null, 0);
         $data['ppk'] = $this->pejabat->getKodePejabat(1);
         $data['bendahara'] = $this->pejabat->getKodePejabat(2);
         $data['biaya_pegawai'] = $this->biaya_pegawai->getBiayaPegawai($sk_id);

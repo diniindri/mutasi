@@ -56,6 +56,8 @@
                         <?= form_error('nmrek'); ?>
                     </div>
                 </div>
+            </div>
+            <div class="col-lg-3">
                 <div class="form-group mb-2">
                     <label for="">Infant:</label>
                     <input type="text" name="infant" class="form-control <?= form_error('infant') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['infant']; ?>">
@@ -63,8 +65,13 @@
                         <?= form_error('infant'); ?>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
+                <div class="form-group mb-2">
+                    <label for="">ART:</label>
+                    <input type="text" name="art" class="form-control <?= form_error('art') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['art']; ?>">
+                    <div class="invalid-feedback">
+                        <?= form_error('art'); ?>
+                    </div>
+                </div>
                 <div class="form-group mb-2">
                     <label for="">Nomor SPD:</label>
                     <input type="text" name="no_spd" class="form-control <?= form_error('no_spd') ? 'is-invalid' : ''; ?>" value="<?= $pegawai['no_spd']; ?>">
@@ -74,7 +81,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Tanggal SPD:</label>
-                    <input type="text" name="tgl_spd" class="form-control <?= form_error('tgl_spd') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy" value="<?= date('d-m-Y', $pegawai['tgl_spd']); ?>">
+                    <input type="text" name="tgl_spd" class="form-control <?= form_error('tgl_spd') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy" value="<?= $pegawai['tgl_spd'] == '' ? '' : date('d-m-Y', $pegawai['tgl_spd']); ?>">
                     <div class="invalid-feedback">
                         <?= form_error('tgl_spd'); ?>
                     </div>

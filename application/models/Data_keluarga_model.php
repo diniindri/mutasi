@@ -22,6 +22,7 @@ class Data_keluarga_model extends CI_Model
         $this->db->join('ref_status_keluarga b', 'a.kdkeluarga=b.id', 'left');
         $this->db->where('pegawai_id', $pegawai_id);
         $this->db->limit($limit, $offset);
+        $this->db->order_by('a.kdkeluarga', 'asc');
         $this->db->order_by('a.tgllhr', 'asc');
         return $this->db->get()->result_array();
     }
@@ -91,5 +92,15 @@ class Data_keluarga_model extends CI_Model
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    public function hitungInfant($pegawai_id)
+    {
+        return $this->db->get_where('data_keluarga', ['pegawai_id' => $pegawai_id, 'sts' => 1])->num_rows();
+    }
+
+    public function hitungArt($pegawai_id)
+    {
+        return $this->db->get_where('data_keluarga', ['pegawai_id' => $pegawai_id, 'kdkeluarga' => '4'])->num_rows();
     }
 }

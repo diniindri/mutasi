@@ -56,6 +56,7 @@
                                             <a href="<?= base_url('payroll/update/') . $r['sk_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
                                             <a href="<?= base_url('payroll/delete/') . $r['sk_id'] . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
                                             <a href="<?= base_url('payroll/pegawai/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Pegawai</a>
+                                            <a href="<?= base_url('payroll/dnp/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">DNP</a>
                                             <a href="<?= base_url('payroll/excel/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Excel</a>
                                             <a href="<?= base_url('payroll/proses-payroll/') . $r['sk_id'] . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan memproses payroll ini?');">Proses Payroll</a>
                                         </div>
