@@ -48,3 +48,12 @@ function tanggal($tgl)
     $nama_bulan = $daftar_bulan[$bulan];
     return date('d', $tgl) . ' ' . $nama_bulan . ' ' . date('Y', $tgl);
 }
+
+function is_level()
+{
+    $ci = get_instance();
+    $nip = $ci->session->userdata('nip');
+    if (!$ci->db->get_where('users', ['nip' => $nip])) {
+        redirect('welcome');
+    }
+}
