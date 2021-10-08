@@ -10,9 +10,7 @@ class User_model extends CI_Model
         if ($user) {
             if (password_verify($password, $user['password'])) {
                 $data = [
-                    'nip' => $user['nip'],
-                    'nama' => $user['nama'],
-                    'level' => $user['is_active']
+                    'nip' => $user['nip']
                 ];
                 $this->session->set_userdata($data);
                 redirect('dashboard');
