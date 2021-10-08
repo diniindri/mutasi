@@ -1,8 +1,8 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
     <div class="position-sticky pt-3">
         <?php
-        $kewenangan = $this->session->userdata('level');
-        if ($kewenangan === '1') {
+        $nip = $this->session->userdata('nip');
+        if ($this->db->get_where('users', ['nip' => $nip])->row_array()) {
             $levels = [
                 ['id' => 1, 'level' => 'halaman Utama'],
                 ['id' => 2, 'level' => 'Rincian']

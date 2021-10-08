@@ -1,3 +1,15 @@
+<?php
+$uri = sso()['base_uri'] . sso()['authorize']['endpoint'];
+$grant_type = sso()['authorize']['grant_type'];
+$response_type = sso()['authorize']['response_type'];
+$client_id = sso()['authorize']['client_id'];
+$scope = sso()['authorize']['scope'];
+$nonce = sso()['authorize']['nonce'];
+$state = sso()['authorize']['state'];
+$redirect_uri = sso()['authorize']['redirect_uri'];
+$authorize_url = $uri . '?grant_type=' . $grant_type . '&response_type=' . $response_type . '&client_id=' . $client_id . '&scope=' . $scope . '&nonce=' . $nonce . 'state=' . $state . '&redirect_uri=' . $redirect_uri;
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -36,7 +48,7 @@
 			<div class="col-md-6 p-lg-5 mx-auto my-5">
 				<h1 class="display-4 font-weight-normal">Hai!, Selamat Datang di Biaya Mutasi.</h1>
 				<p class="font-weight-light mt-4">Dengan Aplikasi Biaya Mutasi, kami hadirkan kemudahan dalam mengakses informasi biaya mutasi di layar Anda.</p>
-				<a class="btn btn-outline-primary mb-3" href="<?= base_url('sign-in'); ?>">Login Menggunakan Kemenkeu ID</a>
+				<a class="btn btn-outline-primary mb-3" href="<?= $authorize_url; ?>">Login Menggunakan Kemenkeu ID</a>
 			</div>
 		</div>
 	</main>
