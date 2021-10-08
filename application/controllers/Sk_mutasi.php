@@ -6,6 +6,7 @@ class sk_mutasi extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file Data_sk_model.php
         $this->load->model('Data_sk_model', 'sk');
     }
