@@ -86,6 +86,15 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Angkutan</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('angkutan/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -101,15 +110,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>9</td>
-                            <td>Angkutan</td>
-                            <td class="pb-0 pr-0">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <a href="<?= base_url('angkutan/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
-                                </div>
-                            </td>
-                        </tr>
                         <tr>
                             <td>10</td>
                             <td>Packing</td>
@@ -170,6 +170,15 @@
                             <td class="pb-0 pr-0">
                                 <div class="btn-group btn-group-sm" role="group">
                                     <a href="<?= base_url('pangkat/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>User</td>
+                            <td class="pb-0 pr-0">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="<?= base_url('users/index'); ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
                                 </div>
                             </td>
                         </tr>
