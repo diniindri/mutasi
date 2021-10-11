@@ -18,7 +18,7 @@ $authorize_url = $uri . '?grant_type=' . $grant_type . '&response_type=' . $resp
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<title>Mutasi</title>
-	<link rel="shortcut icon" href="<?= base_url(); ?>assets/img/alika.png" type=" image/x-icon">
+	<link rel="shortcut icon" href="<?= base_url(); ?>assets/img/mutasi.png" type=" image/x-icon">
 	<link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 
 	<style>

@@ -3,34 +3,35 @@
         <h1 class="h2">Tambah Provinsi</h1>
     </div>
 
-    <form action="" method="post" autocomplete="off">
+    <!-- <form action="" method="post" autocomplete="off"> -->
+    <?= form_open(); ?>
 
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group mb-2">
-                    <label for="">Kota Tujuan:</label>
-                    <input type="text" name="tujuan" class="form-control <?= form_error('tujuan') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('tujuan'); ?>
-                    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group mb-2">
+                <label for="">Kota Tujuan:</label>
+                <input type="text" name="tujuan" class="form-control <?= form_error('tujuan') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('tujuan'); ?>
                 </div>
-                <div class="form-group mb-2">
-                    <label for="">Provinsi:</label>
-                    <input type="text" name="provinsi" class="form-control <?= form_error('provinsi') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('provinsi'); ?>
-                    </div>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Provinsi:</label>
+                <input type="text" name="provinsi" class="form-control <?= form_error('provinsi') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('provinsi'); ?>
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <div class="form-group">
-                    <a href="<?= base_url('rpovinsi'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
-                    <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
-                </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="form-group">
+                <a href="<?= base_url('rpovinsi'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>
+    </div>
 
     </form>
 

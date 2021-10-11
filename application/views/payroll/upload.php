@@ -3,44 +3,45 @@
         <h1 class="h2">Upload Tagihan</h1>
     </div>
 
-    <form action="" method="post" autocomplete="off">
+    <!-- <form action="" method="post" autocomplete="off"> -->
+    <?= form_open(); ?>
 
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="form-group mb-2">
-                    <label for="">Jenis Dokumen:</label>
-                    <select class="form-select form-select-sm mb-3" name="jenis tagihan">
-                        <option value="0">SPP/SPBy</option>
-                        <option value="1">lampiran SPP/SPBy</option>
-                        <option value="0">SPM</option>
-                        <option value="0">Lampiran SPM</option>
-                        <option value="0">Bukti payroll</option>
-                    </select>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group mb-2">
+                <label for="">Jenis Dokumen:</label>
+                <select class="form-select form-select-sm mb-3" name="jenis tagihan">
+                    <option value="0">SPP/SPBy</option>
+                    <option value="1">lampiran SPP/SPBy</option>
+                    <option value="0">SPM</option>
+                    <option value="0">Lampiran SPM</option>
+                    <option value="0">Bukti payroll</option>
+                </select>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Keterangan Dokumen:</label>
+                <input type="text" name="nmpeg" class="form-control <?= form_error('nmpeg') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('nmpeg'); ?>
                 </div>
-                <div class="form-group mb-2">
-                    <label for="">Keterangan Dokumen:</label>
-                    <input type="text" name="nmpeg" class="form-control <?= form_error('nmpeg') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('nmpeg'); ?>
-                    </div>
-                </div>
-                <div class="form-group mb-2">
-                    <label for="">Pilih File:</label>
-                    <input type="text" name="nmpeg" class="form-control <?= form_error('nmpeg') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('nmpeg'); ?>
-                    </div>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Pilih File:</label>
+                <input type="text" name="nmpeg" class="form-control <?= form_error('nmpeg') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('nmpeg'); ?>
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <div class="form-group">
-                    <a href="<?= base_url('sk-mutasi'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
-                    <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
-                </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="form-group">
+                <a href="<?= base_url('sk-mutasi'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>
+    </div>
 
     </form>
 

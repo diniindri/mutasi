@@ -16,11 +16,12 @@
         <div class="col-lg-7">
         </div>
         <div class="col-lg-5">
-            <form action="" method="post" autocomplete="off">
-                <div class="input-group">
-                    <input type="text" name="nmpeg" class="form-control" placeholder="nama/nip pegawai">
-                    <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
-                </div>
+            <!-- <form action="" method="post" autocomplete="off"> -->
+            <?= form_open(); ?>
+            <div class="input-group">
+                <input type="text" name="nmpeg" class="form-control" placeholder="nama/nip pegawai">
+                <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
+            </div>
             </form>
         </div>
     </div>

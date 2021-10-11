@@ -17,12 +17,13 @@
             <a href="<?= base_url('pesawat/create'); ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Tambah Data</a>
         </div>
         <div class="col-lg-5">
-            <form action="" method="post" autocomplete="off">
-                <div class="input-group">
-                    <input type="text" name="asal" class="form-control" placeholder="asal">
-                    <input type="text" name="tujuan" class="form-control" placeholder="tujuan">
-                    <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
-                </div>
+            <!-- <form action="" method="post" autocomplete="off"> -->
+            <?= form_open(); ?>
+            <div class="input-group">
+                <input type="text" name="asal" class="form-control" placeholder="asal">
+                <input type="text" name="tujuan" class="form-control" placeholder="tujuan">
+                <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
+            </div>
             </form>
         </div>
     </div>

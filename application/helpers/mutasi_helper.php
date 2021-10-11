@@ -53,7 +53,7 @@ function is_level()
 {
     $ci = get_instance();
     $nip = $ci->session->userdata('nip');
-    if (!$ci->db->get_where('users', ['nip' => $nip])) {
+    if (!$ci->db->get_where('ref_users', ['nip' => $nip])) {
         redirect('welcome');
     }
 }

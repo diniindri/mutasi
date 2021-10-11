@@ -18,11 +18,12 @@
             <a href="<?= base_url('pegawai/tarik-pegawai-gaji/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data Gaji</a>
         </div>
         <div class="col-lg-5">
-            <form action="" method="post" autocomplete="off">
-                <div class="input-group">
-                    <input type="text" name="nmpeg" class="form-control" placeholder="nama pegawai">
-                    <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
-                </div>
+            <!-- <form action="" method="post" autocomplete="off"> -->
+            <?= form_open(); ?>
+            <div class="input-group">
+                <input type="text" name="nmpeg" class="form-control" placeholder="nama pegawai">
+                <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
+            </div>
             </form>
         </div>
     </div>

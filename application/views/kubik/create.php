@@ -3,41 +3,42 @@
         <h1 class="h2">Tambah Kubik</h1>
     </div>
 
-    <form action="" method="post" autocomplete="off">
+    <!-- <form action="" method="post" autocomplete="off"> -->
+    <?= form_open(); ?>
 
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="form-group mb-2">
-                    <label for="">Golongan:</label>
-                    <input type="text" name="gol" class="form-control <?= form_error('gol') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('gol'); ?>
-                    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group mb-2">
+                <label for="">Golongan:</label>
+                <input type="text" name="gol" class="form-control <?= form_error('gol') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('gol'); ?>
                 </div>
-                <div class="form-group mb-2">
-                    <label for="">Kdkawin:</label>
-                    <input type="text" name="kdkawin" class="form-control <?= form_error('kdkawin') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('kdkawin'); ?>
-                    </div>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Kdkawin:</label>
+                <input type="text" name="kdkawin" class="form-control <?= form_error('kdkawin') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('kdkawin'); ?>
                 </div>
-                <div class="form-group mb-2">
-                    <label for="">Jumlah Kubik:</label>
-                    <input type="text" name="jumlah" class="form-control <?= form_error('jumlah') ? 'is-invalid' : ''; ?>">
-                    <div class="invalid-feedback">
-                        <?= form_error('jumlah'); ?>
-                    </div>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Jumlah Kubik:</label>
+                <input type="text" name="jumlah" class="form-control <?= form_error('jumlah') ? 'is-invalid' : ''; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('jumlah'); ?>
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
-            <div class="col">
-                <div class="form-group">
-                    <a href="<?= base_url('kubik'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
-                    <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
-                </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="form-group">
+                <a href="<?= base_url('kubik'); ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>
+    </div>
 
     </form>
 

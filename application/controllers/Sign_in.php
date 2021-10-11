@@ -5,7 +5,7 @@ class Sign_in extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Ref_user_model', 'user');
+        $this->load->model('Ref_users_model', 'user');
         $this->load->library('form_validation');
     }
 
