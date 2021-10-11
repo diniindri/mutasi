@@ -318,6 +318,7 @@ class Biaya_mutasi extends CI_Controller
         $data['ppk'] = $this->pejabat->getKodePejabat(1);
         $data['bendahara'] = $this->pejabat->getKodePejabat(2);
         $data['biaya_pegawai'] = $this->biaya_pegawai->getBiayaPegawai($sk_id);
+        $data['sk'] = $this->sk->getDetailSk($sk_id);
 
         ob_start();
         $this->load->view('biaya_mutasi/dnp', $data);

@@ -37,6 +37,8 @@
                             <th>Tanggal</th>
                             <th>Jumlah</th>
                             <th>Nominal</th>
+                            <th>SPP</th>
+                            <th>Tgl SPP</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -51,6 +53,8 @@
                                 <td><?= date('d-m-Y', $r['tanggal']); ?></td>
                                 <td class="text-right"><?= number_format($r['jumlah'], 0, ',', '.'); ?></td>
                                 <td class="text-right"><?= number_format($r['nominal'], 0, ',', '.'); ?></td>
+                                <td><?= $r['nospp']; ?></td>
+                                <td><?= date('d-m-Y', $r['tglspp']); ?></td>
                                 <td class="pb-0">
                                     <?php if ($r['status'] == 0) : ?>
                                         <div class="btn-group btn-group-sm" role="group">

@@ -48,17 +48,19 @@
 
 <page backtop="5mm" backbottom="5mm" backleft="0mm" backright="0mm" footer="date;time">
     <page_header>
-        <h5 style="margin-top:0;">DAFTAR NOMINATIF PEMBAYARAN (DNP)</h5>
-        <table class="kosong" style="margin-top: 10px;">
+        <table class="kosong">
             <tr>
-                <td class="kosong" style="width:10%; padding-bottom:0;">Nomor </td>
-                <td class="kosong" style="width:2%; padding-bottom:0;"> : </td>
+                <td class="kosong" style="width:450px; padding-bottom:0;">KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</td>
+                <td class="kosong" style="padding-bottom:0;">Lampiran SPP Nomor <?= $sk['nospp']; ?></td>
             </tr>
             <tr>
-                <td class="kosong" style="width:10%;">Tanggal</td>
-                <td class="kosong" style="width:2%;"> : </td>
+                <td class="kosong" style="width:450px; padding-bottom:15px;">DIREKTORAT JENDERAL KEKAYAAN NEGARA</td>
+                <td class="kosong" style="padding-bottom:15px;">Tanggal <?= tanggal($sk['tglspp']); ?></td>
             </tr>
         </table>
+        <h5 style="margin-top:0; margin-bottom:10px;">DAFTAR NOMINATIF PEMBAYARAN (DNP)</h5>
+        <p style="text-align: center; margin:0; padding:0; font-size: 11px;"><?= $sk['uraian']; ?></p>
+        <p style="text-align: center; margin:0; padding:0; font-size: 11px;">Nomor <?= $sk['nomor']; ?> Tanggal <?= tanggal($sk['tanggal']); ?></p>
         <table>
             <tr>
                 <td rowspan="2" style="text-align: center; width:3%; padding:0;">No</td>
@@ -80,7 +82,7 @@
 
     </page_footer>
 
-    <table style="margin-top: 85px;">
+    <table style="margin-top: 130px;">
         <?php $no = 1;
         $j1 = 0;
         $j2 = 0;
@@ -96,7 +98,8 @@
                 <td style="text-align: right; width:10%;"><?= number_format($r['jml_jenis2'], 0, ',', '.'); ?></td>
                 <td style="text-align: right; width:10%;"><?= number_format($r['jml_jenis3'], 0, ',', '.'); ?></td>
                 <td style="text-align: right; width:11%;"><?= number_format($r['jml_total'], 0, ',', '.'); ?></td>
-                <td style="text-align: center; width:15%; padding:0;"><?= $r['rekening']; ?></td>
+                <td style="text-align: center; width:15%; padding:0;"><?= $r['rekening']; ?> <h5 style="margin-top: 0; font-size: xx-small;"><?= $r['nm_bank']; ?></h5>
+                </td>
             </tr>
         <?php $j1 += $r['jml_jenis1'];
             $j2 += $r['jml_jenis2'];
@@ -121,10 +124,6 @@
         <tr>
             <td class="kosong" style="width:450px; padding-bottom:0;"><?= $bendahara['nama']; ?></td>
             <td class="kosong" style="padding-bottom:0;"><?= $ppk['nama']; ?></td>
-        </tr>
-        <tr>
-            <td class="kosong" style="width:350px;">NIP <?= $bendahara['nip']; ?></td>
-            <td class="kosong">NIP <?= $ppk['nip']; ?></td>
         </tr>
     </table>
 

@@ -30,8 +30,8 @@
                 </div>
             </div>
             <div class="form-group mb-2">
-                <label for="">Email:</label>
-                <input type="is_active" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : ''; ?>" value="<?= $users['password']; ?>">
+                <label for="">Password:</label>
+                <input type="password" name="password" class="form-control <?= form_error('password') ? 'is-invalid' : ''; ?>" value="<?= $users['password']; ?>">
                 <div class="invalid-feedback">
                     <?= form_error('password'); ?>
                 </div>
