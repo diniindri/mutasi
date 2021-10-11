@@ -2,7 +2,7 @@
     <div class="position-sticky pt-3">
         <?php
         $nip = $this->session->userdata('nip');
-        if ($this->db->get_where('ref_users', ['nip' => $nip])) {
+        if ($this->db->get_where('ref_users', ['nip' => $nip])->row_array()) {
             $levels = [
                 ['id' => 1, 'level' => 'halaman Utama'],
                 ['id' => 2, 'level' => 'Rincian']

@@ -53,7 +53,7 @@ function is_level()
 {
     $ci = get_instance();
     $nip = $ci->session->userdata('nip');
-    if (!$ci->db->get_where('ref_users', ['nip' => $nip])) {
-        redirect('welcome');
+    if (!$ci->db->get_where('ref_users', ['nip' => $nip])->row_array()) {
+        redirect('auth_blocked');
     }
 }
