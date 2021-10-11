@@ -8,6 +8,7 @@ class Dokumen extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_dokumen_model.php
         $this->load->model('Ref_dokumen_model', 'dokumen');
     }

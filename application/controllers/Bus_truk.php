@@ -8,6 +8,7 @@ class Bus_truk extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_darat_model.php
         $this->load->model('Ref_darat_model', 'darat');
     }

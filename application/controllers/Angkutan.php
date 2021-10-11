@@ -8,6 +8,7 @@ class Angkutan extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_angkutan_model.php
         $this->load->model('Ref_angkutan_model', 'angkutan');
     }

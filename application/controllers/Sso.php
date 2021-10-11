@@ -44,7 +44,7 @@ class Sso extends CI_Controller
                     'id_token' => $token['id_token']
                 ];
                 $this->session->set_userdata($newdata);
-                redirect('beranda');
+                redirect('dashboard');
             } else {
                 redirect('welcome');
             }

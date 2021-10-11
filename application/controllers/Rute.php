@@ -6,6 +6,7 @@ class Rute extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_rute_model.php
         $this->load->model('Ref_rute_model', 'rute');
         $this->load->model('Ref_sub_rute_model', 'subrute');

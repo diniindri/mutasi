@@ -6,6 +6,7 @@ class Pegawai extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_sub_rute_model.php
         $this->load->model('Data_pegawai_model', 'pegawai');
         $this->load->model('Ref_kubik_model', 'kubik');

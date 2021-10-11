@@ -8,6 +8,7 @@ class Uang_harian extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_uang_harian_model.php
         $this->load->model('Ref_uang_harian_model', 'uang_harian');
     }

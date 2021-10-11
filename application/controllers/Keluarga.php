@@ -6,6 +6,7 @@ class Keluarga extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file Data_keluarga_model.php
         $this->load->model('Data_keluarga_model', 'keluarga');
         $this->load->model('Data_pegawai_model', 'pegawai');

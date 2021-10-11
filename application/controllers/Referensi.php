@@ -8,6 +8,7 @@ class Referensi extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
     }
 
     public function index()
