@@ -6,6 +6,7 @@ class Laporan extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         $this->load->model('Ref_laporan_model', 'laporan');
     }
 

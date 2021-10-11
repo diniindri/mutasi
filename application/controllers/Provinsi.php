@@ -9,6 +9,7 @@ class Provinsi extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_provinsi_model.php
         $this->load->model('Ref_provinsi_model', 'provinsi');
     }

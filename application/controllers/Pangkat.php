@@ -8,6 +8,7 @@ class Pangkat extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_pangkat_model.php
         $this->load->model('Ref_pangkat_model', 'pangkat');
     }

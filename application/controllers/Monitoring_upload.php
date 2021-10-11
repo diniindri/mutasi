@@ -8,6 +8,7 @@ class Monitoring_dokumen extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file Data_sk_model.php
         $this->load->model('Data_sk_model', 'sk');
         $this->load->model('Data_upload_model', 'upload');

@@ -8,6 +8,7 @@ class Jenis extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_jenis_model.php
         $this->load->model('Ref_jenis_model', 'jenis');
     }

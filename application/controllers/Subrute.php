@@ -6,6 +6,7 @@ class Subrute extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        is_level();
         // meload file ref_sub_rute_model.php
         $this->load->model('Ref_sub_rute_model', 'subrute');
         $this->load->model('Ref_jenis_model', 'jenis_rute');
