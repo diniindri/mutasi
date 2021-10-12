@@ -101,6 +101,16 @@ class Payroll extends CI_Controller
             'field' => 'tanggal',
             'label' => 'Tanggal',
             'rules' => 'required|trim'
+        ],
+        [
+            'field' => 'nospp',
+            'label' => 'Nomor SPP',
+            'rules' => 'required|trim|exact_length[5]'
+        ],
+        [
+            'field' => 'tglspp',
+            'label' => 'Tanggal SPP',
+            'rules' => 'required|trim'
         ]
     ];
 
@@ -116,6 +126,8 @@ class Payroll extends CI_Controller
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
                 'tanggal' => strtotime(htmlspecialchars($this->input->post('tanggal', true))),
+                'nospp' => htmlspecialchars($this->input->post('nospp', true)),
+                'tglspp' => strtotime(htmlspecialchars($this->input->post('tglspp', true))),
                 'sk_id' => $sk_id
             ];
 
@@ -149,7 +161,9 @@ class Payroll extends CI_Controller
         if ($validation->run()) {
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
-                'tanggal' => strtotime(htmlspecialchars($this->input->post('tanggal', true)))
+                'tanggal' => strtotime(htmlspecialchars($this->input->post('tanggal', true))),
+                'nospp' => htmlspecialchars($this->input->post('nospp', true)),
+                'tglspp' => strtotime(htmlspecialchars($this->input->post('tglspp', true)))
             ];
             // update data di database melalui model
             $this->payroll->updatePayroll($data, $id);
@@ -480,6 +494,8 @@ class Payroll extends CI_Controller
         $data['ppk'] = $this->pejabat->getKodePejabat(1);
         $data['bendahara'] = $this->pejabat->getKodePejabat(2);
         $data['biaya_pegawai'] = $this->biaya_pegawai->getBiayaPegawaiPayroll($payroll_id);
+        $data['sk'] = $this->sk->getDetailSk($sk_id);
+        $data['payroll'] = $this->payroll->getDetailPayroll($payroll_id);
 
         ob_start();
         $this->load->view('payroll/dnp', $data);

@@ -86,7 +86,7 @@ class Users extends CI_Controller
                 'nip' => htmlspecialchars($this->input->post('nip', true)),
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
-                'password' => htmlspecialchars($this->input->post('password', true)),
+                'password' => password_hash(htmlspecialchars($this->input->post('password', true)), PASSWORD_DEFAULT),
                 'is_active' => htmlspecialchars($this->input->post('is_active', true)),
                 'date_created' => time()
             ];
@@ -119,7 +119,7 @@ class Users extends CI_Controller
                 'nip' => htmlspecialchars($this->input->post('nip', true)),
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
-                'password' => htmlspecialchars($this->input->post('password', true)),
+                'password' => password_hash(htmlspecialchars($this->input->post('password', true)), PASSWORD_DEFAULT),
                 'is_active' => htmlspecialchars($this->input->post('is_active', true)),
                 'date_created' => time()
             ];

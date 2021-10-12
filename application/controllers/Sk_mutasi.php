@@ -60,6 +60,16 @@ class sk_mutasi extends CI_Controller
             'field' => 'uraian',
             'label' => 'Uraian',
             'rules' => 'required|trim'
+        ],
+        [
+            'field' => 'nospp',
+            'label' => 'Nomor SPP',
+            'rules' => 'required|trim|exact_length[5]'
+        ],
+        [
+            'field' => 'tglspp',
+            'label' => 'Tanggal SPP',
+            'rules' => 'required|trim'
         ]
     ];
 
@@ -73,7 +83,9 @@ class sk_mutasi extends CI_Controller
                 'nomor' => htmlspecialchars($this->input->post('nomor', true)),
                 'tanggal' => strtotime(htmlspecialchars($this->input->post('tanggal', true))),
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
-                'status' => htmlspecialchars($this->input->post('status', true))
+                'status' => htmlspecialchars($this->input->post('status', true)),
+                'nospp' => htmlspecialchars($this->input->post('nospp', true)),
+                'tglspp' => strtotime(htmlspecialchars($this->input->post('tglspp', true))),
             ];
             // simpan data ke database melalui model
             $this->sk->createSk($data);
@@ -104,7 +116,9 @@ class sk_mutasi extends CI_Controller
                 'nomor' => htmlspecialchars($this->input->post('nomor', true)),
                 'tanggal' => strtotime(htmlspecialchars($this->input->post('tanggal', true))),
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
-                'status' => htmlspecialchars($this->input->post('status', true))
+                'status' => htmlspecialchars($this->input->post('status', true)),
+                'nospp' => htmlspecialchars($this->input->post('nospp', true)),
+                'tglspp' => strtotime(htmlspecialchars($this->input->post('tglspp', true)))
             ];
             // update data di database melalui model
             $this->sk->updateSk($data, $id);

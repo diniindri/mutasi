@@ -36,6 +36,8 @@
                             <th>Nomor</th>
                             <th>Tanggal</th>
                             <th>Uraian</th>
+                            <th>SPP</th>
+                            <th>Tgl SPP</th>
                             <th>Status</th>
                             <th>Aksi</th>
                         </tr>
@@ -48,6 +50,8 @@
                                 <td><?= $r['nomor']; ?></td>
                                 <td><?= date('d-m-Y', $r['tanggal']); ?></td>
                                 <td><?= $r['uraian']; ?></td>
+                                <td><?= $r['nospp']; ?></td>
+                                <td><?= date('d-m-Y', $r['tglspp']); ?></td>
                                 <td><?= $r['status'] == 1 ? 'Aktif' : 'Non Aktif'; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">

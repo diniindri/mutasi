@@ -36,6 +36,20 @@
                     <option value="1" <?= $sk['status'] == 1 ? 'selected' : ''; ?>>Aktif</option>
                 </select>
             </div>
+            <div class="form-group mb-2">
+                <label for="">Nomor SPP:</label>
+                <input type="text" name="nospp" class="form-control <?= form_error('nospp') ? 'is-invalid' : ''; ?>" value="<?= $sk['nospp']; ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('nospp'); ?>
+                </div>
+            </div>
+            <div class="form-group mb-2">
+                <label for="">Tanggal SPP:</label>
+                <input type="text" name="tglspp" class="form-control <?= form_error('tglspp') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy" value="<?= date('d-m-Y', $sk['tglspp']); ?>">
+                <div class="invalid-feedback">
+                    <?= form_error('tglspp'); ?>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row mt-3">
