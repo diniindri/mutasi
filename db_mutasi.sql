@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 11 Okt 2021 pada 10.46
--- Versi server: 5.7.26
--- Versi PHP: 7.3.8
+-- Generation Time: Oct 12, 2021 at 03:20 AM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,8 +23,8 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `biaya_pegawai`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `biaya_pegawai`
+-- (See below for the actual view)
 --
 CREATE TABLE `biaya_pegawai` (
 `pegawai_id` int(11)
@@ -45,7 +45,7 @@ CREATE TABLE `biaya_pegawai` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_art`
+-- Table structure for table `data_art`
 --
 
 CREATE TABLE `data_art` (
@@ -59,59 +59,10 @@ CREATE TABLE `data_art` (
   `nip` varchar(18) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `data_art`
---
-
-INSERT INTO `data_art` (`id`, `nama`, `tgllhr`, `file`, `anggota_id`, `date_created`, `mutasi_id`, `nip`) VALUES
-(2, 'Titin', 73069200, '2d428adc3b0df838e64a73baa082b5bc.pdf', 200, 1578552700, NULL, NULL),
-(3, 'Wasikem', 166726800, '89c160885856549efcbc35337b79fb4e.pdf', 1974, 1578554709, NULL, NULL),
-(4, 'Sunarti', 620845200, 'c0608447d0df7fb71c56a20edf9304ef.pdf', 127, 1578622487, NULL, NULL),
-(5, 'Mastuti', -14022000, '12fafb3b036f6459595ac4654071ea8d.pdf', 1975, 1578648618, NULL, NULL),
-(6, 'Sumini', 126118800, '68968480e83a79e5963334fcd5da617c.pdf', 518, 1578891741, NULL, NULL),
-(7, 'Trifosa Suwartini', -94546800, 'cbabe3010499d867934e77369225d9e7.pdf', 204, 1578909006, NULL, NULL),
-(8, 'Susanti', 920221200, 'f398228b5f3839ad89bb6c332c0dd764.pdf', 368, 1579600138, NULL, NULL),
-(9, 'Ni Wayan Sumiati', 214592400, 'cdc1552d208005e4c2816dbbe49e70d0.pdf', 398, 1579662186, NULL, NULL),
-(10, 'Mohammad Komarudin', 664218000, 'dfc507ba2a981a968d43cb6864bb1dd7.pdf', 117, 1579665846, NULL, NULL),
-(11, 'Yati Bt. Abun Hawami', 43520400, '9b69455c01d746f8f058b3c898b59333.pdf', 454, 1580783493, NULL, NULL),
-(12, 'Khoiriyah Muntonah', 494874000, '19214501eef993d89afb39e5f95ca14c.pdf', NULL, 1594263660, NULL, NULL),
-(13, 'Elly Putri Agustin', 805914000, '8bf22f3c84b5dac9dfd39d78fa4a97eb.pdf', 2095, 1594810389, NULL, NULL),
-(14, 'Roulina Nainggolan', -186562800, '97cdedb7e9c8d73456ef654f47a07dff.pdf', 2189, 1595321185, NULL, NULL),
-(15, 'SUMARMI', 591642000, 'e411f30a34f8fd6d38d14bbad7a04ff9.pdf', 2641, 1604985020, NULL, NULL),
-(16, 'SUTARI', -294046200, '2628a91a77f295172c5c2c652aedb57b.pdf', 2638, 1604990457, NULL, NULL),
-(17, 'Salbiah', -118738800, '04b8546e88d406e152e46d7bdc8e9f17.pdf', 2650, 1604994857, NULL, NULL),
-(18, 'Sri Handayani', 522349200, 'f33984d510fff4e0dd1b922f4663989e.pdf', 2631, 1604999007, NULL, NULL),
-(19, 'Ria Tri Lestari', 636224400, 'ca865badba04a4aa98f66b44c831231b.pdf', 2636, 1605066810, NULL, NULL),
-(20, 'Ijah', 82832400, '1dbb7afb5514294585ec6e6a1d5ca8e0.pdf', 2646, 1605067288, NULL, NULL),
-(21, 'Rosiana Br. Sembiring', -169628400, '6b33d0f8eb22f4b0e9267f0b6ac23a70.pdf', 2639, 1605069673, NULL, NULL),
-(22, 'Iis Sugiarti', 514746000, '6d5913b452233b39658c460ffdd49901.pdf', 2658, 1605075112, NULL, NULL),
-(23, 'Murni Ningsih', 290970000, '276d3eb9b26bb8f9960ffbc263eac67b.pdf', 2657, 1605079552, NULL, NULL),
-(24, 'Sapto Yuli Setyaningsih', 363114000, 'ffb51c39c0c6b09ce3896d75558db68a.pdf', 2655, 1605083408, NULL, NULL),
-(25, 'Sri Lestari', 418323600, '025c6b1cedf15a4d5ac6d1fcd89f04f6.pdf', 2656, 1605083425, NULL, NULL),
-(26, 'Samidah', -225444600, 'b9e4955425e06d070094b1e2532d164e.pdf', 2640, 1605155482, NULL, NULL),
-(27, 'Sarilah', 449859600, 'ea591665ca45b0fc388a6547fb47ef01.pdf', 2645, 1605248346, NULL, NULL),
-(28, 'Sumarni', 1599411600, '2bf49c6231bf98167bd870608136ad52.pdf', 2647, 1605597851, NULL, NULL),
-(29, 'Suhesti', 46026000, '039a35ac4630a443d675dd150d2691b7.pdf', 2637, 1605756051, NULL, NULL),
-(30, 'Annisa Restudinilla', 898102800, 'b3f26040d8c9a98194f3c3b3f56d5df3.pdf', 2642, 1605853534, NULL, NULL),
-(31, 'Riyonda Emilinda', -184748400, '40804c3c134de98d513e1b406ddd9845.pdf', 2659, 1606193947, NULL, NULL),
-(32, 'Suwarti', -204276600, 'dfa00b04e92623c3f5c7d696ee8fc93d.pdf', 2644, 1606221028, NULL, NULL),
-(33, 'Puji Lestari', 699382800, 'ad3e5d47500a7ecfacf52e3798e54966.pdf', 2718, 1611301954, NULL, NULL),
-(35, 'Santi Safaria', 652294800, '245bc5ef34d07035a9752d4bc4bc6dfd.pdf', 2715, 1611809054, NULL, NULL),
-(36, 'Mardiana', 438627600, '05d13bc38a6a4027057f4fb973d41476.pdf', 2735, 1612144817, NULL, NULL),
-(37, 'Yanti', 263235600, 'a10d98bd2b4f0133ef146c18ba193f85.pdf', 2714, 1612152649, NULL, NULL),
-(38, 'Nurhayati', 270752400, 'ee42f7a093649972da73d7d9c247e897.pdf', 2723, 1612166655, NULL, NULL),
-(39, 'aa', 1612112400, 'a1797bb61b13d146d056f1d256f934a2.pdf', NULL, 1613968420, 57, NULL),
-(40, 'Iyem', 1614272400, 'd5e4dd1b9cd027f9049dc1ebdd106880.pdf', NULL, 1614001429, 57, '198407022003121004'),
-(41, 'Maria', 1614272400, 'f512beace18517b3cd3b8f6e7ec2e705.pdf', NULL, 1614001619, 56, '198407022003121004'),
-(42, 'aa', 1615136400, 'ed5d9b8c98b3181848a3a3737eecaf4b.pdf', NULL, 1614734686, 59, '198801142014022005'),
-(43, 'Mardiana', 438627600, 'a0bcd0e65ae4c484eaf5b63209ba9e41.pdf', NULL, 1614753470, 59, '198202042003121004'),
-(46, 'asdfa', 1618419600, '71995764f8f49e627ecaa29412dc9840.pdf', NULL, 1617784045, 59, '199212012014112002'),
-(47, 'asdfa', 1617728400, '22d450ab890428c17e90cc9b40ec2eef.pdf', NULL, 1617784946, 64, '198908052010121001');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_biaya`
+-- Table structure for table `data_biaya`
 --
 
 CREATE TABLE `data_biaya` (
@@ -127,65 +78,10 @@ CREATE TABLE `data_biaya` (
   `uraian` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_biaya`
---
-
-INSERT INTO `data_biaya` (`id`, `subrute_id`, `jenis_id`, `angkutan_id`, `satuan`, `jarak`, `tarif`, `jumlah`, `pegawai_id`, `uraian`) VALUES
-(11213, 1949, 1, 1, 5.00, 0, 3332000, 16660000, 35, 'JAKARTA-TERNATE'),
-(11214, 1950, 2, 5, 20.00, 0, 60000, 1200000, 35, 'PACKING-LAUT'),
-(11215, 1951, 2, 4, 20.00, 0, 1620000, 32400000, 35, 'JAKARTA-TERNATE'),
-(11216, 0, 3, 6, 5.00, 3, 430000, 6450000, 35, 'UANG HARIAN'),
-(11223, 1955, 1, 1, 4.00, 0, 1904000, 7616000, 32, 'JAKARTA-MEDAN'),
-(11224, 1956, 1, 2, 4.00, 132, 2000, 1056000, 32, 'MEDAN-PEMATANGSIANTAR'),
-(11225, 1957, 2, 5, 20.00, 0, 60000, 1200000, 32, 'PACKING-LAUT'),
-(11226, 1958, 2, 4, 20.00, 0, 666000, 13320000, 32, 'JAKARTA-BELAWAN'),
-(11227, 1959, 2, 3, 20.00, 148, 400, 1184000, 32, 'BELAWAN-PEMATANGSIANTAR'),
-(11228, 0, 3, 6, 4.00, 3, 370000, 4440000, 32, 'UANG HARIAN'),
-(11229, 1883, 1, 1, 4.00, 0, 1497500, 5990000, 33, 'JAKARTA-BANJARMASIN'),
-(11230, 1884, 1, 2, 4.00, 44, 2000, 352000, 33, 'BANJARMASIN-BANJARBARU'),
-(11231, 1885, 2, 5, 20.00, 0, 60000, 1200000, 33, 'PACKING-DARAT'),
-(11232, 1886, 2, 3, 20.00, 477, 400, 3816000, 33, 'JAKARTA-SEMARANG'),
-(11233, 1887, 2, 5, 20.00, 0, 60000, 1200000, 33, 'PACKING-LAUT'),
-(11234, 1888, 2, 4, 20.00, 0, 337000, 6740000, 33, 'SEMARANG-BANJARMASIN'),
-(11235, 1889, 2, 3, 20.00, 44, 200, 176000, 33, 'BANJARMASIN-BANJARBARU'),
-(11236, 0, 3, 6, 4.00, 3, 380000, 4560000, 33, 'UANG HARIAN'),
-(11237, 1965, 1, 1, 3.00, 0, 1476000, 4428000, 34, 'JAKARTA-PADANG'),
-(11238, 1966, 1, 2, 3.00, 90, 2000, 540000, 34, 'PADANG-BUKITTINGGI'),
-(11239, 1967, 2, 5, 20.00, 0, 60000, 1200000, 34, 'PACKING-LAUT'),
-(11240, 1968, 2, 4, 20.00, 0, 439000, 8780000, 34, 'JAKARTA-PADANG'),
-(11241, 1969, 2, 3, 20.00, 90, 400, 720000, 34, 'PADANG-BUKITTINGGI'),
-(11242, 0, 3, 6, 3.00, 3, 380000, 3420000, 34, 'UANG HARIAN'),
-(11257, 1571, 1, 1, 4.00, 0, 1444000, 5776000, 28, 'JAKARTA-BATAM'),
-(11258, 1572, 2, 5, 15.00, 0, 60000, 900000, 28, 'PACKING-LAUT'),
-(11259, 1573, 2, 4, 15.00, 0, 486000, 7290000, 28, 'JAKARTA-BATAM'),
-(11260, 0, 3, 6, 4.00, 3, 370000, 4440000, 28, 'UANG HARIAN'),
-(11261, 152, 1, 1, 4.00, 0, 1904000, 7616000, 27, 'JAKARTA-MEDAN'),
-(11262, 154, 2, 3, 20.00, 24, 200, 96000, 27, 'BELAWAN-MEDAN'),
-(11263, 157, 2, 5, 20.00, 0, 60000, 1200000, 27, 'PACKING-LAUT'),
-(11264, 159, 2, 4, 20.00, 0, 666000, 13320000, 27, 'JAKARTA-BELAWAN'),
-(11265, 0, 3, 6, 4.00, 3, 370000, 4440000, 27, 'UANG HARIAN'),
-(11266, 3444, 1, 1, 4.00, 0, 550000, 2200000, 41, 'MAKASSAR-MAMUJU'),
-(11267, 3445, 2, 4, 20.00, 0, 199000, 3980000, 41, 'MAKASSAR-PAREPARE'),
-(11268, 3446, 2, 3, 20.00, 260, 400, 2080000, 41, 'PAREPARE-MAMUJU'),
-(11269, 3447, 2, 5, 20.00, 0, 60000, 1200000, 41, 'PACKING-LAUT'),
-(11270, 0, 3, 6, 4.00, 3, 410000, 4920000, 41, 'UANG HARIAN'),
-(11271, 860, 1, 1, 3.10, 0, 1561500, 4840650, 26, 'BANDAR LAMPUNG-SURABAYA'),
-(11272, 861, 1, 1, 3.10, 0, 450000, 1395000, 26, 'SURABAYA-JEMBER'),
-(11273, 862, 2, 5, 20.00, 0, 60000, 1200000, 26, 'PACKING-DARAT'),
-(11274, 863, 2, 3, 20.00, 1199, 400, 9592000, 26, 'BANDARLAMPUNG-JEMBER'),
-(11275, 0, 3, 6, 4.00, 3, 410000, 4920000, 26, 'UANG HARIAN'),
-(11289, 1152, 1, 1, 4.10, 0, 1631000, 6687100, 45, 'JAKARTA-DENPASAR'),
-(11290, 1153, 2, 5, 20.00, 0, 60000, 1200000, 45, 'PACKING-DARAT'),
-(11291, 1155, 2, 3, 20.00, 784, 400, 6272000, 45, 'JAKARTA-SURABAYA'),
-(11292, 1157, 2, 5, 20.00, 0, 60000, 1200000, 45, 'PACKING-LAUT'),
-(11293, 1159, 2, 4, 20.00, 0, 265000, 5300000, 45, 'SURABAYA-DENPASAR'),
-(11294, 0, 3, 6, 5.00, 3, 480000, 7200000, 45, 'UANG HARIAN');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_keluarga`
+-- Table structure for table `data_keluarga`
 --
 
 CREATE TABLE `data_keluarga` (
@@ -198,54 +94,10 @@ CREATE TABLE `data_keluarga` (
   `pegawai_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_keluarga`
---
-
-INSERT INTO `data_keluarga` (`id`, `nama`, `kdkeluarga`, `tgllhr`, `kddapat`, `sts`, `pegawai_id`) VALUES
-(36, 'Istiqamah Rani                                    ', '1', '1983-07-18', '1', 0, 26),
-(37, 'Muhammad Nafiul Huda                              ', '3', '2007-10-25', '1', 0, 26),
-(38, 'Irdina Aliya Nurfarah                             ', '3', '2014-10-18', '1', 0, 26),
-(39, 'Alam Firdaus                                      ', '2', '1990-09-23', '1', 0, 27),
-(40, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 27),
-(41, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 27),
-(42, 'AULIA NUGRAHINI                                   ', '1', '1987-03-20', '1', 0, 32),
-(43, 'Khansa Shidiqyah                                  ', '3', '2012-09-04', '1', 0, 32),
-(44, 'Khairina Shidqiyah                                ', '3', '2015-09-19', '1', 0, 32),
-(48, 'LUTFAN DAYA PUTRATAMA                             ', '3', '2011-08-18', '1', 0, 33),
-(49, 'Niken Ayuningtyas                                 ', '1', '1985-11-19', '1', 0, 33),
-(50, 'Figo Daya Dwiputra                                ', '3', '2014-09-03', '1', 0, 33),
-(51, 'Leyke Kurnia                                      ', '1', '1979-10-06', '1', 0, 34),
-(52, 'Muhammad Adelio Zuhayr                            ', '3', '2006-05-07', '1', 0, 34),
-(53, 'ERNI SETYOWATI                                    ', '1', '1978-08-03', '1', 0, 35),
-(54, 'SYAHIDAH SAFARINA                                 ', '3', '2009-07-20', '1', 0, 35),
-(55, 'SYUHADA RANTISI                                   ', '3', '2004-07-29', '1', 0, 35),
-(56, 'MARWA SYAKIRA                                     ', '3', '2013-07-29', '2', 0, 35),
-(57, 'iSMI SURYANI                                      ', '1', '1991-02-13', '1', 0, 29),
-(58, 'Muhammad Iswan Alif                               ', '3', '2014-02-01', '1', 0, 29),
-(59, 'ABDULLAH ISWAN MURSYI                             ', '3', '2016-04-29', '1', 0, 29),
-(60, 'Ghozi Iswan Mubarok                               ', '3', '2019-02-14', '2', 0, 29),
-(61, 'SURYA DEVI                                        ', '1', '1992-01-06', '1', 0, 28),
-(62, 'Akmal Argani Ibrahim                              ', '3', '2015-09-25', '1', 0, 28),
-(63, 'Muhammad Emran Farabi                             ', '3', '2018-10-13', '1', 0, 28),
-(67, 'Istiqamah Rani                                    ', '1', '1983-07-18', '1', 0, 41),
-(68, 'Muhammad Nafiul Huda                              ', '3', '2007-10-25', '1', 0, 41),
-(69, 'Irdina Aliya Nurfarah                             ', '3', '2014-10-18', '1', 0, 41),
-(70, 'Istiqamah Rani                                    ', '1', '1983-07-18', '1', 0, 41),
-(71, 'Muhammad Nafiul Huda                              ', '3', '2007-10-25', '1', 0, 41),
-(72, 'Irdina Aliya Nurfarah                             ', '3', '2014-10-18', '1', 0, 41),
-(73, 'Istiqamah Rani                                    ', '1', '1983-07-18', '1', 0, 26),
-(74, 'Muhammad Nafiul Huda                              ', '3', '2007-10-25', '1', 0, 26),
-(75, 'Irdina Aliya Nurfarah                             ', '3', '2014-10-18', '1', 0, 26),
-(80, 'Istiqamah Rani                                    ', '1', '1983-07-18', '1', 0, 45),
-(81, 'Muhammad Nafiul Huda                              ', '3', '2007-10-25', '1', 0, 45),
-(82, 'Irdina Aliya Nurfarah', '3', '2014-10-18', '1', 1, 45),
-(83, 'Inem', '4', '1990-10-22', '2', 0, 45);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_payroll`
+-- Table structure for table `data_payroll`
 --
 
 CREATE TABLE `data_payroll` (
@@ -260,22 +112,10 @@ CREATE TABLE `data_payroll` (
   `status` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_payroll`
---
-
-INSERT INTO `data_payroll` (`id`, `sk_id`, `uraian`, `jumlah`, `nominal`, `tanggal`, `nospp`, `tglspp`, `status`) VALUES
-(113, 4, 'Payroll tahap 1', 2, 48619650, 1639069200, NULL, NULL, 1),
-(114, 4, 'Payroll tahap 2', 1, 18406000, 1640883600, NULL, NULL, 0),
-(115, 5, 'Payroll Tahap 1 SPM 00213', 2, 47904000, 1616259600, '11111', 1636563600, 0),
-(116, 5, 'Payroll Tahap 2 SPM 01234', 3, 95124000, 1619110800, '33333', 2147483647, 0),
-(117, 6, 'Payroll tahap 1 SPM 00231', 1, 26256000, 1614618000, NULL, NULL, 0),
-(118, 5, 'Payroll tahap 4', NULL, NULL, 1612112400, '12345', 1610989200, 0);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_pegawai`
+-- Table structure for table `data_pegawai`
 --
 
 CREATE TABLE `data_pegawai` (
@@ -300,36 +140,10 @@ CREATE TABLE `data_pegawai` (
   `tingkat` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_pegawai`
---
-
-INSERT INTO `data_pegawai` (`id`, `sk_id`, `nip`, `nmpeg`, `kdgapok`, `kdkawin`, `kubik`, `infant`, `art`, `nominal`, `rekening`, `nm_bank`, `nmrek`, `ref_rute_id`, `status`, `no_spd`, `tgl_spd`, `jabatan`, `tingkat`) VALUES
-(26, 4, '198407022003121004', 'DANA KRISTIAWAN', '3A12', '1102', 20, 1, 0, '21947650.00', '050701017205506', 'PT.BANK RAKYAT INDONESIA (Persero) Tbk. KANTOR PUSAT', 'DANA KRISTIAWAN', 216, 1, '1321', 1615482000, 'Pelaksana', 'D'),
-(27, 4, '198801142014022005', 'Dini Indri Irianti, S.E.                                                                            ', '3B06', '1102', 20, 0, 0, '26672000.00', '0331539263                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Dini Indri Irianti                                              ', 1202, 1, NULL, NULL, NULL, NULL),
-(28, 4, '198805302008121002', 'Andriansyah                                                                                         ', '2C11', '1102', 15, 0, 0, '18406000.00', '0161077402                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Andriansyah                                                     ', 1177, 1, NULL, NULL, NULL, NULL),
-(29, 4, '198705032009121006', 'WAWAN ANTONI PUTRA                                                                                  ', '3B08', '1102', NULL, 0, 0, '0.00', '0185941978                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'WAWAN ANTONI PUTRA                                              ', NULL, 0, NULL, NULL, NULL, NULL),
-(30, 4, '199004072013102001', 'Defi Melina Aprilia, A.Md.                                                                          ', '2D09', '1000', NULL, 0, 0, '0.00', '0319375913                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Defi Melina Aprilia                                             ', NULL, 0, NULL, NULL, NULL, NULL),
-(31, 4, '198910242014112001', 'Arini Nurul Fadlilah, A.Md.                                                                         ', '2D09', '1102', NULL, 0, 0, '0.00', '0307814457                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Arini Nurul Fadlilah                                            ', NULL, 0, NULL, NULL, NULL, NULL),
-(32, 5, '198407212006021005', 'MUHAMAD SIDIK                                                                                       ', '3C12', '1102', 20, 0, 0, '28816000.00', '0161788745                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'MUHAMAD SIDIK                                                   ', 1216, 1, NULL, NULL, NULL, NULL),
-(33, 5, '198411072006021002', 'ELFAN DAYA                                                                                          ', '3B12', '1102', 20, 0, 0, '24034000.00', '379146052                     ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC SERANG                                             ', 'ELFAN DAYA                                                      ', 4309, 1, NULL, NULL, NULL, NULL),
-(34, 5, '197505301997031001', 'AHMAD HIDAYAT                                                                                       ', '3B18', '1101', 20, 0, 0, '19088000.00', '0024148826                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Ahmad Hidayat                                                   ', 1184, 1, NULL, NULL, NULL, NULL),
-(35, 5, '198009162001121002', 'MUFID HAMDANI', '3D16', '1103', 20, 0, 0, '56710000.00', '0198643183', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN', 'MUFID HAMDANI', 1234, 1, NULL, NULL, NULL, NULL),
-(36, 4, '197709262000011001', 'CEPI KURNIADI                                                                                       ', '3D18', '1102', NULL, 0, 0, '0.00', '0262034917                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC TANGERANG                                          ', 'CEPI KURNIADI                                                   ', NULL, 0, NULL, NULL, NULL, NULL),
-(37, 4, '197909132000122001', 'RUSMAWATI DAMARSARI, S.E                                                                            ', '3D18', '1000', NULL, 0, 0, '0.00', '0226593414                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'RUSMAWATI DAMARSARI, S.E                                        ', NULL, 0, NULL, NULL, NULL, NULL),
-(38, 4, '197912172001121002', 'NARYUDI                                                                                             ', '3D16', '1102', NULL, 0, 0, '0.00', '0034370154                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Naryudi                                                         ', NULL, 0, NULL, NULL, NULL, NULL),
-(39, 4, '196908231996032001', 'KUSUMAWARDHANI, S.E                                                                                 ', '4B24', '1102', NULL, 0, 0, '0.00', '136315927                     ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC SERANG                                             ', 'KUSUMAWARDHANI                                                  ', NULL, 0, NULL, NULL, NULL, NULL),
-(40, 4, '199002102012102001', 'Inelva Riani                                                                                        ', '3A06', '1102', NULL, 0, 0, '0.00', '0252246720                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Inelva Riani                                                    ', NULL, 0, NULL, NULL, NULL, NULL),
-(41, 5, '198407022003121004', 'DANA KRISTIAWAN                                                                                     ', '3A12', '1102', 20, 0, 0, '14380000.00', '050701017205506               ', 'PT.BANK RAKYAT INDONESIA (Persero) Tbk. KANTOR PUSAT                                                ', 'DANA KRISTIAWAN                                                 ', 4486, 1, NULL, NULL, NULL, NULL),
-(42, 5, '197306191993012001', 'YENNY, S.SOS                                                                                        ', '4A24', '1102', 25, 0, 0, '0.00', '7197306194                    ', 'PT. BANK SYARIAH MANDIRI KANTOR PUSAT                                                               ', 'YENNY, S.SOS                                                    ', 3816, 0, NULL, NULL, NULL, NULL),
-(43, 5, '197101051996031001', 'MAS AGUS SUBAKTI                                                                                    ', '4B24', '1102', NULL, 0, 0, '0.00', '0126228526                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'MAS AGUS SUBAKTI                                                ', NULL, 0, NULL, NULL, NULL, NULL),
-(44, 5, '197502051995031001', 'HERMAWAN SUKMAJATI, SE., M.Si                                                                       ', '4B22', '1102', NULL, 0, 0, '0.00', '7770502758                    ', 'PT. BANK SYARIAH MANDIRI KC SAMARINDA                                                               ', 'Hermawan Sukmajati                                              ', NULL, 0, NULL, NULL, NULL, NULL),
-(45, 6, '198407022003121004', 'DANA KRISTIAWAN', '3A12', '1102', 20, 1, 1, '27859100.00', '050701017205506', 'PT.BANK RAKYAT INDONESIA (Persero) Tbk. KANTOR PUSAT', 'DANA KRISTIAWAN', 1186, 1, '0023', 1638291600, 'Tenaga Ahli', 'D');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_sk`
+-- Table structure for table `data_sk`
 --
 
 CREATE TABLE `data_sk` (
@@ -342,20 +156,10 @@ CREATE TABLE `data_sk` (
   `status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_sk`
---
-
-INSERT INTO `data_sk` (`id`, `nomor`, `tanggal`, `uraian`, `nospp`, `tglspp`, `status`) VALUES
-(4, '234/KN/UP.11/2021', 1616259600, 'Pemindahan Para Pegawai Negeri Sipil di Lingkungan Direktorat Jenderal Kekayaan Negara ke LMAN Tahun Anggaran 2021', NULL, NULL, 1),
-(5, '11/KN/UP.11/2021', 1640365200, 'Pemindahan Pegawai Negeri Sipil di Lingkungan Direktorat Jenderal Kekayaan Negara', '12345', 1612198800, 1),
-(6, '755/KN/UP.11/2021', 1618765200, 'Pemindahan Pegawai Negeri Sipil Golongan IV di Lingkungan Direktorat Jenderal Kekayaan Negara', NULL, NULL, 1),
-(7, '1414141', 1609434000, 'aragag', '12312', 1642698000, 1);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_sub_payroll`
+-- Table structure for table `data_sub_payroll`
 --
 
 CREATE TABLE `data_sub_payroll` (
@@ -364,25 +168,10 @@ CREATE TABLE `data_sub_payroll` (
   `pegawai_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_sub_payroll`
---
-
-INSERT INTO `data_sub_payroll` (`id`, `payroll_id`, `pegawai_id`) VALUES
-(8, 113, 27),
-(9, 115, 32),
-(10, 115, 34),
-(11, 116, 33),
-(12, 116, 35),
-(14, 114, 28),
-(16, 116, 41),
-(18, 113, 26),
-(19, 117, 45);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_timeline`
+-- Table structure for table `data_timeline`
 --
 
 CREATE TABLE `data_timeline` (
@@ -393,45 +182,10 @@ CREATE TABLE `data_timeline` (
   `tanggal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data untuk tabel `data_timeline`
---
-
-INSERT INTO `data_timeline` (`id`, `pegawai_id`, `proses_id`, `keterangan`, `tanggal`) VALUES
-(6, 41, 1, 'Nomor 11/KN/UP.11/2021, tentang Pemindahan Pegawai Negeri Sipil di Lingkungan Direktorat Jenderal Kekayaan Negara', 1640365200),
-(7, 26, 1, 'Nomor 234/KN/UP.11/2021, tentang Pemindahan Para Pegawai Negeri Sipil di Lingkungan Direktorat Jenderal Kekayaan Negara ke LMAN Tahun Anggaran 2021', 1616259600),
-(8, 26, 2, 'Pegawai telah melakukan upload dokumen KP4 yang sudah disahkan oleh Pejabat yang berwenang', 1633420711),
-(9, 41, 2, 'Pegawai telah melakukan upload dokumen KP4', 1633334426),
-(10, 41, 3, 'Kantor Pusat telah melakukan proses verifikasi data keluarga', 1633334746),
-(11, 26, 3, 'Kantor Pusat telah melakukan proses verifikasi data keluarga', 1633334770),
-(12, 41, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1633334931),
-(13, 26, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1633334966),
-(14, 26, 5, 'Pegawai telah melakukan upload dokumen rincian biaya mutasi', 1633335318),
-(15, 41, 5, 'Pegawai telah melakukan upload dokumen rincian biaya mutasi yang sudah ditandatangani', 1633335445),
-(16, 26, 7, 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor tujuan', 1633418132),
-(17, 26, 6, 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor asal', 1633335505),
-(20, 26, 8, 'Kantor Pusat telah melakukan proses verifikasi dokumen Rincian Biaya dan SPD', 1633337005),
-(21, 26, 9, 'Kantor Pusat telah melakukan proses verifikasi rekening Pegawai dan pembuatan Data Payroll', 1633337005),
-(22, 27, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633337033),
-(23, 26, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633337033),
-(24, 41, 6, 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor asal', 1633418940),
-(26, 41, 7, 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor tujuan', 1633419235),
-(27, 45, 1, 'Nomor 755/KN/UP.11/2021, tentang Pemindahan Pegawai Negeri Sipil Golongan IV di Lingkungan Direktorat Jenderal Kekayaan Negara', 1618765200),
-(28, 42, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1633441187),
-(29, 33, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633441739),
-(30, 35, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633441739),
-(31, 41, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633441739),
-(32, 32, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633441742),
-(33, 34, 10, 'Kantor Pusat telah melakukan proses payroll biaya mutasi kepada Pegawai', 1633441742),
-(34, 45, 3, 'Kantor Pusat telah melakukan proses verifikasi data keluarga', 1633443547),
-(35, 45, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1633444663),
-(36, 45, 8, 'Kantor Pusat telah melakukan proses verifikasi dokumen Rincian Biaya dan SPD', 1633441831),
-(37, 45, 9, 'Kantor Pusat telah melakukan proses verifikasi rekening Pegawai dan pembuatan Data Payroll', 1633441831);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_upload`
+-- Table structure for table `data_upload`
 --
 
 CREATE TABLE `data_upload` (
@@ -445,8 +199,8 @@ CREATE TABLE `data_upload` (
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `pegawai_payroll`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `pegawai_payroll`
+-- (See below for the actual view)
 --
 CREATE TABLE `pegawai_payroll` (
 `id` int(11)
@@ -465,8 +219,8 @@ CREATE TABLE `pegawai_payroll` (
 -- --------------------------------------------------------
 
 --
--- Stand-in struktur untuk tampilan `pegawai_sk`
--- (Lihat di bawah untuk tampilan aktual)
+-- Stand-in structure for view `pegawai_sk`
+-- (See below for the actual view)
 --
 CREATE TABLE `pegawai_sk` (
 `pegawai_id` int(11)
@@ -483,7 +237,7 @@ CREATE TABLE `pegawai_sk` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_angkutan`
+-- Table structure for table `ref_angkutan`
 --
 
 CREATE TABLE `ref_angkutan` (
@@ -494,7 +248,7 @@ CREATE TABLE `ref_angkutan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_angkutan`
+-- Dumping data for table `ref_angkutan`
 --
 
 INSERT INTO `ref_angkutan` (`id`, `nama`, `icon`, `jenis_id`) VALUES
@@ -508,7 +262,7 @@ INSERT INTO `ref_angkutan` (`id`, `nama`, `icon`, `jenis_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_darat`
+-- Table structure for table `ref_darat`
 --
 
 CREATE TABLE `ref_darat` (
@@ -520,7 +274,7 @@ CREATE TABLE `ref_darat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ref_darat`
+-- Dumping data for table `ref_darat`
 --
 
 INSERT INTO `ref_darat` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`, `sts`) VALUES
@@ -1200,7 +954,7 @@ INSERT INTO `ref_darat` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`, `sts`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_dokumen`
+-- Table structure for table `ref_dokumen`
 --
 
 CREATE TABLE `ref_dokumen` (
@@ -1210,7 +964,7 @@ CREATE TABLE `ref_dokumen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_dokumen`
+-- Dumping data for table `ref_dokumen`
 --
 
 INSERT INTO `ref_dokumen` (`id`, `kode`, `jenis`) VALUES
@@ -1223,7 +977,7 @@ INSERT INTO `ref_dokumen` (`id`, `kode`, `jenis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_jenis`
+-- Table structure for table `ref_jenis`
 --
 
 CREATE TABLE `ref_jenis` (
@@ -1232,7 +986,7 @@ CREATE TABLE `ref_jenis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_jenis`
+-- Dumping data for table `ref_jenis`
 --
 
 INSERT INTO `ref_jenis` (`id`, `nama`) VALUES
@@ -1243,7 +997,7 @@ INSERT INTO `ref_jenis` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_kapal`
+-- Table structure for table `ref_kapal`
 --
 
 CREATE TABLE `ref_kapal` (
@@ -1254,7 +1008,7 @@ CREATE TABLE `ref_kapal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ref_kapal`
+-- Dumping data for table `ref_kapal`
 --
 
 INSERT INTO `ref_kapal` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`) VALUES
@@ -1519,7 +1273,7 @@ INSERT INTO `ref_kapal` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_kubik`
+-- Table structure for table `ref_kubik`
 --
 
 CREATE TABLE `ref_kubik` (
@@ -1530,7 +1284,7 @@ CREATE TABLE `ref_kubik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_kubik`
+-- Dumping data for table `ref_kubik`
 --
 
 INSERT INTO `ref_kubik` (`id`, `gol`, `kdkawin`, `jumlah`) VALUES
@@ -1551,7 +1305,7 @@ INSERT INTO `ref_kubik` (`id`, `gol`, `kdkawin`, `jumlah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_laporan`
+-- Table structure for table `ref_laporan`
 --
 
 CREATE TABLE `ref_laporan` (
@@ -1564,7 +1318,7 @@ CREATE TABLE `ref_laporan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_laporan`
+-- Dumping data for table `ref_laporan`
 --
 
 INSERT INTO `ref_laporan` (`id`, `tahun_anggaran`, `nomor_spd`, `akun`, `dipa_kantor`, `kota`) VALUES
@@ -1573,7 +1327,7 @@ INSERT INTO `ref_laporan` (`id`, `tahun_anggaran`, `nomor_spd`, `akun`, `dipa_ka
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_packing`
+-- Table structure for table `ref_packing`
 --
 
 CREATE TABLE `ref_packing` (
@@ -1584,7 +1338,7 @@ CREATE TABLE `ref_packing` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_packing`
+-- Dumping data for table `ref_packing`
 --
 
 INSERT INTO `ref_packing` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`) VALUES
@@ -1595,7 +1349,7 @@ INSERT INTO `ref_packing` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_pangkat`
+-- Table structure for table `ref_pangkat`
 --
 
 CREATE TABLE `ref_pangkat` (
@@ -1607,7 +1361,7 @@ CREATE TABLE `ref_pangkat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ref_pangkat`
+-- Dumping data for table `ref_pangkat`
 --
 
 INSERT INTO `ref_pangkat` (`id`, `kdgol`, `nmgol`, `kdgapok`, `nama`) VALUES
@@ -1629,7 +1383,7 @@ INSERT INTO `ref_pangkat` (`id`, `kdgol`, `nmgol`, `kdgapok`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_pejabat`
+-- Table structure for table `ref_pejabat`
 --
 
 CREATE TABLE `ref_pejabat` (
@@ -1641,7 +1395,7 @@ CREATE TABLE `ref_pejabat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_pejabat`
+-- Dumping data for table `ref_pejabat`
 --
 
 INSERT INTO `ref_pejabat` (`id`, `kode`, `nip`, `nama`, `jabatan`) VALUES
@@ -1651,7 +1405,7 @@ INSERT INTO `ref_pejabat` (`id`, `kode`, `nip`, `nama`, `jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_pesawat`
+-- Table structure for table `ref_pesawat`
 --
 
 CREATE TABLE `ref_pesawat` (
@@ -1662,7 +1416,7 @@ CREATE TABLE `ref_pesawat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ref_pesawat`
+-- Dumping data for table `ref_pesawat`
 --
 
 INSERT INTO `ref_pesawat` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`) VALUES
@@ -2355,7 +2109,7 @@ INSERT INTO `ref_pesawat` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_proses`
+-- Table structure for table `ref_proses`
 --
 
 CREATE TABLE `ref_proses` (
@@ -2364,7 +2118,7 @@ CREATE TABLE `ref_proses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_proses`
+-- Dumping data for table `ref_proses`
 --
 
 INSERT INTO `ref_proses` (`id`, `nama`) VALUES
@@ -2383,7 +2137,7 @@ INSERT INTO `ref_proses` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_provinsi`
+-- Table structure for table `ref_provinsi`
 --
 
 CREATE TABLE `ref_provinsi` (
@@ -2393,7 +2147,7 @@ CREATE TABLE `ref_provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_provinsi`
+-- Dumping data for table `ref_provinsi`
 --
 
 INSERT INTO `ref_provinsi` (`id`, `tujuan`, `provinsi`) VALUES
@@ -2473,7 +2227,7 @@ INSERT INTO `ref_provinsi` (`id`, `tujuan`, `provinsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_rute`
+-- Table structure for table `ref_rute`
 --
 
 CREATE TABLE `ref_rute` (
@@ -2484,7 +2238,7 @@ CREATE TABLE `ref_rute` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_rute`
+-- Dumping data for table `ref_rute`
 --
 
 INSERT INTO `ref_rute` (`id`, `asal`, `tujuan`, `date_created`) VALUES
@@ -6968,7 +6722,7 @@ INSERT INTO `ref_rute` (`id`, `asal`, `tujuan`, `date_created`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_status_keluarga`
+-- Table structure for table `ref_status_keluarga`
 --
 
 CREATE TABLE `ref_status_keluarga` (
@@ -6977,7 +6731,7 @@ CREATE TABLE `ref_status_keluarga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_status_keluarga`
+-- Dumping data for table `ref_status_keluarga`
 --
 
 INSERT INTO `ref_status_keluarga` (`id`, `nama`) VALUES
@@ -6989,7 +6743,7 @@ INSERT INTO `ref_status_keluarga` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_sub_rute`
+-- Table structure for table `ref_sub_rute`
 --
 
 CREATE TABLE `ref_sub_rute` (
@@ -7001,7 +6755,7 @@ CREATE TABLE `ref_sub_rute` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_sub_rute`
+-- Dumping data for table `ref_sub_rute`
 --
 
 INSERT INTO `ref_sub_rute` (`id`, `rute_id`, `jenis_id`, `angkutan_id`, `ref_id`) VALUES
@@ -10081,7 +9835,7 @@ INSERT INTO `ref_sub_rute` (`id`, `rute_id`, `jenis_id`, `angkutan_id`, `ref_id`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_tarif_darat`
+-- Table structure for table `ref_tarif_darat`
 --
 
 CREATE TABLE `ref_tarif_darat` (
@@ -10091,7 +9845,7 @@ CREATE TABLE `ref_tarif_darat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `ref_tarif_darat`
+-- Dumping data for table `ref_tarif_darat`
 --
 
 INSERT INTO `ref_tarif_darat` (`id`, `orang`, `barang`) VALUES
@@ -10100,7 +9854,7 @@ INSERT INTO `ref_tarif_darat` (`id`, `orang`, `barang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_uang_harian`
+-- Table structure for table `ref_uang_harian`
 --
 
 CREATE TABLE `ref_uang_harian` (
@@ -10112,7 +9866,7 @@ CREATE TABLE `ref_uang_harian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ref_uang_harian`
+-- Dumping data for table `ref_uang_harian`
 --
 
 INSERT INTO `ref_uang_harian` (`id`, `provinsi`, `luar_kota`, `dalam_kota`, `diklat`) VALUES
@@ -10154,7 +9908,7 @@ INSERT INTO `ref_uang_harian` (`id`, `provinsi`, `luar_kota`, `dalam_kota`, `dik
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ref_users`
+-- Table structure for table `ref_users`
 --
 
 CREATE TABLE `ref_users` (
@@ -10168,18 +9922,19 @@ CREATE TABLE `ref_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ref_users`
+-- Dumping data for table `ref_users`
 --
 
 INSERT INTO `ref_users` (`id`, `nip`, `nama`, `email`, `password`, `is_active`, `date_created`) VALUES
 (4, '198407022003121004', 'Dana Kristiawan', 'danakristiawan@gmail.com', '$2y$10$.WOt64Sf2QnX4NqPkea60uNJMrnhZhWLAGW/JFRvkN1VYK3LG79Wq', 1, 1577811600),
 (6, '198801142014022005', 'Dini Indri Irianti', 'dinindririanti@gmail.com', '$2y$10$nZp/KQM9KRAabKuW8iTqeersCYgUNIpPA5GIDEq.kXyvdh/aEBjv6', 1, 1609434000),
-(7, '123456789012345678', 'Inem', 'inem@inem.com', '$2y$10$/9Q9leZbGJ8B5acRztxwO.zsE9mDgV4uK8dhcNCtq0dWrCbj6hDHu', 1, 1633945679);
+(8, '199212012014112002', 'Nur Ayu Saraswati', 'nurayu@gmail.com', '$2y$10$Et400MlK4JesWRLG/wh4QOK1nEO1LP3HgBYpV5NyU9GIylouvjdz6', 1, 1634008686),
+(9, '198908052010121001', 'Andito', 'andito@gmail.com', '$2y$10$hwfRHnu6ZX4a7rLTCXADi.RZnSSopYdf2lo99p7fWP/2x5XaF/dyS', 1, 1634008738);
 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `biaya_pegawai`
+-- Structure for view `biaya_pegawai`
 --
 DROP TABLE IF EXISTS `biaya_pegawai`;
 
@@ -10188,7 +9943,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `pegawai_payroll`
+-- Structure for view `pegawai_payroll`
 --
 DROP TABLE IF EXISTS `pegawai_payroll`;
 
@@ -10197,7 +9952,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Struktur untuk view `pegawai_sk`
+-- Structure for view `pegawai_sk`
 --
 DROP TABLE IF EXISTS `pegawai_sk`;
 
@@ -10208,344 +9963,344 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indeks untuk tabel `data_art`
+-- Indexes for table `data_art`
 --
 ALTER TABLE `data_art`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `data_biaya`
+-- Indexes for table `data_biaya`
 --
 ALTER TABLE `data_biaya`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `data_keluarga`
+-- Indexes for table `data_keluarga`
 --
 ALTER TABLE `data_keluarga`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `data_payroll`
+-- Indexes for table `data_payroll`
 --
 ALTER TABLE `data_payroll`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `data_pegawai`
+-- Indexes for table `data_pegawai`
 --
 ALTER TABLE `data_pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_sk`
+-- Indexes for table `data_sk`
 --
 ALTER TABLE `data_sk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_sub_payroll`
+-- Indexes for table `data_sub_payroll`
 --
 ALTER TABLE `data_sub_payroll`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_timeline`
+-- Indexes for table `data_timeline`
 --
 ALTER TABLE `data_timeline`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `data_upload`
+-- Indexes for table `data_upload`
 --
 ALTER TABLE `data_upload`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_angkutan`
+-- Indexes for table `ref_angkutan`
 --
 ALTER TABLE `ref_angkutan`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_darat`
+-- Indexes for table `ref_darat`
 --
 ALTER TABLE `ref_darat`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_dokumen`
+-- Indexes for table `ref_dokumen`
 --
 ALTER TABLE `ref_dokumen`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ref_jenis`
+-- Indexes for table `ref_jenis`
 --
 ALTER TABLE `ref_jenis`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_kapal`
+-- Indexes for table `ref_kapal`
 --
 ALTER TABLE `ref_kapal`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_kubik`
+-- Indexes for table `ref_kubik`
 --
 ALTER TABLE `ref_kubik`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_laporan`
+-- Indexes for table `ref_laporan`
 --
 ALTER TABLE `ref_laporan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ref_packing`
+-- Indexes for table `ref_packing`
 --
 ALTER TABLE `ref_packing`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_pangkat`
+-- Indexes for table `ref_pangkat`
 --
 ALTER TABLE `ref_pangkat`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_pejabat`
+-- Indexes for table `ref_pejabat`
 --
 ALTER TABLE `ref_pejabat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ref_pesawat`
+-- Indexes for table `ref_pesawat`
 --
 ALTER TABLE `ref_pesawat`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_proses`
+-- Indexes for table `ref_proses`
 --
 ALTER TABLE `ref_proses`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ref_provinsi`
+-- Indexes for table `ref_provinsi`
 --
 ALTER TABLE `ref_provinsi`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_rute`
+-- Indexes for table `ref_rute`
 --
 ALTER TABLE `ref_rute`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_status_keluarga`
+-- Indexes for table `ref_status_keluarga`
 --
 ALTER TABLE `ref_status_keluarga`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ref_sub_rute`
+-- Indexes for table `ref_sub_rute`
 --
 ALTER TABLE `ref_sub_rute`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_tarif_darat`
+-- Indexes for table `ref_tarif_darat`
 --
 ALTER TABLE `ref_tarif_darat`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `ref_uang_harian`
+-- Indexes for table `ref_uang_harian`
 --
 ALTER TABLE `ref_uang_harian`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indeks untuk tabel `ref_users`
+-- Indexes for table `ref_users`
 --
 ALTER TABLE `ref_users`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `data_art`
+-- AUTO_INCREMENT for table `data_art`
 --
 ALTER TABLE `data_art`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_biaya`
+-- AUTO_INCREMENT for table `data_biaya`
 --
 ALTER TABLE `data_biaya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11295;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_keluarga`
+-- AUTO_INCREMENT for table `data_keluarga`
 --
 ALTER TABLE `data_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_payroll`
+-- AUTO_INCREMENT for table `data_payroll`
 --
 ALTER TABLE `data_payroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_pegawai`
+-- AUTO_INCREMENT for table `data_pegawai`
 --
 ALTER TABLE `data_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_sk`
+-- AUTO_INCREMENT for table `data_sk`
 --
 ALTER TABLE `data_sk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_sub_payroll`
+-- AUTO_INCREMENT for table `data_sub_payroll`
 --
 ALTER TABLE `data_sub_payroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_timeline`
+-- AUTO_INCREMENT for table `data_timeline`
 --
 ALTER TABLE `data_timeline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `data_upload`
+-- AUTO_INCREMENT for table `data_upload`
 --
 ALTER TABLE `data_upload`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_angkutan`
+-- AUTO_INCREMENT for table `ref_angkutan`
 --
 ALTER TABLE `ref_angkutan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_darat`
+-- AUTO_INCREMENT for table `ref_darat`
 --
 ALTER TABLE `ref_darat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=696;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_dokumen`
+-- AUTO_INCREMENT for table `ref_dokumen`
 --
 ALTER TABLE `ref_dokumen`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_jenis`
+-- AUTO_INCREMENT for table `ref_jenis`
 --
 ALTER TABLE `ref_jenis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_kapal`
+-- AUTO_INCREMENT for table `ref_kapal`
 --
 ALTER TABLE `ref_kapal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_kubik`
+-- AUTO_INCREMENT for table `ref_kubik`
 --
 ALTER TABLE `ref_kubik`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_laporan`
+-- AUTO_INCREMENT for table `ref_laporan`
 --
 ALTER TABLE `ref_laporan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_packing`
+-- AUTO_INCREMENT for table `ref_packing`
 --
 ALTER TABLE `ref_packing`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_pangkat`
+-- AUTO_INCREMENT for table `ref_pangkat`
 --
 ALTER TABLE `ref_pangkat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_pejabat`
+-- AUTO_INCREMENT for table `ref_pejabat`
 --
 ALTER TABLE `ref_pejabat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_pesawat`
+-- AUTO_INCREMENT for table `ref_pesawat`
 --
 ALTER TABLE `ref_pesawat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=686;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_proses`
+-- AUTO_INCREMENT for table `ref_proses`
 --
 ALTER TABLE `ref_proses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_provinsi`
+-- AUTO_INCREMENT for table `ref_provinsi`
 --
 ALTER TABLE `ref_provinsi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_rute`
+-- AUTO_INCREMENT for table `ref_rute`
 --
 ALTER TABLE `ref_rute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4488;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_status_keluarga`
+-- AUTO_INCREMENT for table `ref_status_keluarga`
 --
 ALTER TABLE `ref_status_keluarga`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_sub_rute`
+-- AUTO_INCREMENT for table `ref_sub_rute`
 --
 ALTER TABLE `ref_sub_rute`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3478;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_tarif_darat`
+-- AUTO_INCREMENT for table `ref_tarif_darat`
 --
 ALTER TABLE `ref_tarif_darat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_uang_harian`
+-- AUTO_INCREMENT for table `ref_uang_harian`
 --
 ALTER TABLE `ref_uang_harian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT untuk tabel `ref_users`
+-- AUTO_INCREMENT for table `ref_users`
 --
 ALTER TABLE `ref_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

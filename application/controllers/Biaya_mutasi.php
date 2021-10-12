@@ -347,6 +347,7 @@ class Biaya_mutasi extends CI_Controller
         $sheet->setCellValue('I1', 'jml_barang');
         $sheet->setCellValue('J1', 'jml_lumpsum');
         $sheet->setCellValue('K1', 'jml_total');
+        $sheet->setCellValue('L1', 'nm_bank');
 
         $biaya_pegawai = $this->biaya_pegawai->getBiayaPegawai($sk_id);
 
@@ -364,6 +365,7 @@ class Biaya_mutasi extends CI_Controller
             $sheet->setCellValue('I' . $i, $r['jml_jenis2']);
             $sheet->setCellValue('J' . $i, $r['jml_jenis3']);
             $sheet->setCellValue('K' . $i, $r['jml_total']);
+            $sheet->setCellValue('L' . $i, $r['nm_bank']);
             $i++;
         }
 
@@ -376,7 +378,7 @@ class Biaya_mutasi extends CI_Controller
         ];
 
         $i = $i - 1;
-        $sheet->getStyle('A1:K' . $i)->applyFromArray($styleArray);
+        $sheet->getStyle('A1:L' . $i)->applyFromArray($styleArray);
 
         // simpan datanya
         $date = date('d-m-y-' . substr((string)microtime(), 1, 8));
