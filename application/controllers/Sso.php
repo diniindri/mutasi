@@ -37,14 +37,23 @@ class Sso extends CI_Controller
                         'access_token' => $access_token
                     ]
                 ]);
-                $userinfo =  json_decode($response->getBody()->getContents(), true);
+                if ($response) {
 
-                $newdata = [
-                    'nip' => $userinfo['nip'],
-                    'id_token' => $token['id_token']
-                ];
-                $this->session->set_userdata($newdata);
-                redirect('dashboard');
+                    // regenerate id session mulai
+                    $_SESSION['authenticated'] = true;
+                    session_regenerate_id();
+                    // regenerate id session selesai
+
+                    $userinfo =  json_decode($response->getBody()->getContents(), true);
+                    $newdata = [
+                        'nip' => $userinfo['nip'],
+                        'id_token' => $token['id_token']
+                    ];
+                    $this->session->set_userdata($newdata);
+                    redirect('dashboard');
+                } else {
+                    redirect('welcome');
+                }
             } else {
                 redirect('welcome');
             }
