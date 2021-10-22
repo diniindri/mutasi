@@ -125,21 +125,6 @@ class Biaya_mutasi extends CI_Controller
         $tarif_orang = $tarif_darat['orang'];
         $tarif_barang = $tarif_darat['barang'];
 
-        // cek koefisien packing 1 atau 0.5
-        $darat = $this->db->get_where('ref_sub_rute', ['rute_id' => $ref_rute_id, 'angkutan_id' => 3])->row_array();
-        if ($darat) {
-            $ref_darat = $this->darat->getDetailDarat($darat['ref_id'])['sts'];
-            if ($ref_darat['sts'] == '1' and $ref_darat['jumlah'] <= 50) {
-                $koef = 0.5;
-            } else if ($ref_darat['sts'] == '2' and $ref_darat['jumlah'] <= 100) {
-                $koef = 0.5;
-            } else {
-                $koef = 1;
-            }
-        } else {
-            $koef = 1;
-        }
-
         // hitung biaya angkutan sesuai jenis angkutan sesuai tabel subrute
         $subrute = $this->subrute->getRefRute($ref_rute_id);
         foreach ($subrute as $r) {
@@ -227,8 +212,8 @@ class Biaya_mutasi extends CI_Controller
                         'angkutan_id' => $angkutan_id,
                         'satuan' => $jumlah_kubik,
                         'jarak' => '',
-                        'tarif' => $packing['jumlah'] * $koef,
-                        'jumlah' => $jumlah_kubik * $packing['jumlah'] * $koef,
+                        'tarif' => $packing['jumlah'],
+                        'jumlah' => $jumlah_kubik * $packing['jumlah'],
                         'pegawai_id' => $pegawai_id,
                         'uraian' => $packing['kota_asal'] . '-' . $packing['kota_tujuan']
                     ];
@@ -254,6 +239,25 @@ class Biaya_mutasi extends CI_Controller
         ];
         $this->biaya->createBiaya($data);
         // jika berhasil hitung
+
+        // cek apakah ada packing 0.5 apa tidak
+        $packing_darat = $this->db->get_where('data_biaya', ['pegawai_id' => $pegawai_id, 'uraian' => 'PACKING-DARAT'])->row_array();
+        if ($packing_darat) {
+            $id_packing_darat = $packing_darat['id'];
+            $satuan_packing_darat = $packing_darat['satuan'];
+            $id_truk = $id_packing_darat + 1;
+            $subrute_id = $this->db->get_where('data_biaya', ['id' => $id_truk])->row_array()['subrute_id'];
+            // cek status pada referensi darat
+            $ref_id = $this->db->get_where('ref_sub_rute', ['id' => $subrute_id])->row_array()['ref_id'];
+            $ref_darat = $this->db->get_where('ref_darat', ['id' => $ref_id])->row_array();
+            if ($ref_darat['sts'] == '1' and $ref_darat['jumlah'] <= 50) {
+                $this->db->update('data_biaya', ['tarif' => 30000, 'jumlah' => $satuan_packing_darat * 30000], ['id' => $id_packing_darat]);
+            } else if ($ref_darat['sts'] == '2' and $ref_darat['jumlah'] <= 100) {
+                $this->db->update('data_biaya', ['tarif' => 30000, 'jumlah' => $satuan_packing_darat * 30000], ['id' => $id_packing_darat]);
+            }
+        }
+        // selesai cek packing 0.5
+
         // update nominal pada data pegawai
         $nominal = $this->biaya->getSumBiaya($pegawai_id)['jumlah'];
         $this->pegawai->updatePegawai(['nominal' => $nominal], $pegawai_id);
