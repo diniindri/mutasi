@@ -22,6 +22,7 @@ class Biaya_mutasi extends CI_Controller
         $this->load->model('Ref_pejabat_model', 'pejabat');
         $this->load->model('View_biaya_pegawai_model', 'biaya_pegawai');
         $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('Ref_darat_model', 'darat');
     }
 
     public function index()
@@ -123,11 +124,21 @@ class Biaya_mutasi extends CI_Controller
         $tarif_darat = $this->tarif_darat->getDetailTarifDarat(1);
         $tarif_orang = $tarif_darat['orang'];
         $tarif_barang = $tarif_darat['barang'];
-        // tarik data packing
-        $packing_darat = $this->packing->getDetailPacking(1)['jumlah'];
-        $packing_laut = $this->packing->getDetailPacking(2)['jumlah'];
-        $packing_udara = $this->packing->getDetailPacking(3)['jumlah'];
-        $koefisien_packing = 1;
+
+        // cek koefisien packing 1 atau 0.5
+        $darat = $this->db->get_where('ref_sub_rute', ['rute_id' => $ref_rute_id, 'angkutan_id' => 3])->row_array();
+        if ($darat) {
+            $ref_darat = $this->darat->getDetailDarat($darat['ref_id'])['sts'];
+            if ($ref_darat['sts'] == '1' and $ref_darat['jumlah'] <= 50) {
+                $koef = 0.5;
+            } else if ($ref_darat['sts'] == '2' and $ref_darat['jumlah'] <= 100) {
+                $koef = 0.5;
+            } else {
+                $koef = 1;
+            }
+        } else {
+            $koef = 1;
+        }
 
         // hitung biaya angkutan sesuai jenis angkutan sesuai tabel subrute
         $subrute = $this->subrute->getRefRute($ref_rute_id);
@@ -209,19 +220,6 @@ class Biaya_mutasi extends CI_Controller
                     $this->biaya->createBiaya($data);
                     break;
                 case '5':
-                    // cek tarif apakah berlaku 50% apa 100%
-                    // jika di pulau jawa, jarak dibawah 50km berlaku 50%, diatas 50km berlaku 100%
-                    // jika di luar jawa, jarak dibawah 100km berlaku 50%, diatas 100km berlaku 100%
-                    $truk = $this->subrute->getRefSubRute(3, $ref_id);
-                    if ($truk) {
-                        if ($truk['sts'] == '1' and $truk['jumlah'] <= 50) {
-                            $koefisien_packing = $koefisien_packing * 0.5;
-                        } else if ($truk['sts'] == '2' and $truk['jumlah'] <= 100) {
-                            $koefisien_packing = $koefisien_packing * 0.5;
-                        } else {
-                            $koefisien_packing = $koefisien_packing;
-                        }
-                    }
                     $packing = $this->subrute->getRefSubRute(5, $ref_id);
                     $data = [
                         'subrute_id' => $subrute_id,
@@ -229,8 +227,8 @@ class Biaya_mutasi extends CI_Controller
                         'angkutan_id' => $angkutan_id,
                         'satuan' => $jumlah_kubik,
                         'jarak' => '',
-                        'tarif' => $packing['jumlah'] * $koefisien_packing,
-                        'jumlah' => $jumlah_kubik * $packing['jumlah'] * $koefisien_packing,
+                        'tarif' => $packing['jumlah'] * $koef,
+                        'jumlah' => $jumlah_kubik * $packing['jumlah'] * $koef,
                         'pegawai_id' => $pegawai_id,
                         'uraian' => $packing['kota_asal'] . '-' . $packing['kota_tujuan']
                     ];
