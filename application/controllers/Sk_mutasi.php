@@ -144,4 +144,46 @@ class sk_mutasi extends CI_Controller
         }
         redirect('sk-mutasi');
     }
+
+    public function nd($sk_id = null)
+    {
+        if (!isset($sk_id)) show_404();
+
+        $data['sk_id'] = $sk_id;
+
+        $validation = $this->form_validation->set_rules('file', 'File', 'trim');
+        if ($validation->run() && $_FILES) {
+            //upload file pdf
+            $upload_file = $_FILES['file']['name'];
+            if ($upload_file) {
+                $config['allowed_types'] = 'pdf';
+                $config['remove_spaces'] = TRUE;
+                $config['max_size']     = '10000';
+                $config['encrypt_name']     = TRUE;
+                $config['upload_path'] = 'assets/files/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('file')) {
+                    $new_file = $this->upload->data('file_name');
+                    $this->db->set('file', $new_file);
+                    $data = [
+                        'file' => $new_file
+                    ];
+                    $this->sk->updateSk($data, $sk_id);
+                    redirect('sk-mutasi');
+                } else {
+                    echo $this->upload->display_errors();
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Upload file gagal, mohon menggunakan format file pdf dan ukuran maksimal 10 MB!</div>');
+                    redirect('sk-mutasi');
+                }
+            }
+        }
+
+        // form
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('sk_mutasi/nd', $data);
+        $this->load->view('template/footer');
+    }
 }

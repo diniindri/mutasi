@@ -11,4 +11,8 @@ class View_pegawai_sk_model extends CI_Model
     {
         return $this->db->get_where('pegawai_sk', ['pegawai_id' => $pegawai_id])->row_array();
     }
+    public function getSk($sk_id = null, $nip = null)
+    {
+        return $this->db->get_where('pegawai_sk', ['sk_id' => $sk_id, 'nip' => $nip])->row_array();
+    }
 }

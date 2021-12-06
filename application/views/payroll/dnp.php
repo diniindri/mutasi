@@ -61,28 +61,28 @@
         <h5 style="margin-top:0; margin-bottom:10px;">DAFTAR NOMINATIF PEMBAYARAN (DNP)</h5>
         <p style="text-align: center; margin:0; padding:0; font-size: 11px;"><?= $sk['uraian']; ?></p>
         <p style="text-align: center; margin:0; padding:0; font-size: 11px;">Nomor <?= $sk['nomor']; ?> Tanggal <?= tanggal($sk['tanggal']); ?></p>
-        <table>
-            <tr>
-                <td rowspan="2" style="text-align: center; width:3%; padding:0;">No</td>
-                <td rowspan="2" style="text-align: center; width:20%;">Nama/NIP</td>
-                <td rowspan="2" style="text-align: center; width:4%; padding:0;">Gol</td>
-                <td rowspan="2" style="text-align: center; width:17%;">Rute</td>
-                <td colspan="4" style="text-align: center; width:40%;">Biaya Angkutan</td>
-                <td rowspan="2" style="text-align: center; width:15%;">Rekening</td>
-            </tr>
-            <tr>
-                <td style="text-align: center; width:10%;">Pegawai</td>
-                <td style="text-align: center; width:10%;">Barang</td>
-                <td style="text-align: center; width:10%;">Lumpsum</td>
-                <td style="text-align: center; width:11%;">Jumlah</td>
-            </tr>
-        </table>
+
     </page_header>
     <page_footer>
 
     </page_footer>
-
     <table style="margin-top: 130px;">
+        <tr>
+            <td rowspan="2" style="text-align: center; width:3%; padding:0;">No</td>
+            <td rowspan="2" style="text-align: center; width:20%;">Nama/NIP</td>
+            <td rowspan="2" style="text-align: center; width:4%; padding:0;">Gol</td>
+            <td rowspan="2" style="text-align: center; width:17%;">Rute</td>
+            <td colspan="4" style="text-align: center; width:40%;">Biaya Angkutan</td>
+            <td rowspan="2" style="text-align: center; width:15%;">Rekening</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; width:10%;">Pegawai</td>
+            <td style="text-align: center; width:10%;">Barang</td>
+            <td style="text-align: center; width:10%;">Lumpsum</td>
+            <td style="text-align: center; width:11%;">Jumlah</td>
+        </tr>
+    </table>
+    <table>
         <?php $no = 1;
         $j1 = 0;
         $j2 = 0;
