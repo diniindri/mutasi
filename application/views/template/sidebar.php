@@ -2,14 +2,23 @@
     <div class="position-sticky pt-3">
         <?php
         $nip = $this->session->userdata('nip');
-        if ($this->db->get_where('ref_users', ['nip' => $nip])->row_array()) {
-            $levels = [
-                ['id' => 1, 'level' => 'halaman Utama'],
-                ['id' => 2, 'level' => 'Rincian']
-            ];
+        $user = $this->db->get_where('ref_users', ['nip' => $nip])->row_array();
+        if ($user) {
+            if ($user['is_active'] == 1) {
+                $levels = [
+                    ['id' => 1, 'level' => 'Halaman Utama'],
+                    ['id' => 2, 'level' => 'Rincian'],
+                    ['id' => 3, 'level' => 'Pendukung']
+                ];
+            } else {
+                $levels = [
+                    ['id' => 1, 'level' => 'Halaman Utama'],
+                    ['id' => 3, 'level' => 'Pendukung']
+                ];
+            }
         } else {
             $levels = [
-                ['id' => 1, 'level' => 'halaman Utama']
+                ['id' => 1, 'level' => 'Halaman Utama']
             ];
         }
 
@@ -22,7 +31,8 @@
             ['menu' => 'Biaya Mutasi', 'level' => 2, 'url' => 'biaya-mutasi'],
             ['menu' => 'Monitoring Dokumen', 'level' => 2, 'url' => 'monitoring-dokumen'],
             ['menu' => 'Payroll', 'level' => 2, 'url' => 'payroll'],
-            ['menu' => 'Referensi', 'level' => 2, 'url' => 'referensi'],
+            ['menu' => 'User', 'level' => 2, 'url' => 'users'],
+            ['menu' => 'Referensi', 'level' => 3, 'url' => 'referensi'],
 
         ];
         foreach ($levels as $r) :
