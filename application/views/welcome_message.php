@@ -46,8 +46,8 @@ $authorize_url = $uri . '?grant_type=' . $grant_type . '&response_type=' . $resp
 	<main>
 		<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
 			<div class="col-md-6 p-lg-5 mx-auto my-5">
-				<h1 class="display-4 font-weight-normal">Hai!, Selamat Datang di Biaya Mutasi.</h1>
-				<p class="font-weight-light mt-4">Dengan Aplikasi Biaya Mutasi, kami hadirkan kemudahan dalam mengakses informasi biaya mutasi di layar Anda.</p>
+				<h1 class="display-4 font-weight-normal">Hai!, Selamat Datang di Sistem Perhitungan Biaya Mutasi.</h1>
+				<p class="font-weight-light mt-4">Dengan Sistem Perhitungan Biaya Mutasi, kami hadirkan kemudahan dalam mengakses informasi biaya mutasi di layar Anda.</p>
 				<a class="btn btn-outline-primary mb-3" href="<?= $authorize_url; ?>">Login Menggunakan Kemenkeu ID</a>
 			</div>
 		</div>

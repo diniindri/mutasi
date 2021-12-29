@@ -53,12 +53,13 @@
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <?php foreach ($dataUpload as $s) : ?>
-                                            <a href="<?= base_url('assets/files/') . $s['file']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" download="download"><?= $s['jenis']; ?></a>
+                                            <a href="<?= base_url('assets/files/') . $s['file']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" target="blank"><?= $s['jenis']; ?></a>
                                         <?php endforeach; ?>
                                     </div>
                                 </td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
+                                        <a href="<?= base_url('monitoring-dokumen/download/') . $sk_id . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Download</a>
                                         <a href="<?= base_url('monitoring-dokumen/upload/') . $sk_id . '/' . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Upload</a>
                                         <a href="<?= base_url('monitoring-dokumen/hapus/') . $sk_id . '/'  . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hapus</a>
                                     </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Oct 12, 2021 at 03:20 AM
+-- Generation Time: Dec 06, 2021 at 02:49 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.3.9
 
@@ -78,6 +78,73 @@ CREATE TABLE `data_biaya` (
   `uraian` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `data_biaya`
+--
+
+INSERT INTO `data_biaya` (`id`, `subrute_id`, `jenis_id`, `angkutan_id`, `satuan`, `jarak`, `tarif`, `jumlah`, `pegawai_id`, `uraian`) VALUES
+(41, 450, 1, 2, 1.00, 56, 2000, 112000, 3, 'JAKARTA-BOGOR'),
+(42, 452, 2, 5, 3.00, 0, 30000, 90000, 3, 'PACKING-DARAT'),
+(43, 453, 2, 3, 3.00, 56, 200, 33600, 3, 'JAKARTA-BOGOR'),
+(44, 0, 3, 6, 1.00, 3, 430000, 1290000, 3, 'UANG HARIAN'),
+(52, 2059, 1, 1, 1.00, 0, 1631000, 1631000, 5, 'DENPASAR-JAKARTA'),
+(53, 2060, 2, 4, 3.00, 0, 265000, 795000, 5, 'DENPASAR-SURABAYA'),
+(54, 2061, 2, 3, 3.00, 784, 400, 940800, 5, 'SURABAYA-JAKARTA'),
+(55, 2131, 2, 5, 3.00, 0, 60000, 180000, 5, 'PACKING-LAUT'),
+(56, 0, 3, 6, 1.00, 3, 530000, 1590000, 5, 'UANG HARIAN'),
+(57, 0, 3, 6, 4.00, 3, 380000, 4560000, 4, 'UANG HARIAN'),
+(62, 306, 1, 2, 4.00, 49, 2000, 392000, 1, 'BANDARLAMPUNG-METRO'),
+(63, 307, 2, 5, 20.00, 0, 30000, 600000, 1, 'PACKING-DARAT'),
+(64, 308, 2, 3, 20.00, 49, 200, 196000, 1, 'BANDARLAMPUNG-METRO'),
+(65, 0, 3, 6, 4.00, 3, 380000, 4560000, 1, 'UANG HARIAN'),
+(78, 720, 1, 1, 4.00, 0, 1337000, 5348000, 2, 'JAKARTA-SURABAYA'),
+(79, 722, 2, 5, 20.00, 0, 60000, 1200000, 2, 'PACKING-DARAT'),
+(80, 725, 2, 3, 20.00, 784, 400, 6272000, 2, 'JAKARTA-SURABAYA'),
+(81, 0, 3, 6, 4.00, 3, 410000, 4920000, 2, 'UANG HARIAN'),
+(82, 2070, 1, 1, 4.00, 0, 1898500, 7594000, 4, 'BALIKPAPAN-JAKARTA'),
+(83, 2071, 2, 4, 20.00, 0, 656000, 13120000, 4, 'BALIKPAPAN-SURABAYA'),
+(84, 2072, 2, 3, 20.00, 784, 400, 6272000, 4, 'SURABAYA-JAKARTA'),
+(85, 2135, 2, 5, 20.00, 0, 60000, 1200000, 4, 'PACKING-LAUT'),
+(86, 0, 3, 6, 4.00, 3, 530000, 6360000, 4, 'UANG HARIAN'),
+(87, 153, 1, 1, 4.00, 0, 1508000, 6032000, 5, 'PEKANBARU-JAKARTA'),
+(88, 155, 2, 5, 20.00, 0, 60000, 1200000, 5, 'PACKING-DARAT'),
+(89, 160, 1, 2, 4.00, 176, 2000, 1408000, 5, 'DUMAI-PEKANBARU'),
+(90, 161, 2, 3, 20.00, 1506, 400, 12048000, 5, 'DUMAI-JAKARTA'),
+(91, 0, 3, 6, 4.00, 3, 530000, 6360000, 5, 'UANG HARIAN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `data_jadwal`
+--
+
+CREATE TABLE `data_jadwal` (
+  `id` int(11) NOT NULL,
+  `uraian` varchar(255) DEFAULT NULL,
+  `pic` varchar(32) DEFAULT NULL,
+  `tglawal` int(11) DEFAULT NULL,
+  `tglakhir` int(11) DEFAULT NULL,
+  `sk_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data_jadwal`
+--
+
+INSERT INTO `data_jadwal` (`id`, `uraian`, `pic`, `tglawal`, `tglakhir`, `sk_id`) VALUES
+(7, 'pembuatan SK mutasi 1', 'Keuangan', 1614618000, 1614704400, 1),
+(9, 'pembayaran', 'Keuangan', 1614618000, 1614704400, 1),
+(10, 'Pembukaan Akses Modul Mutasi di ALIKA untuk Pegawai yang masuk SK', 'Kepegawaian', 1612198800, 1612198800, 3),
+(11, 'Upload KP4 Oleh Pegawai', 'Pegawai', 1612198800, 1612803600, 3),
+(12, 'Verifikasi KP4', 'Kepegawaian', 1612198800, 1613062800, 3),
+(13, 'Verivikasi KP4 (Penyesuaian data keluarga pegawai di aplikasi gaji)', 'Keuangan', 1612198800, 1613062800, 3),
+(14, 'Pengajuan SPP Pembayaran Mutasi', 'Kepegawaian', 1639069200, 1639069200, 3),
+(15, 'Pengajuan SPM', 'Keuangan', 1612976400, 1612976400, 3),
+(16, 'Cetak, tanda tangan, dan upload Rincian Biaya Perjalanan dinas dan SPD lembar 2', 'Pegawai', 1612803600, 1614099600, 3),
+(17, 'Verifikasi Rincian Biaya Perjadin dan SPD', 'Kepegawaian', 1612803600, 1613926800, 3),
+(18, 'Verifikasi data pegawai siap payroll', 'Keuangan', 1612803600, 1613926800, 3),
+(19, 'Payroll Dana Mutasi', 'Keuangan', 1612803600, 1613926800, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -93,6 +160,28 @@ CREATE TABLE `data_keluarga` (
   `sts` int(1) DEFAULT NULL,
   `pegawai_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data_keluarga`
+--
+
+INSERT INTO `data_keluarga` (`id`, `nama`, `kdkeluarga`, `tgllhr`, `kddapat`, `sts`, `pegawai_id`) VALUES
+(2, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 1),
+(3, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 1),
+(5, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 1),
+(6, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 1),
+(7, 'Dini Indri Irianti', '3', '0000-00-00', '1', 0, 1),
+(9, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 1),
+(10, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 1),
+(11, 'Alam Firdaus                                      ', '2', '1990-09-23', '1', 0, 1),
+(12, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 1),
+(13, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 1),
+(14, 'Alam Firdaus                                      ', '2', '1990-09-23', '1', 0, 4),
+(15, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 4),
+(16, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 4),
+(17, 'Alam Firdaus                                      ', '2', '1990-09-23', '1', 0, 5),
+(18, 'Aruna Aila Firdinia                               ', '3', '2015-11-22', '1', 0, 5),
+(19, 'Alby Xavier Rafassya                              ', '3', '2018-01-02', '1', 0, 5);
 
 -- --------------------------------------------------------
 
@@ -111,6 +200,13 @@ CREATE TABLE `data_payroll` (
   `tglspp` int(11) DEFAULT NULL,
   `status` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data_payroll`
+--
+
+INSERT INTO `data_payroll` (`id`, `sk_id`, `uraian`, `jumlah`, `nominal`, `tanggal`, `nospp`, `tglspp`, `status`) VALUES
+(1, 1, 'tahap 1', 2, 23488000, 1609434000, '00001', 1609434000, 0);
 
 -- --------------------------------------------------------
 
@@ -140,6 +236,16 @@ CREATE TABLE `data_pegawai` (
   `tingkat` varchar(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `data_pegawai`
+--
+
+INSERT INTO `data_pegawai` (`id`, `sk_id`, `nip`, `nmpeg`, `kdgapok`, `kdkawin`, `kubik`, `infant`, `art`, `nominal`, `rekening`, `nm_bank`, `nmrek`, `ref_rute_id`, `status`, `no_spd`, `tgl_spd`, `jabatan`, `tingkat`) VALUES
+(2, 1, '198407022003121004', 'DANA KRISTIAWAN                                                                                     ', '3A12', '1102', 20, 0, 0, '17740000.00', '050701017205506               ', 'PT.BANK RAKYAT INDONESIA (Persero) Tbk. KANTOR PUSAT                                                ', 'DANA KRISTIAWAN                                                 ', 1228, 1, NULL, NULL, NULL, NULL),
+(3, 1, '198805302008121002', 'Andriansyah                                                                                         ', '2C11', '1102', NULL, 0, 0, '0.00', '0161077402                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Andriansyah                                                     ', NULL, 0, NULL, NULL, NULL, NULL),
+(4, 2, '198801142014022005', 'Dini Indri Irianti, S.E.                                                                            ', '3B06', '1102', 20, 0, 0, '39106000.00', '0331539263                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Dini Indri Irianti                                              ', 4454, 0, NULL, NULL, NULL, NULL),
+(5, 3, '198801142014022005', 'Dini Indri Irianti, S.E.                                                                            ', '3B06', '1102', 20, 0, 0, '32184800.00', '0331539263                    ', 'PT. BANK NEGARA INDONESIA 1946 (Persero) Tbk. KC PECENONGAN                                         ', 'Dini Indri Irianti                                              ', 1058, 0, NULL, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -153,8 +259,18 @@ CREATE TABLE `data_sk` (
   `uraian` varchar(255) DEFAULT NULL,
   `nospp` varchar(5) DEFAULT NULL,
   `tglspp` int(11) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL
+  `status` int(1) DEFAULT NULL,
+  `file` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data_sk`
+--
+
+INSERT INTO `data_sk` (`id`, `nomor`, `tanggal`, `uraian`, `nospp`, `tglspp`, `status`, `file`) VALUES
+(1, '01/DJKN.1/2021', 1609434000, 'PEMBERHENTIAN DARI JABATAN PENGAWAS SDRI. PALUPI ANGGRAENI, S.P., M.M., NIP 198305152009012005, PENATA\r\nTINGKAT I (Ill/d), KEPALA SEKSI PENGELOLAAN KEKAYAAN PEMBERHENTIAN DARI JABATAN PENGAWAS SDRI. PALUPI ANGGRAENI, S.P., M.M., NIP 198305152009012005, PE', '00001', 1609434000, 1, NULL),
+(2, '011/KN.1/2021', 1612198800, 'Surat keputusan Mutasi Pegawai Golongan III', '00001', 1609434000, 1, 'fa83cd8b6fa859c04cb598086a9e228e.pdf'),
+(3, '100/KN.1/2021', 1638378000, 'Surat Keputusan perpindahan pegawai', '00001', 1638378000, 1, 'd16489cd316007afc64bc0109d36361f.pdf');
 
 -- --------------------------------------------------------
 
@@ -167,6 +283,14 @@ CREATE TABLE `data_sub_payroll` (
   `payroll_id` int(11) DEFAULT NULL,
   `pegawai_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data_sub_payroll`
+--
+
+INSERT INTO `data_sub_payroll` (`id`, `payroll_id`, `pegawai_id`) VALUES
+(1, 1, 1),
+(2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -182,6 +306,35 @@ CREATE TABLE `data_timeline` (
   `tanggal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `data_timeline`
+--
+
+INSERT INTO `data_timeline` (`id`, `pegawai_id`, `proses_id`, `keterangan`, `tanggal`) VALUES
+(1, 1, 3, 'Kantor Pusat telah melakukan proses verifikasi data keluarga', 1637908483),
+(2, 1, 1, 'Nomor 01, tentang mutasi', 1609434000),
+(3, 1, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1635992692),
+(4, 2, 1, 'Nomor 01, tentang mutasi', 1609434000),
+(5, 2, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1637734743),
+(6, 3, 1, 'Nomor 01, tentang mutasi', 1609434000),
+(7, 3, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1634893014),
+(8, 4, 1, 'Nomor 011/KN.1/2021, tentang Surat keputusan Mutasi Pegawai Golongan III', 1612198800),
+(9, 4, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1638406554),
+(10, 5, 1, 'Nomor , tentang ', NULL),
+(11, 5, 4, 'Kantor Pusat telah melakukan proses perhitungan biaya mutasi', 1638406739),
+(12, 1, 2, 'Pegawai telah melakukan upload dokumen KP4 yang sudah disahkan oleh Pejabat yang berwenang', 1635992445),
+(13, 1, 8, 'Kantor Pusat telah melakukan proses verifikasi dokumen Rincian Biaya dan SPD', 1637913382),
+(14, 1, 9, 'Kantor Pusat telah melakukan proses verifikasi rekening Pegawai dan pembuatan Data Payroll', 1637913382),
+(15, 2, 8, 'Kantor Pusat telah melakukan proses verifikasi dokumen Rincian Biaya dan SPD', 1637913388),
+(16, 2, 9, 'Kantor Pusat telah melakukan proses verifikasi rekening Pegawai dan pembuatan Data Payroll', 1637913388),
+(17, 1, 11, 'Pegawai telah melakukan upload dokumen KTP ART', 1637916108),
+(18, 4, 3, 'Kantor Pusat telah melakukan proses verifikasi data keluarga', 1638406534),
+(19, 5, 3, 'Kantor Pusat telah melakukan proses verifikasi data keluarga', 1638406727),
+(20, 4, 2, 'Pegawai telah melakukan upload dokumen KP4 yang sudah disahkan oleh Pejabat yang berwenang', 1638406842),
+(21, 4, 5, 'Pegawai telah melakukan upload dokumen rincian biaya mutasi yang sudah ditandatangani', 1638406854),
+(22, 4, 6, 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor asal', 1638406869),
+(23, 4, 7, 'Pegawai telah melakukan upload dokumen SPD yang sudah ditandatangani oleh Pejabat yang berwenang pada Kantor tujuan', 1638406881);
+
 -- --------------------------------------------------------
 
 --
@@ -195,6 +348,18 @@ CREATE TABLE `data_upload` (
   `date_created` int(11) DEFAULT NULL,
   `kode` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `data_upload`
+--
+
+INSERT INTO `data_upload` (`id`, `pegawai_id`, `file`, `date_created`, `kode`) VALUES
+(1, 1, '1ddf6f93e878d325443a73641fe57b86.pdf', 1635992445, 1),
+(2, 1, 'f5c7127f10d750bda4e26a7b245afa45.pdf', 1637916108, 6),
+(3, 4, 'f53a67a0b436860a50019f4951c06d00.pdf', 1638406842, 1),
+(4, 4, '9eeea1dbc88e4b95de65131e36bade0f.pdf', 1638406854, 2),
+(5, 4, '4b727e5b038ef0bfdbfabd96193fd74d.pdf', 1638406869, 3),
+(6, 4, '41f78813cb7676fc2147a1bdae3ea44c.pdf', 1638406881, 4);
 
 -- --------------------------------------------------------
 
@@ -225,11 +390,13 @@ CREATE TABLE `pegawai_payroll` (
 CREATE TABLE `pegawai_sk` (
 `pegawai_id` int(11)
 ,`nip` varchar(18)
+,`sk_id` int(11)
 ,`nomor` varchar(128)
 ,`tanggal` int(11)
 ,`uraian` varchar(255)
 ,`nospp` varchar(5)
 ,`tglspp` int(11)
+,`file` varchar(128)
 ,`asal` varchar(64)
 ,`tujuan` varchar(64)
 );
@@ -307,7 +474,7 @@ INSERT INTO `ref_darat` (`id`, `kota_asal`, `kota_tujuan`, `jumlah`, `sts`) VALU
 (27, 'BANDARLAMPUNG', 'JEMBER', 1199, 2),
 (28, 'BANDARLAMPUNG', 'MADIUN', 864, 1),
 (29, 'BANDARLAMPUNG', 'MEDAN', 1832, 1),
-(30, 'BANDARLAMPUNG', 'METRO', 52, 1),
+(30, 'BANDARLAMPUNG', 'METRO', 49, 1),
 (31, 'BANDARLAMPUNG', 'PADANG', 1118, 1),
 (32, 'BANDARLAMPUNG', 'PALEMBANG', 374, 1),
 (33, 'BANDARLAMPUNG', 'PEKANBARU', 1082, 1),
@@ -972,7 +1139,8 @@ INSERT INTO `ref_dokumen` (`id`, `kode`, `jenis`) VALUES
 (2, 2, 'Rincian Biaya'),
 (3, 3, 'SPD Kantor Asal'),
 (4, 4, 'SPD Kantor Tujuan'),
-(5, 5, 'KTP ART (optional)');
+(5, 5, 'KTP ART (optional)'),
+(6, 6, 'Dokumen Lain');
 
 -- --------------------------------------------------------
 
@@ -9927,7 +10095,7 @@ CREATE TABLE `ref_users` (
 
 INSERT INTO `ref_users` (`id`, `nip`, `nama`, `email`, `password`, `is_active`, `date_created`) VALUES
 (4, '198407022003121004', 'Dana Kristiawan', 'danakristiawan@gmail.com', '$2y$10$.WOt64Sf2QnX4NqPkea60uNJMrnhZhWLAGW/JFRvkN1VYK3LG79Wq', 1, 1577811600),
-(6, '198801142014022005', 'Dini Indri Irianti', 'dinindririanti@gmail.com', '$2y$10$nZp/KQM9KRAabKuW8iTqeersCYgUNIpPA5GIDEq.kXyvdh/aEBjv6', 1, 1609434000),
+(6, '198801142014022005', 'Dini Indri Irianti', 'dinindririanti@gmail.com', '$2y$10$.WOt64Sf2QnX4NqPkea60uNJMrnhZhWLAGW/JFRvkN1VYK3LG79Wq', 0, 1637294941),
 (8, '199212012014112002', 'Nur Ayu Saraswati', 'nurayu@gmail.com', '$2y$10$Et400MlK4JesWRLG/wh4QOK1nEO1LP3HgBYpV5NyU9GIylouvjdz6', 1, 1634008686),
 (9, '198908052010121001', 'Andito', 'andito@gmail.com', '$2y$10$hwfRHnu6ZX4a7rLTCXADi.RZnSSopYdf2lo99p7fWP/2x5XaF/dyS', 1, 1634008738);
 
@@ -9956,7 +10124,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `pegawai_sk`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pegawai_sk`  AS  select `a`.`id` AS `pegawai_id`,`a`.`nip` AS `nip`,`b`.`nomor` AS `nomor`,`b`.`tanggal` AS `tanggal`,`b`.`uraian` AS `uraian`,`b`.`nospp` AS `nospp`,`b`.`tglspp` AS `tglspp`,`c`.`asal` AS `asal`,`c`.`tujuan` AS `tujuan` from ((`data_pegawai` `a` left join `data_sk` `b` on((`a`.`sk_id` = `b`.`id`))) left join `ref_rute` `c` on((`a`.`ref_rute_id` = `c`.`id`))) where (`b`.`status` = '1') ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pegawai_sk`  AS  select `a`.`id` AS `pegawai_id`,`a`.`nip` AS `nip`,`a`.`sk_id` AS `sk_id`,`b`.`nomor` AS `nomor`,`b`.`tanggal` AS `tanggal`,`b`.`uraian` AS `uraian`,`b`.`nospp` AS `nospp`,`b`.`tglspp` AS `tglspp`,`b`.`file` AS `file`,`c`.`asal` AS `asal`,`c`.`tujuan` AS `tujuan` from ((`data_pegawai` `a` left join `data_sk` `b` on((`a`.`sk_id` = `b`.`id`))) left join `ref_rute` `c` on((`a`.`ref_rute_id` = `c`.`id`))) where (`b`.`status` = '1') ;
 
 --
 -- Indexes for dumped tables
@@ -9973,6 +10141,12 @@ ALTER TABLE `data_art`
 --
 ALTER TABLE `data_biaya`
   ADD PRIMARY KEY (`id`) USING BTREE;
+
+--
+-- Indexes for table `data_jadwal`
+--
+ALTER TABLE `data_jadwal`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `data_keluarga`
@@ -10144,49 +10318,55 @@ ALTER TABLE `data_art`
 -- AUTO_INCREMENT for table `data_biaya`
 --
 ALTER TABLE `data_biaya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+
+--
+-- AUTO_INCREMENT for table `data_jadwal`
+--
+ALTER TABLE `data_jadwal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `data_keluarga`
 --
 ALTER TABLE `data_keluarga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `data_payroll`
 --
 ALTER TABLE `data_payroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `data_pegawai`
 --
 ALTER TABLE `data_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `data_sk`
 --
 ALTER TABLE `data_sk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `data_sub_payroll`
 --
 ALTER TABLE `data_sub_payroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `data_timeline`
 --
 ALTER TABLE `data_timeline`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `data_upload`
 --
 ALTER TABLE `data_upload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ref_angkutan`
@@ -10204,7 +10384,7 @@ ALTER TABLE `ref_darat`
 -- AUTO_INCREMENT for table `ref_dokumen`
 --
 ALTER TABLE `ref_dokumen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `ref_jenis`

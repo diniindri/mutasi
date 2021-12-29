@@ -16,6 +16,10 @@ class Monitoring_dokumen extends CI_Controller
         $this->load->model('Ref_dokumen_model', 'dokumen');
         $this->load->model('Data_timeline_model', 'timeline');
         $this->load->model('View_pegawai_sk_model', 'pegawai_sk');
+        $this->load->model('Ref_pejabat_model', 'pejabat');
+        $this->load->model('Ref_laporan_model', 'laporan');
+        $this->load->model('Data_biaya_model', 'biaya');
+        $this->load->model('Data_keluarga_model', 'keluarga');
     }
 
     public function index()
@@ -88,6 +92,71 @@ class Monitoring_dokumen extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('monitoring_dokumen/detail', $data);
         $this->load->view('template/footer');
+    }
+
+    public function download($sk_id = null, $pegawai_id = null)
+    {
+        $data['download'] = [
+            ['nama' => 'Rincian Biaya', 'url' => '' . base_url() . 'monitoring-dokumen/download-biaya/' . $sk_id . '/' . $pegawai_id . ''],
+            ['nama' => 'SPD', 'url' => '' . base_url() . 'monitoring-dokumen/download-spd/' . $sk_id . '/' . $pegawai_id . '']
+        ];
+        // meload view pada pegawai/index.php
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('monitoring_dokumen/download', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function download_spd($sk_id = null, $pegawai_id = null)
+    {
+        if (!isset($sk_id)) show_404();
+
+        $data['dokumen'] = $this->dokumen->getAllDokumen();
+        $kode = $this->input->post('kode');
+        $data['sk_id'] = $sk_id;
+        $data['pegawai_id'] = $pegawai_id;
+
+        $data['ppk'] = $this->pejabat->getKodePejabat(1);
+        $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
+        $data['keluarga'] = $this->keluarga->getKeluarga($pegawai_id);
+        $data['detail_sk'] = $this->pegawai_sk->getDetailPegawaiSk($pegawai_id);
+        $data['laporan'] = $this->laporan->getDetailLaporan(1);
+        ob_start();
+        $this->load->view('monitoring_dokumen/spd', $data);
+        $html = ob_get_clean();
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'en', false, 'UTF-8', array(20, 10, 20, 10));
+        $html2pdf->addFont('Arial');
+        $html2pdf->pdf->SetTitle('SPD');
+        $html2pdf->writeHTML($html);
+        $html2pdf->output('spd-' . '.pdf');
+    }
+
+    public function download_biaya($sk_id = null, $pegawai_id = null)
+    {
+        if (!isset($sk_id)) show_404();
+
+        $data['dokumen'] = $this->dokumen->getAllDokumen();
+        $kode = $this->input->post('kode');
+        $data['sk_id'] = $sk_id;
+        $data['pegawai_id'] = $pegawai_id;
+
+        $data['ppk'] = $this->pejabat->getKodePejabat(1);
+        $data['bendahara'] = $this->pejabat->getKodePejabat(2);
+        $data['pegawai'] = $this->pegawai->getDetailPegawai($pegawai_id);
+        $data['laporan'] = $this->laporan->getDetailLaporan(1);
+        $data['biaya_orang'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 1);
+        $data['biaya_barang'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 2);
+        $data['biaya_lumpsum'] = $this->biaya->getRincianBiayaPerJenis($pegawai_id, 3);
+        ob_start();
+        $this->load->view('monitoring_dokumen/biaya', $data);
+        $html = ob_get_clean();
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'en', false, 'UTF-8', array(20, 10, 20, 10));
+        $html2pdf->addFont('Arial');
+        $html2pdf->pdf->SetTitle('Biaya');
+        $html2pdf->writeHTML($html);
+        $html2pdf->output('biaya-' . '.pdf');
     }
 
     public function upload($sk_id = null, $pegawai_id = null)

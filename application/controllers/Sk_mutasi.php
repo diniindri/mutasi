@@ -9,6 +9,14 @@ class sk_mutasi extends CI_Controller
         is_level();
         // meload file Data_sk_model.php
         $this->load->model('Data_sk_model', 'sk');
+        $this->load->model('Data_biaya_model', 'biaya');
+        $this->load->model('Data_jadwal_model', 'jadwal');
+        $this->load->model('Data_keluarga_model', 'keluarga');
+        $this->load->model('Data_payroll_model', 'payroll');
+        $this->load->model('Data_pegawai_model', 'pegawai');
+        $this->load->model('Data_sub_payroll_model', 'sub_payroll');
+        $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('Data_upload_model', 'data_upload');
     }
 
     public function index()
@@ -140,6 +148,19 @@ class sk_mutasi extends CI_Controller
 
         // hapus data di database melalui model
         if ($this->sk->deleteSk($id)) {
+
+            $pegawai = $this->pegawai->getPegawai($id, null, 0)['id'];
+            foreach ($pegawai as $r) {
+                $id = $r['id'];
+                $this->biaya->deleteBiayaPegawai($id);
+                $this->keluarga->deleteKeluarga($id);
+                $this->sub_payroll->deleteSubPayroll($id);
+                $this->timeline->deleteTimeline($id);
+                $this->data_upload->deleteUpload($id);
+            }
+            $this->jadwal->deleteJadwal($id);
+            $this->payroll->deletePayroll($id);
+            $this->pegawai->deletePegawai($id);
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
         redirect('sk-mutasi');

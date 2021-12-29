@@ -63,7 +63,7 @@
                                 <td><?= $r['art']; ?></td>
                                 <td><?= $r['asal']; ?>-<?= $r['tujuan']; ?></td>
                                 <td><?= $r['no_spd']; ?></td>
-                                <td><?= $r['tgl_spd'] == '' ? '' : date('d-m-Y', $r['tgl_spd']); ?></td>
+                                <td><?= $r['tgl_spd'] == 0 ? '' : date('d-m-Y', $r['tgl_spd']); ?></td>
                                 <td><?= $r['jabatan']; ?></td>
                                 <td><?= $r['tingkat']; ?></td>
                                 <td class="pb-0">
