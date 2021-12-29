@@ -17,6 +17,7 @@
             ['menu' => 'Dashboard', 'level' => 1, 'url' => 'dashboard'],
             ['menu' => 'Timeline', 'level' => 1, 'url' => 'timeline'],
             ['menu' => 'Dateline', 'level' => 1, 'url' => 'dateline'],
+            ['menu' => 'Estimasi', 'level' => 1, 'url' => 'estimasi'],
             ['menu' => 'SK Mutasi', 'level' => 2, 'url' => 'sk-mutasi'],
             ['menu' => 'Biaya Mutasi', 'level' => 2, 'url' => 'biaya-mutasi'],
             ['menu' => 'Monitoring Dokumen', 'level' => 2, 'url' => 'monitoring-dokumen'],
