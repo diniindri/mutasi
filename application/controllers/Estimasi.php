@@ -58,7 +58,8 @@ class Estimasi extends CI_Controller
             $jumlah_anggota = $ybs + $istri + $anak;
             $jumlah_anggota_pesawat = $jumlah_anggota;
             $jumlah_kubik = $this->kubik->findJumlahKubik($gol, $kdkawin)['jumlah'];
-            $ref_rute_id = $this->rute->findRute($asal, $tujuan, null, 0)[0]['id'];
+            $ref_rute_id = $this->rute->findRute($asal, $tujuan, null, 0);
+            $ref_rute_id ? $ref_rute_id = $ref_rute_id[0]['id'] : $ref_rute_id = 4429;
             // tarik data tarif darat untuk tarif angkutan orang (2000) dan angkutan barang (400)
             $tarif_darat = $this->tarif_darat->getDetailTarifDarat(1);
             $tarif_orang = $tarif_darat['orang'];
