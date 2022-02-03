@@ -17,8 +17,9 @@ class Dateline extends CI_Controller
 
         $nip = $this->session->userdata('nip');
         $data['sk'] = $this->view_pegawai_sk->getPegawaiSk($nip);
+        if ($data['sk']) $sk_id = $data['sk'][0]['sk_id'];
 
-        if (!isset($sk_id) && $data['sk']) $sk_id = $data['sk'][0]['sk_id'];
+        // if (!isset($sk_id) && $data['sk']) $sk_id = $data['sk'][0]['sk_id'];
 
         if (!isset($sk_id)) {
             $data['sk_id'] = null;

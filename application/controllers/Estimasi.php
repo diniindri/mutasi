@@ -143,7 +143,8 @@ class Estimasi extends CI_Controller
             }
             // hitung uang harian
             // cari data provinsi memakai data kota tujuan
-            $provinsi = $this->provinsi->findProvinsi($tujuan, null, 0)[0]['provinsi'];
+            $provinsi = $this->provinsi->findProvinsi($tujuan, null, 0);
+            $provinsi ? $provinsi = $provinsi[0]['provinsi'] : $provinsi = 'ACEH';
             // cari data uang harian memakai data provinsi
             $uang_harian = $this->uang_harian->findUangHarian($provinsi, null, 0)[0]['luar_kota'];
             $data = [

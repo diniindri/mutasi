@@ -26,7 +26,8 @@ class Dashboard extends CI_Controller
 
         if (!isset($pegawai_id) && $data['sk']) $pegawai_id = $data['sk'][0]['pegawai_id'];
 
-        $nip_sk = $this->pegawai_sk->getDetailPegawaiSk($pegawai_id)['nip'];
+        $nip_sk = $this->pegawai_sk->getDetailPegawaiSk($pegawai_id);
+        $nip_sk ? $nip_sk = $nip_sk['nip'] : $nip_sk = '';
         if (!isset($pegawai_id) || $nip <> $nip_sk) {
             $data['pegawai_id'] = null;
             $data['detail_sk'] = [
