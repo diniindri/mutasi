@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="card mb-2">
-                <h6 class="card-header">Download Dokumen</h6>
+                <h6 class="card-header"><a href="<?= base_url('monitoring-dokumen/detail/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Sebelumnya</a></h6>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">

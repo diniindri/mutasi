@@ -14,6 +14,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('biaya-mutasi'); ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Sebelumnya</a>
         </div>
         <div class="col-lg-5">
             <!-- <form action="" method="post" autocomplete="off"> -->
@@ -52,7 +53,7 @@
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('biaya-mutasi/hitung/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hitung</a>
                                         <a href="<?= base_url('biaya-mutasi/hapus/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Hapus</a>
-                                        <a href="<?= base_url('biaya-mutasi/rincian/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rincian</a>
+                                        <a href="<?= base_url('biaya-mutasi/rincian/') . $r['id'] . '/' . $r['ref_rute_id'] . '/' . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rincian</a>
                                     </div>
                                 </td>
                             </tr>

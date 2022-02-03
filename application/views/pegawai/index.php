@@ -14,8 +14,9 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('sk-mutasi'); ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Sebelumnya</a>
             <a href="<?= base_url('pegawai/create/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Tambah Data</a>
-            <a href="<?= base_url('pegawai/tarik-pegawai-gaji/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data Gaji</a>
+            <a href="<?= base_url('pegawai/tarik-pegawai-gaji/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data Gaji</a>
         </div>
         <div class="col-lg-5">
             <!-- <form action="" method="post" autocomplete="off"> -->
@@ -71,8 +72,8 @@
                                         <a href="<?= base_url('pegawai/update/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
                                         <a href="<?= base_url('pegawai/delete/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
                                         <a href="<?= base_url('pegawai/ubah-kubik/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Kubik</a>
-                                        <a href="<?= base_url('pegawai/cari-rute/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rute</a>
-                                        <a href="<?= base_url('keluarga/index/') . $r['id'] . '/' . $sk_id; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Keluarga</a>
+                                        <a href="<?= base_url('pegawai/cari-rute/') . $r['id'] . '/' . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Rute</a>
+                                        <a href="<?= base_url('keluarga/index/') . $r['id'] . '/' . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Keluarga</a>
                                     </div>
                                 </td>
                             </tr>

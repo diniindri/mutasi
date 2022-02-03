@@ -26,13 +26,13 @@ class Jadwal extends CI_Controller
         $uraian = $this->input->post('uraian');
 
         // settingan halaman
-        $config['base_url'] = base_url('jadwal/detail/' . $sk_id . '');
+        $config['base_url'] = base_url('jadwal/detail/' . $sk_id . '/a');
         $config['total_rows'] = $this->jadwal->countJadwal($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
         $data['uraian'] = $uraian;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -98,7 +98,7 @@ class Jadwal extends CI_Controller
             // simpan data ke database melalui model
             $this->jadwal->createJadwal($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('jadwal/detail/' . $sk_id . '');
+            redirect('jadwal/detail/' . $sk_id . '/a');
         }
 
         // meload view pada dokumen/create.php
@@ -133,7 +133,7 @@ class Jadwal extends CI_Controller
             // update data di database melalui model
             $this->jadwal->updateJadwal($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('jadwal/detail/' . $sk_id . '');
+            redirect('jadwal/detail/' . $sk_id . '/a');
         }
 
         // meload view pada jadwal/update.php
@@ -152,6 +152,6 @@ class Jadwal extends CI_Controller
         if ($this->jadwal->deleteJadwal($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('jadwal/detail/' . $sk_id . '');
+        redirect('jadwal/detail/' . $sk_id . '/a');
     }
 }

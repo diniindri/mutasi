@@ -17,7 +17,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal:</label>
-                <input type="text" name="tanggal" class="form-control <?= form_error('tanggal') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
+                <input type="text" name="tanggal" id="myFlat" class="form-control <?= form_error('tanggal') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
                 <div class="invalid-feedback">
                     <?= form_error('tanggal'); ?>
                 </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal SPP:</label>
-                <input type="text" name="tglspp" class="form-control <?= form_error('tglspp') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
+                <input type="text" name="tglspp" id="myFlat" class="form-control <?= form_error('tglspp') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
                 <div class="invalid-feedback">
                     <?= form_error('tglspp'); ?>
                 </div>

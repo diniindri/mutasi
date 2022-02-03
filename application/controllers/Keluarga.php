@@ -30,13 +30,13 @@ class Keluarga extends CI_Controller
         $nama = $this->input->post('nama');
 
         // settingan halaman
-        $config['base_url'] = base_url('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
+        $config['base_url'] = base_url('keluarga/index/' . $pegawai_id . '/' . $sk_id . '/a');
         $config['total_rows'] = $this->keluarga->countKeluargaPegawai($pegawai_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
+        $data['page'] = $this->uri->segment(6) ? $this->uri->segment(6) : 0;
         $data['nama'] = $nama;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -117,7 +117,7 @@ class Keluarga extends CI_Controller
                 $this->pegawai->updatePegawai(['infant' => $infant, 'art' => $art], $pegawai_id);
             }
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
+            redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '/a');
         }
 
         // meload view pada keluarga/create.php
@@ -161,7 +161,7 @@ class Keluarga extends CI_Controller
                 $this->pegawai->updatePegawai(['infant' => $infant, 'art' => $art], $pegawai_id);
             }
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
+            redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '/a');
         }
 
         // meload view pada keluarga/update.php
@@ -186,7 +186,7 @@ class Keluarga extends CI_Controller
             $this->pegawai->updatePegawai(['infant' => $infant, 'art' => $art], $pegawai_id);
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
+        redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '/a');
     }
 
     public function tarik_keluarga_gaji($nip = null, $pegawai_id = null, $sk_id)
@@ -226,6 +226,6 @@ class Keluarga extends CI_Controller
         }
         // selesai
         $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-        redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '');
+        redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '/a');
     }
 }

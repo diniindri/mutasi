@@ -6,7 +6,7 @@ class Estimasi extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
-        is_level();
+        // is_level();
         $this->load->model('Data_sk_model', 'sk');
         $this->load->model('Data_biaya_model', 'biaya');
         $this->load->model('Data_pegawai_model', 'pegawai');

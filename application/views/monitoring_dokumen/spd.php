@@ -270,7 +270,7 @@
         <tr>
             <td class="kosong" style="width:17%; padding-top:0;">Pada Tanggal</td>
             <td class="kosong" style="width:3%;">:</td>
-            <td class="kosong" style="width:30%;"> <?= tanggal($pegawai['tgl_spd']); ?> </td>
+            <td class="kosong" style="width:30%;"> <?= $pegawai['tgl_spd'] == 0 ? '' : tanggal($pegawai['tgl_spd']); ?> </td>
         </tr>
     </table>
     <table class="kosong" style="padding-top:10px; margin-left:60%;">

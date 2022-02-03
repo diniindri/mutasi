@@ -82,7 +82,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal SPD:</label>
-                <input type="text" name="tgl_spd" class="form-control <?= form_error('tgl_spd') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy" value="<?= $pegawai['tgl_spd'] == '' ? '' : date('d-m-Y', $pegawai['tgl_spd']); ?>">
+                <input type="text" name="tgl_spd" id="myFlat" class="form-control <?= form_error('tgl_spd') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy" value="<?= $pegawai['tgl_spd'] == '' ? '' : date('d-m-Y', $pegawai['tgl_spd']); ?>">
                 <div class="invalid-feedback">
                     <?= form_error('tgl_spd'); ?>
                 </div>
@@ -106,7 +106,7 @@
     <div class="row mt-3">
         <div class="col">
             <div class="form-group">
-                <a href="<?= base_url('pegawai/index/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <a href="<?= base_url('pegawai/index/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
                 <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>

@@ -27,13 +27,13 @@ class Pegawai extends CI_Controller
         $nmpeg = $this->input->post('nmpeg');
 
         // settingan halaman
-        $config['base_url'] = base_url('pegawai/index/' . $sk_id . '');
+        $config['base_url'] = base_url('pegawai/index/' . $sk_id . '/a');
         $config['total_rows'] = $this->pegawai->countPegawaiMutasi($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
         $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -118,7 +118,7 @@ class Pegawai extends CI_Controller
             // simpan data ke database melalui model
             $this->pegawai->createPegawai($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('pegawai/index/' . $sk_id . '');
+            redirect('pegawai/index/' . $sk_id . '/a');
         }
 
         // meload view pada pegawai/create.php
@@ -162,7 +162,7 @@ class Pegawai extends CI_Controller
             // update data di database melalui model
             $this->pegawai->updatePegawai($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('pegawai/index/' . $sk_id . '');
+            redirect('pegawai/index/' . $sk_id . '/a');
         }
 
         // meload view pada rute/update.php
@@ -182,7 +182,7 @@ class Pegawai extends CI_Controller
         if ($this->pegawai->deletePegawai($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('pegawai/index/' . $sk_id . '');
+        redirect('pegawai/index/' . $sk_id . '/a');
     }
 
     public function tarik_pegawai_gaji($sk_id = null)
@@ -197,13 +197,13 @@ class Pegawai extends CI_Controller
         $nmpeg = $this->input->post('nmpeg');
 
         // settingan halaman
-        $config['base_url'] = base_url('pegawai/tarik-pegawai-gaji/' . $sk_id . '');
+        $config['base_url'] = base_url('pegawai/tarik-pegawai-gaji/' . $sk_id . '/a');
         $config['total_rows'] = $this->pegawai->countPegawaiGaji();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
         $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -250,7 +250,7 @@ class Pegawai extends CI_Controller
         }
         // update timeline
         $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-        redirect('pegawai/index/' . $sk_id . '');
+        redirect('pegawai/index/' . $sk_id . '/a');
     }
 
     public function ubah_kubik($id = null, $sk_id = null)
@@ -284,7 +284,7 @@ class Pegawai extends CI_Controller
             // update data di database melalui model
             $this->pegawai->updatePegawai($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('pegawai/index/' . $sk_id . '');
+            redirect('pegawai/index/' . $sk_id . '/a');
         }
 
         // meload view pada rute/update.php
@@ -309,13 +309,13 @@ class Pegawai extends CI_Controller
         $tujuan = $this->input->post('tujuan');
 
         // settingan halaman
-        $config['base_url'] = base_url('pegawai/cari-rute/' . $id . '/' . $sk_id . '');
+        $config['base_url'] = base_url('pegawai/cari-rute/' . $id . '/' . $sk_id . '/a');
         $config['total_rows'] = $this->rute->countRute();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
+        $data['page'] = $this->uri->segment(6) ? $this->uri->segment(6) : 0;
         $data['asal'] = $asal;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -366,6 +366,6 @@ class Pegawai extends CI_Controller
             // selesai
             $this->session->set_flashdata('pesan', 'Data rute berhasil diubah.');
         }
-        redirect('pegawai/index/' . $sk_id . '');
+        redirect('pegawai/index/' . $sk_id . '/a');
     }
 }

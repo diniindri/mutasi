@@ -63,13 +63,13 @@ class Payroll extends CI_Controller
         $uraian = $this->input->post('uraian');
 
         // settingan halaman
-        $config['base_url'] = base_url('payroll/detail/' . $sk_id . '');
+        $config['base_url'] = base_url('payroll/detail/' . $sk_id . '/a');
         $config['total_rows'] = $this->payroll->countPayroll($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
         $data['uraian'] = $uraian;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -134,7 +134,7 @@ class Payroll extends CI_Controller
             // simpan data ke database melalui model
             $this->payroll->createPayroll($data);
             $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
-            redirect('payroll/detail/' . $sk_id . '');
+            redirect('payroll/detail/' . $sk_id . '/a');
         }
 
         // meload view pada kapal/create.php
@@ -168,7 +168,7 @@ class Payroll extends CI_Controller
             // update data di database melalui model
             $this->payroll->updatePayroll($data, $id);
             $this->session->set_flashdata('pesan', 'Data berhasil diubah.');
-            redirect('payroll/detail/' . $sk_id . '');
+            redirect('payroll/detail/' . $sk_id . '/a');
         }
 
         // meload view pada kapal/update.php
@@ -187,7 +187,7 @@ class Payroll extends CI_Controller
         if ($this->payroll->deletePayroll($id)) {
             $this->session->set_flashdata('pesan', 'Data berhasil dihapus.');
         }
-        redirect('payroll/detail/' . $sk_id . '');
+        redirect('payroll/detail/' . $sk_id . '/a');
     }
 
     public function pegawai($sk_id = null, $payroll_id = null)
@@ -201,13 +201,13 @@ class Payroll extends CI_Controller
         $data['payroll_id'] = $payroll_id;
 
         // settingan halaman
-        $config['base_url'] = base_url('payroll/pegawai/' . $sk_id . '/' . $payroll_id . '');
+        $config['base_url'] = base_url('payroll/pegawai/' . $sk_id . '/' . $payroll_id . '/a');
         $config['total_rows'] = $this->pegawai_payroll->countPegawaiPayroll($payroll_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
+        $data['page'] = $this->uri->segment(6) ? $this->uri->segment(6) : 0;
         $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -373,7 +373,7 @@ class Payroll extends CI_Controller
             // selesai
             $this->session->set_flashdata('pesan', 'Data payroll berhasil diproses.');
         }
-        redirect('payroll/detail/' . $sk_id . '');
+        redirect('payroll/detail/' . $sk_id . '/a');
     }
 
     public function batal_payroll($sk_id = null, $payroll_id = null)
@@ -386,7 +386,7 @@ class Payroll extends CI_Controller
         if ($this->payroll->updatePayroll(['status' => 0], $payroll_id)) {
             $this->session->set_flashdata('pesan', 'Data payroll berhasil dibatalkan.');
         }
-        redirect('payroll/detail/' . $sk_id . '');
+        redirect('payroll/detail/' . $sk_id . '/a');
     }
 
     public function pegawai_payroll($sk_id = null, $payroll_id = null)
@@ -400,13 +400,13 @@ class Payroll extends CI_Controller
         $data['payroll_id'] = $payroll_id;
 
         // settingan halaman
-        $config['base_url'] = base_url('payroll/pegawai/' . $sk_id . '/' . $payroll_id . '');
+        $config['base_url'] = base_url('payroll/pegawai-payroll/' . $sk_id . '/' . $payroll_id . '/a');
         $config['total_rows'] = $this->pegawai_payroll->countPegawaiPayroll($payroll_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
+        $data['page'] = $this->uri->segment(6) ? $this->uri->segment(6) : 0;
         $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];

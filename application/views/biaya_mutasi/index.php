@@ -35,12 +35,12 @@
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $r['nomor']; ?></td>
-                                <td><?= date('d-m-Y', $r['tanggal']); ?></td>
+                                <td><?= tanggal($r['tanggal']); ?></td>
                                 <td><?= $r['uraian']; ?></td>
                                 <td><?= $r['status'] == 1 ? 'Aktif' : 'Non Aktif'; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
-                                        <a href="<?= base_url('biaya-mutasi/detail/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                        <a href="<?= base_url('biaya-mutasi/detail/') . $r['id'] . '/a'; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
                                         <a href="<?= base_url('biaya-mutasi/dnp/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">DNP</a>
                                         <a href="<?= base_url('biaya-mutasi/excel/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Excel</a>
                                     </div>

@@ -203,7 +203,7 @@
         <tr>
             <td class="kosong">Tanggal</td>
             <td class="kosong"> : </td>
-            <td class="kosong"> <?= tanggal($pegawai['tgl_spd']); ?> </td>
+            <td class="kosong"> <?= $pegawai['tgl_spd'] == 0 ? '' : tanggal($pegawai['tgl_spd']); ?> </td>
         </tr>
     </table>
 

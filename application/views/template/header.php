@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="<?= base_url(); ?>assets/img/mutasi.png" type=" image/x-icon">
     <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
 <body>

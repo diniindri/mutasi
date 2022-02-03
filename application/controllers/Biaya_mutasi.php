@@ -69,13 +69,13 @@ class Biaya_mutasi extends CI_Controller
         $nmpeg = $this->input->post('nmpeg');
 
         // settingan halaman
-        $config['base_url'] = base_url('biaya-mutasi/detail/' . $sk_id . '');
+        $config['base_url'] = base_url('biaya-mutasi/detail/' . $sk_id . '/a');
         $config['total_rows'] = $this->pegawai->countPegawaiMutasi($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
         $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -277,7 +277,7 @@ class Biaya_mutasi extends CI_Controller
         }
         // selesai
         $this->session->set_flashdata('pesan', 'Data berhasil dihitung.');
-        redirect('biaya-mutasi/detail/' . $sk_id);
+        redirect('biaya-mutasi/detail/' . $sk_id . '/a');
     }
 
     public function hapus($pegawai_id = null, $ref_rute_id = null, $sk_id = null)
@@ -292,7 +292,7 @@ class Biaya_mutasi extends CI_Controller
         // ubah nominal di data pegawai menjadi 0
         $this->pegawai->updatePegawai(['nominal' => 0], $pegawai_id);
         $this->session->set_flashdata('pesan', 'Data biaya berhasil dihapus.');
-        redirect('biaya-mutasi/detail/' . $sk_id);
+        redirect('biaya-mutasi/detail/' . $sk_id . '/a');
     }
 
     public function rincian($pegawai_id = null, $ref_rute_id = null, $sk_id = null)

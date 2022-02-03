@@ -29,7 +29,7 @@ class Monitoring_dokumen extends CI_Controller
         $uraian = $this->input->post('uraian');
 
         // settingan halaman
-        $config['base_url'] = base_url('biaya-mutasi/index');
+        $config['base_url'] = base_url('monitoring-dokumen/index');
         $config['total_rows'] = $this->sk->countSk();
         $config['per_page'] = 10;
         $config["num_links"] = 3;
@@ -67,13 +67,13 @@ class Monitoring_dokumen extends CI_Controller
         $nmpeg = $this->input->post('nmpeg');
 
         // settingan halaman
-        $config['base_url'] = base_url('monitoring-dokumen/detail/' . $sk_id . '');
+        $config['base_url'] = base_url('monitoring-dokumen/detail/' . $sk_id . '/a');
         $config['total_rows'] = $this->pegawai->countPegawaiMutasi($sk_id);
         $config['per_page'] = 10;
         $config["num_links"] = 3;
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-        $data['page'] = $this->uri->segment(4) ? $this->uri->segment(4) : 0;
+        $data['page'] = $this->uri->segment(5) ? $this->uri->segment(5) : 0;
         $data['nmpeg'] = $nmpeg;
         $limit = $config["per_page"];
         $offset = $data['page'];
@@ -96,6 +96,9 @@ class Monitoring_dokumen extends CI_Controller
 
     public function download($sk_id = null, $pegawai_id = null)
     {
+        // mengirim data id sk ke view
+        $data['sk_id'] = $sk_id;
+
         $data['download'] = [
             ['nama' => 'Rincian Biaya', 'url' => '' . base_url() . 'monitoring-dokumen/download-biaya/' . $sk_id . '/' . $pegawai_id . ''],
             ['nama' => 'SPD', 'url' => '' . base_url() . 'monitoring-dokumen/download-spd/' . $sk_id . '/' . $pegawai_id . '']

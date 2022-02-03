@@ -48,17 +48,17 @@
                             <tr>
                                 <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $r['nomor']; ?></td>
-                                <td><?= date('d-m-Y', $r['tanggal']); ?></td>
+                                <td><?= tanggal($r['tanggal']); ?></td>
                                 <td><?= $r['uraian']; ?></td>
                                 <td><?= $r['nospp']; ?></td>
-                                <td><?= date('d-m-Y', $r['tglspp']); ?></td>
+                                <td><?= tanggal($r['tglspp']); ?></td>
                                 <td><?= $r['status'] == 1 ? 'Aktif' : 'Non Aktif'; ?></td>
                                 <td class="pb-0">
                                     <div class="btn-group btn-group-sm" role="group">
                                         <a href="<?= base_url('sk-mutasi/update/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Ubah</a>
                                         <a href="<?= base_url('sk-mutasi/delete/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?');">Hapus</a>
-                                        <a href="<?= base_url('pegawai/index/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
-                                        <a href="<?= base_url('jadwal/detail/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Jadwal</a>
+                                        <a href="<?= base_url('pegawai/index/') . $r['id'] . '/a'; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Detail</a>
+                                        <a href="<?= base_url('jadwal/detail/') . $r['id'] . '/a'; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">Jadwal</a>
                                         <a href="<?= base_url('sk-mutasi/nd/') . $r['id']; ?>" class="btn btn-sm btn-outline-secondary pt-0 pb-0">ND</a>
                                     </div>
                                 </td>

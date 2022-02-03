@@ -17,7 +17,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal:</label>
-                <input type="text" name="tanggal" class="form-control <?= form_error('tanggal') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
+                <input type="text" name="tanggal" id="myFlat" class="form-control <?= form_error('tanggal') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
                 <div class="invalid-feedback">
                     <?= form_error('tanggal'); ?>
                 </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal SPP:</label>
-                <input type="text" name="tglspp" class="form-control <?= form_error('tglspp') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
+                <input type="text" name="tglspp" id="myFlat" class="form-control <?= form_error('tglspp') ? 'is-invalid' : ''; ?>" placeholder="dd-mm-yyyy">
                 <div class="invalid-feedback">
                     <?= form_error('tglspp'); ?>
                 </div>
@@ -41,7 +41,7 @@
     <div class="row mt-3">
         <div class="col">
             <div class="form-group">
-                <a href="<?= base_url('payroll/detail/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <a href="<?= base_url('payroll/detail/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
                 <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>

@@ -62,7 +62,7 @@
     <div class="row mt-3">
         <div class="col">
             <div class="form-group">
-                <a href="<?= base_url('pegawai/index/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <a href="<?= base_url('pegawai/index/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
                 <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>

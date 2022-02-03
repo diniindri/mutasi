@@ -14,12 +14,13 @@
     </div>
     <div class="row mb-3">
         <div class="col-lg-7">
+            <a href="<?= base_url('monitoring-dokumen'); ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Sebelumnya</a>
         </div>
         <div class="col-lg-5">
             <!-- <form action="" method="post" autocomplete="off"> -->
             <?= form_open(); ?>
             <div class="input-group">
-                <input type="text" name="nip" class="form-control" placeholder="Nama">
+                <input type="text" name="nmpeg" class="form-control" placeholder="Nama">
                 <button class="btn btn-sm btn-outline-secondary" type="submit">Cari</button>
             </div>
             </form>

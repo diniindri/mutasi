@@ -24,14 +24,14 @@
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal Awal:</label>
-                <input type="text" name="tglawal" class="form-control <?= form_error('tglawal') ? 'is-invalid' : ''; ?>" value="<?= date('d-m-Y', $jadwal['tglawal']); ?>">
+                <input type="text" name="tglawal" id="myFlat" class="form-control <?= form_error('tglawal') ? 'is-invalid' : ''; ?>" value="<?= date('d-m-Y', $jadwal['tglawal']); ?>">
                 <div class="invalid-feedback">
                     <?= form_error('tglawal'); ?>
                 </div>
             </div>
             <div class="form-group mb-2">
                 <label for="">Tanggal Akhir:</label>
-                <input type="text" name="tglakhir" class="form-control <?= form_error('tglakhir') ? 'is-invalid' : ''; ?>" value="<?= date('d-m-Y', $jadwal['tglakhir']); ?>">
+                <input type="text" name="tglakhir" id="myFlat" class="form-control <?= form_error('tglakhir') ? 'is-invalid' : ''; ?>" value="<?= date('d-m-Y', $jadwal['tglakhir']); ?>">
                 <div class="invalid-feedback">
                     <?= form_error('tglakhir'); ?>
                 </div>
@@ -41,7 +41,7 @@
     <div class="row mt-3">
         <div class="col">
             <div class="form-group">
-                <a href="<?= base_url('jadwal/detail/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
+                <a href="<?= base_url('jadwal/detail/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary">Batal</a>
                 <button type="submit" class="btn btn-sm btn-outline-secondary ml-1">Simpan</button>
             </div>
         </div>
