@@ -12,6 +12,7 @@ class Keluarga extends CI_Controller
         $this->load->model('Data_pegawai_model', 'pegawai');
         $this->load->model('Ref_status_keluarga_model', 'status_keluarga');
         $this->load->model('Data_timeline_model', 'timeline');
+        $this->load->model('Data_hris_model', 'hris');
     }
 
     public function index($pegawai_id = null, $sk_id)
@@ -205,6 +206,68 @@ class Keluarga extends CI_Controller
                 'kdkeluarga' => $r['kdkeluarga'],
                 'tgllhr' => $r['tgllhr'],
                 'kddapat' => $r['kddapat'],
+                'sts' => 0
+            ];
+            // simpan data ke database melalui model
+            $this->keluarga->createKeluarga($data);
+        }
+        // rekam data_timeline
+        // cek apakah sudah ada data apa belum
+        $proses_id = '3';
+        $data_timeline = [
+            'pegawai_id' => $pegawai_id,
+            'proses_id' => $proses_id,
+            'keterangan' => 'Kantor Pusat telah melakukan proses verifikasi data keluarga',
+            'tanggal' => time()
+        ];
+        if ($this->timeline->cekTimeline($pegawai_id, $proses_id)) {
+            $this->timeline->updateTimeline($data_timeline, $pegawai_id, $proses_id);
+        } else {
+            $this->timeline->createTimeline($data_timeline);
+        }
+        // selesai
+        $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
+        redirect('keluarga/index/' . $pegawai_id . '/' . $sk_id . '/a');
+    }
+
+    public function tarik_keluarga_hris($nip = null, $pegawai_id = null, $sk_id)
+    {
+        // cek apakah ada id apa tidak
+        if (!isset($nip)) show_404();
+        if (!isset($pegawai_id)) show_404();
+        if (!isset($sk_id)) show_404();
+
+        // cari data keluarga berdasarkan nip
+        $keluarga = $this->hris->getKeluarga($nip)['Data'];
+
+        usort($keluarga, function ($a, $b) {
+            return $a['TanggalLahir'] <=> $b['TanggalLahir'];
+        });
+
+        foreach ($keluarga as $r) {
+
+            switch ($r['IdrefHubungan']) {
+                case '2':
+                    $kdkeluarga = '3';
+                    break;
+                case '4':
+                    $kdkeluarga = '1';
+                    break;
+                case '7':
+                    $kdkeluarga = '2';
+                    break;
+                
+                default:
+                    # code...
+                    break;
+               }
+
+            $data = [
+                'pegawai_id' => $pegawai_id,
+                'nama' => $r['Nama'],
+                'kdkeluarga' => $kdkeluarga,
+                'tgllhr' =>date('Y-m-d', strtotime($r['TanggalLahir'])),
+                'kddapat' => '1',
                 'sts' => 0
             ];
             // simpan data ke database melalui model
