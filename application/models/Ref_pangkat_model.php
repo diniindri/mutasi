@@ -52,4 +52,9 @@ class Ref_pangkat_model extends CI_Model
     {
         return $this->db->get_where('ref_pangkat', ['kode' => $kode])->row_array();
     }
+
+    public function getKdgapok($nmgol = null)
+    {
+        return $this->db->get_where('ref_pangkat', ['nmgol' => $nmgol])->row_array();
+    }
 }

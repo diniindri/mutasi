@@ -17,6 +17,7 @@
             <a href="<?= base_url('sk-mutasi'); ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Sebelumnya</a>
             <a href="<?= base_url('pegawai/create/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1"> Tambah Data</a>
             <a href="<?= base_url('pegawai/tarik-pegawai-gaji/') . $sk_id . '/a'; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data Gaji</a>
+            <a href="<?= base_url('pegawai/tarik-pegawai-hris/') . $sk_id; ?>" class="btn btn-sm btn-outline-secondary mt-1 mb-1 ml-2"> Tarik Data HRIS</a>
         </div>
         <div class="col-lg-5">
             <!-- <form action="" method="post" autocomplete="off"> -->

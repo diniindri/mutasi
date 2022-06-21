@@ -13,6 +13,8 @@ class Pegawai extends CI_Controller
         $this->load->model('Ref_rute_model', 'rute');
         $this->load->model('Data_timeline_model', 'timeline');
         $this->load->model('View_pegawai_sk_model', 'pegawai_sk');
+        $this->load->model('Data_hris_model', 'hris');
+        $this->load->model('Ref_pangkat_model', 'pangkat');
     }
 
     public function index($sk_id = null)
@@ -366,6 +368,58 @@ class Pegawai extends CI_Controller
             // selesai
             $this->session->set_flashdata('pesan', 'Data rute berhasil diubah.');
         }
+        redirect('pegawai/index/' . $sk_id . '/a');
+    }
+
+    public function tarik_pegawai_hris($sk_id = null)
+    {
+        // cek apakah ada rute id apa tidak
+        if (!isset($sk_id)) show_404();
+
+        // mengirim data id sk ke view
+        $data['sk_id'] = $sk_id;
+
+        // menangkap data pencarian nip
+        $nip = $this->input->post('nip');
+        if ($nip) {
+            $data['pegawai'] = $this->hris->getProfil($nip)['Data'];
+        } else {
+            $data['pegawai'] = [
+                'Nip18' => '',
+                'Nama' => '',
+                'KodeGolonganRuang' => ''
+            ];
+        }
+        // meload view pada pegawai/tarik_pegawai_hris.php
+        $this->load->view('template/header');
+        $this->load->view('template/sidebar');
+        $this->load->view('pegawai/tarik_pegawai_hris', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function pilih_pegawai_hris($nip = null, $sk_id = null)
+    {
+        // cek apakah ada id apa tidak
+        if (!isset($nip)) show_404();
+        if (!isset($sk_id)) show_404();
+
+        //load data berdasarkan nip dari data pegawai gaji
+        $pegawai = $this->hris->getProfil($nip)['Data'];
+        $kdgapok = $this->pangkat->getKdgapok($pegawai['KodeGolonganRuang'])['kdgapok'];
+            $data = [
+                'sk_id' => $sk_id,
+                'nip' => $pegawai['Nip18'],
+                'nmpeg' => $pegawai['Nama'],
+                'kdgapok' => $kdgapok,
+                'kdkawin' => '',
+                'rekening' => '',
+                'nm_bank' => '',
+                'nmrek' => ''
+            ];
+            // simpan data di database melalui model
+            $this->pegawai->createPegawai($data);
+        // update timeline
+        $this->session->set_flashdata('pesan', 'Data berhasil ditambah.');
         redirect('pegawai/index/' . $sk_id . '/a');
     }
 }
